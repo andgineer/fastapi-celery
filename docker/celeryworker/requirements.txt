@@ -1,0 +1,6 @@
+celery==4.4.2
+fastapi>=0.16.0
+sqlalchemy
+psycopg2-binary
+typing_extensions
+numpy

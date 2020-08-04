@@ -1,0 +1,64 @@
+version: '3.3'
+services:
+
+  postgres:
+    image: postgres:11
+    restart: always
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./docker/postgres/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - postgres-data:/var/lib/postgresql/data/pgdata
+    networks:
+      default:
+        aliases:
+          - postgres
+    container_name: postgres-fastapi-template
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+
+  backend: &backend
+    build:
+      context: ./
+      dockerfile: docker/backend/Dockerfile
+    depends_on:
+      - rabbitmq
+      - celeryworker
+      - flower
+      - postgres
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  celeryworker:
+    build:
+      context: ./
+      dockerfile: docker/celeryworker/Dockerfile
+    restart: always
+    depends_on:
+      - rabbitmq
+
+  flower:
+      build:
+        context: ./
+        dockerfile: docker/flower/Dockerfile
+      restart: always
+      depends_on:
+        - rabbitmq
+      ports:
+      - "5555:5555"
+
+volumes:
+  postgres-data:
+

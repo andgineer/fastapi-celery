@@ -1,0 +1,13 @@
+celery==4.4.2
+fastapi>=0.60.1
+python-multipart
+amqp==2.3.2
+alembic
+sqlalchemy
+psycopg2-binary
+uvicorn
+gunicorn
+typing_extensions
+jupyterlab
+pytest
+pyjwt

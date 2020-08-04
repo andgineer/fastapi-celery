@@ -1,0 +1,17 @@
+fastapi>=0.16.0
+python-multipart
+requests
+amqp==2.3.2
+sqlalchemy
+psycopg2-binary
+typing_extensions
+pytest
+celery==4.4.2
+hypothesis
+coverage
+pytest-cov
+pytest-instafail
+pytest-picked
+pytest-xdist
+pyjwt
+pytest-benchmark

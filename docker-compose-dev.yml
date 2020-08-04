@@ -1,0 +1,66 @@
+version: '3.3'
+services:
+
+  postgres:
+    volumes:
+      - ./sql:/sql/:ro
+    env_file:
+      - env/dev-postgres.env
+
+  pgadmin:
+    env_file:
+      - env/dev-pgadmin.env
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    env_file:
+      - env/dev-rabbitmq.env
+    ports:
+      - "4369:4369"
+      - "5672:5672"
+      - "25672:25672"
+      - "15672:15672"
+
+  celeryworker:
+    build:
+      args:
+        env: dev
+    volumes:
+      - ./backend/app:/app/:ro
+    env_file:
+      - env/dev-celeryworker.env
+      - env/dev-postgres.env
+      - env/dev-backend.env
+
+  backend:
+    build:
+      args:
+        env: dev
+    volumes:
+      - ./backend:/backend/:rw
+    env_file:
+      - env/dev-celeryworker.env
+      - env/dev-postgres.env
+      - env/dev-backend.env
+    ports:
+      - "80:80"
+
+  flower:
+      env_file:
+        - env/dev-celeryworker.env
+
+  tests:
+    build:
+      context: ./
+      dockerfile: docker/tests/Dockerfile
+      args:
+        env: dev
+    volumes:
+      - ./backend:/backend/:ro
+    env_file:
+      - env/dev-celeryworker.env
+      - env/dev-postgres.env
+      - env/dev-backend.env
+    depends_on:
+      - rabbitmq
+      - backend

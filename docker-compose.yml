@@ -22,18 +22,13 @@ services:
     depends_on:
       - postgres
 
-  rabbitmq:
-    image: rabbitmq:3-management
-    restart: always
-
   backend: &backend
     build:
       context: ./
       dockerfile: docker/backend/Dockerfile
     depends_on:
-      - rabbitmq
+      - redis
       - celeryworker
-      - flower
       - postgres
     restart: always
     ports:
@@ -47,17 +42,14 @@ services:
       dockerfile: docker/celeryworker/Dockerfile
     restart: always
     depends_on:
-      - rabbitmq
+      - redis
 
-  flower:
-      build:
-        context: ./
-        dockerfile: docker/flower/Dockerfile
-      restart: always
-      depends_on:
-        - rabbitmq
-      ports:
-      - "5555:5555"
+  redis:
+    build:
+      context: ./
+      dockerfile: docker/redis/Dockerfile
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres-data:

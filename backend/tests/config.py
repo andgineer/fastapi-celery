@@ -5,6 +5,7 @@ from app.db.session import get_session
 from sqlalchemy.orm import Session
 from app.config import Config
 from typing import Optional
+import fakeredis
 
 
 HTTP_TIMEOUT_SECONDS = 10
@@ -14,8 +15,16 @@ class TestConfig(Config):
     headers = None
 
     @property
-    def mq_uri(self):
-        return 'memory://'  # we do not use external MQ in tests
+    def celery_broker_uri(self):
+        return 'memory://'
+
+    @property
+    def celery_backend_uri(self):
+        return 'rpc://'
+
+    @property
+    def redis(self):
+        return fakeredis.FakeStrictRedis()
 
     def __init__(self, config=None):
         if config is not None:  # init from pytest config

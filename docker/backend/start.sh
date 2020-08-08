@@ -20,7 +20,7 @@ else
 fi
 
 # wait for rabbitmq
-while ! nc -z rabbitmq 5672; do sleep 3; done
+#while ! nc -z rabbitmq 5672; do sleep 3; done
 
 if [ $env == 'dev' ] ; then
   echo "!!!DEBUG MODE!!! Start Uvicorn with live reload"

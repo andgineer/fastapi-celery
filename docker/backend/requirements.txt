@@ -11,3 +11,5 @@ typing_extensions
 jupyterlab
 pytest
 pyjwt
+redis
+

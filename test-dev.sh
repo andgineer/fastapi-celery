@@ -7,5 +7,5 @@ docker-compose \
   -f docker-compose.yml \
   -f docker-compose-dev.yml \
   run --no-deps \
-  tests /tests-start.sh \
+  tests /start.sh \
   "$@"

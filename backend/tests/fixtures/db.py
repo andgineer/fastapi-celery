@@ -29,7 +29,11 @@ def db(pytestconfig):
             config.get_test_config()
         ).connect()
     except sqlalchemy.exc.OperationalError:
-        pytest.exit(f'Tests have to connect to DB {config.get_test_config().db_uri}', returncode=2)
+        pytest.exit(
+            f'Tests have to connect to DB \n {config.get_test_config().db_uri}\n'
+            f'Use "./up-dev.sh -d postgres" to run it.',
+            returncode=2
+        )
 
     # begin a non-ORM transaction
     trans = connection.begin()

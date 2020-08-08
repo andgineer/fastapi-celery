@@ -11,16 +11,6 @@ services:
     env_file:
       - env/dev-pgadmin.env
 
-  rabbitmq:
-    image: rabbitmq:3-management
-    env_file:
-      - env/dev-rabbitmq.env
-    ports:
-      - "4369:4369"
-      - "5672:5672"
-      - "25672:25672"
-      - "15672:15672"
-
   celeryworker:
     build:
       args:
@@ -45,10 +35,6 @@ services:
     ports:
       - "80:80"
 
-  flower:
-      env_file:
-        - env/dev-celeryworker.env
-
   tests:
     build:
       context: ./
@@ -62,5 +48,5 @@ services:
       - env/dev-postgres.env
       - env/dev-backend.env
     depends_on:
-      - rabbitmq
+      - redis
       - backend

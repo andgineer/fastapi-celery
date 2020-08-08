@@ -1,4 +1,8 @@
-# Backend template: FastAPI + Postgres/SQLAlchemy + Celery/RabbitMQ
+# Python backend: FastAPI + SQLAlchemy/Postgres + Celery/Redis
+
+Application template to quick start your API server.
+
+Fully Dockerized local development environment.
 
 ## Installation
 
@@ -35,7 +39,11 @@ See docker/postgres/README.md.
 
 ## Testing
 
-You only need Posgtres to run test container
+You only need Posgtres to run test container.
+We use fake redis to emulate Redis, fastapi test client to emulate fastapi server.
+
+For DB we use `fixtures/db` that wrap and roll back all test transactions leaving DB 
+intact after each test.
 
 ```console
 ./up-dev.sh -d postgres
@@ -50,7 +58,7 @@ You only need Posgtres to run test container
 
 ### Run tests locally (as unit-tests without server running)
 
-in `/etc/hosts`
+in `/etc/hosts` we need
 
     127.0.0.1   postgres
 
@@ -70,5 +78,6 @@ in folder `/backend` execute
 ./up-dev.sh -d backend
 ./test.sh --host 127.0.0.1 
 ```
+
 This command run local server and test it.
-It will skip unit tests that cannot be run for external server.
+It will skip unit tests that cannot be run for external server (marked as `unittest`).

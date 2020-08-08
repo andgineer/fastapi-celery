@@ -1,6 +1,7 @@
 import os
 import logging
 from functools import lru_cache
+import redis
 
 
 API_V1_STR = "/api"
@@ -82,4 +83,35 @@ class Config:
     def mq_uri(self):
         return f"pyamqp://{self.mq_user}:{self.mq_password}@{self.mq_host}:{self.mq_port}/"
 
+    @property
+    def redis_host(self):
+        return self.mq_host
 
+    @property
+    def redis_port(self):
+        return self.mq_port
+
+    @property
+    def redis_db(self):
+        return 1
+
+    @property
+    def redis(self):
+        return redis.Redis(
+            host=self.redis_host,
+            port=self.redis_port,
+            password=self.redis_password,
+            db=self.redis_db,
+        )
+
+    @property
+    def redis_password(self):
+        return self.mq_password
+
+    @property
+    def celery_broker_uri(self):
+        return f"redis://:{self.mq_password}@{self.mq_host}:{self.mq_port}/0"
+
+    @property
+    def celery_backend_uri(self):
+        return self.celery_broker_uri

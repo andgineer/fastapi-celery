@@ -26,6 +26,8 @@ class Config:
     result_expires = 600  # A built-in periodic task will delete the results after this time (seconds)
     # assuming that celery beat is enabled. The task runs daily at 4am.
     # task_ignore_result = True  # now we control this per task
+    task_compression = 'gzip'
+    result_compression = 'gzip'
 
 
 def get_task_packages(path: str) -> List[str]:
@@ -42,14 +44,14 @@ def get_task_packages(path: str) -> List[str]:
 try:
     celery_app = Celery(
         'celery',
-        backend="rpc://",
-        broker=mq_uri,
+        backend=app_config.get_config().celery_backend_uri,
+        broker=app_config.get_config().celery_broker_uri,
         include=get_task_packages(os.path.join('app', 'tasks'))
     )
     celery_app.config_from_object(Config)
     celery_app.connection().ensure_connection(max_retries=3, timeout=15)
 except OperationalError:
-    raise RuntimeError(f"Connection to {mq_uri} RabbitMQ broker refused.")
+    raise RuntimeError(f'Connection to {app_config.get_config().celery_broker_uri} broker refused.')
 
 logger.info(f"Connection to {mq_uri} established.")
 

@@ -4,3 +4,4 @@ sqlalchemy
 psycopg2-binary
 typing_extensions
 numpy
+redis

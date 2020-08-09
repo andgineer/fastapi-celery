@@ -4,8 +4,8 @@ set -e
 #python /app/app/celeryworker_pre_start.py
 export PYTHONPATH="/"
 
-# wait for rabbitmq
-while ! nc -z rabbitmq 5672; do sleep 3; done
+# wait for redis
+#sleep 1
 
 if [ $env == 'dev' ] ; then
   # celery 4 does not support auto-reload so we use watchdog to reload celery on tasks changes

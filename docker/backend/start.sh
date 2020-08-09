@@ -19,8 +19,8 @@ else
     echo "There is no script $PRE_START_PATH"
 fi
 
-# wait for rabbitmq
-#while ! nc -z rabbitmq 5672; do sleep 3; done
+# wait for redis
+#sleep 1
 
 if [ $env == 'dev' ] ; then
   echo "!!!DEBUG MODE!!! Start Uvicorn with live reload"

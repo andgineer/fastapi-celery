@@ -20,8 +20,9 @@ Fully Dockerized local development environment.
 ./up-dev.sh 
 ```
 
-You can debug backend and celery tasks code locally - it will connect to postgres and rabbitmq 
-in containers.
+You can debug backend and celery tasks code locally - it will connect to Postgres 
+and Redis in containers (for that you need `postrges` and `redis` pointing to
+localhost in your `/etc/hosts`).
 
 ## Working with DB
 

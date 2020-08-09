@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from app.api.v1.auth import router as auth_router
 from app.api.v1.root import router as root_router
+from app.api.v1.words import router as words_router
 
 
 TAGS = [
@@ -21,6 +22,7 @@ TAGS = [
 ROUTE_TABLE = [
     dict(router=root_router, tag='tests'),
     dict(prefix='/auth', router=auth_router, tag='security'),
+    dict(prefix='/words', router=words_router, tag='words'),
 ]
 
 

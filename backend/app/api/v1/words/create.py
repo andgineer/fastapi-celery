@@ -3,7 +3,7 @@ from starlette import status
 from starlette.requests import Request
 from starlette.responses import Response
 from app.api.v1 import models as api_models
-
+from app.api.create_task import create_task
 from app.api.v1.words import router
 import app.controllers.tasks as tasks
 
@@ -25,10 +25,12 @@ async def create_words_count_task(
 
     Works asynchronously - reply with 303 status code and `Location` HTTP header which points to url
     like GET /words/{id} where the result will be available after processing.
+    If it’s not ready yet the GET request will return 202 status code.
     """
-    task_id = tasks.send(
-        'tasks.words',
-        args=[(await text.read()).decode()]
+    create_task(
+        task_name='tasks.words',
+        task_args=[(await text.read()).decode()],
+        request=request,
+        response=response,
     )
-    response.status_code = status.HTTP_303_SEE_OTHER
-    response.headers['Location'] = f'{request.url.path}/{task_id}'
+

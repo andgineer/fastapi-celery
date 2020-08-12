@@ -12,12 +12,11 @@ from app.api.routing import router, TAGS
 from app.api.exception_handlers import (db_exception_handler, general_exception_handler,
                                         db_not_found_exception_handler)
 import app.config as app_config  # to not shadow global app var with FastAPI app
-from app.db.session import get_session
+import app.db.session as app_session
 from app.config import API_V1_STR
 
 
 log = logging.getLogger()
-
 
 
 app = FastAPI(
@@ -41,11 +40,11 @@ async def db_session_middleware(request: Request, call_next):
     Opens DB session for each API request
     """
     try:
-        try:
-            request.state.db = get_session(app_config.get_config())
-        except Exception as e:
-            logging.exception(f'Cannot get session in middleware: {e}')
+        request.state.db = app_session.get_session(app_config.get_config())
         response = await call_next(request)
+    except Exception as e:
+        logging.exception(f'Cannot get session in middleware: {e}')
+        raise
     finally:
         request.state.db.close()
     return response

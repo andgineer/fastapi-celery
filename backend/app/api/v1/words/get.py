@@ -5,6 +5,7 @@ from starlette.responses import Response
 from app.api.v1 import models as api_models
 import app.controllers.tasks as tasks
 from typing import Optional
+from app.api.get_task import get_task
 
 from app.api.v1.words import router
 
@@ -32,12 +33,7 @@ def words_result(
 
     When the result is not yet ready returns `202` response.
     """
-    try:
-        result = tasks.get(words_id)
-        if result is None:
-            response.status_code = status.HTTP_202_ACCEPTED
-        else:
-            return api_models.Words(count=result)
-    except Exception:
-        response.status_code = status.HTTP_404_NOT_FOUND
+    results = get_task(words_id, response=response)
+    if results is not None:
+        return api_models.Words(count=results)
     return response

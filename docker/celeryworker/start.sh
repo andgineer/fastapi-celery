@@ -16,7 +16,7 @@ if [ $env == 'dev' ] ; then
     --recursive \
     -- \
     celery worker -A app.celery_app \
-    -l info \
+    -l debug \
     -Q main-queue \
     -c 1 \
     -O fair \

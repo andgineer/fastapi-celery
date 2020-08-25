@@ -3,10 +3,8 @@
 # removes container after exit
 #
 # Examples:
-# run-dev.sh tests
+# run.sh tests
 
-docker-compose \
-  -f docker-compose.yml \
-  -f docker-compose-dev.yml \
+./compose.sh \
   run --no-deps --rm \
   "$@"

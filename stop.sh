@@ -2,4 +2,4 @@
 #
 # stops all containers but postgres
 #
-./docker-dev.sh stop backend celeryworker redis nginx
+./compose.sh stop backend celeryworker redis nginx

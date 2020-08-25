@@ -3,7 +3,7 @@
 # Pass all args to it
 #
 # Usage:
-#   alembic-dev.sh history
+#   alembic.sh history
 
 SERVICE_NAME="backend"
 
@@ -12,12 +12,12 @@ args="$@"
 
 if container_is_not_running ${SERVICE_NAME} ; then
   echo "Using RUN instead of EXEC"
-  ./run-dev.sh \
+  ./run.sh \
     ${SERVICE_NAME} \
     bash -c \
     "PYTHONPATH=. alembic $args"
 else
-  ./docker-dev.sh \
+  ./compose.sh \
     exec \
     ${SERVICE_NAME} \
     bash -c \

@@ -3,10 +3,8 @@
 # Pass all args to docker-compose
 #
 # Examples:
-# exec-dev.sh rabbitmq
-docker-compose \
-  -f docker-compose.yml \
-  -f docker-compose-dev.yml \
+# exec.sh rabbitmq
+./compose.sh \
   exec \
   "$@" \
   bash

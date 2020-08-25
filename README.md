@@ -43,10 +43,10 @@ See docker/postgres/README.md.
 
 ```console
 # compare DB models and current DB and create DB upgrade script in alembic/versions
-./alembic-dev.sh revision --autogenerate -m "Schema changes."
+./alembic.sh revision --autogenerate -m "Schema changes."
 
 # apply script to the DB so after that DB meta data will reflect DB models  
-./alembic-dev.sh upgrade head
+./alembic.sh upgrade head
 ```
 
 ## Testing
@@ -55,14 +55,14 @@ You only need `Posgtres` to run test container.
 We use `fakeredis` to emulate `Redis`, `fastapi` `test client` to emulate fastapi server.
 
 ```console
-./up-dev.sh -d postgres
+./up.sh postgres
 ```
 
 ### Run tests from container
 
 ```console
-./run-dev.sh tests  # run all tests
-./run-dev.sh tests python -m pytest -v  # run tests `verbosely`
+./run.sh tests  # run all tests
+./run.sh tests python -m pytest -v  # run tests `verbosely`
 ```
 
 ### Run tests locally (as unit-tests without server running)
@@ -84,7 +84,7 @@ in folder `/backend` execute
 ### Test local server
 
 ```console
-./up-dev.sh -d backend
+./up.sh backend
 ./test.sh --host 127.0.0.1 
 ```
 
@@ -102,7 +102,7 @@ In folder `backend/` run:
 
 ## Swagger / OpenAPI
 
-Swagger UI available at `localhost/docs` after server start (`./up-dev.sh`).
+Swagger UI available at `localhost/docs` after server start (`./up.sh`).
 
 # nginx proxy
 

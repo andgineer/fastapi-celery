@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
 
-python -m pytest tests/ "$@"
+python -m pytest -s -vv --no-hints tests/ "$@"

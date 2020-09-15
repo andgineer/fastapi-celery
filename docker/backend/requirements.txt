@@ -1,7 +1,8 @@
-celery==4.4.2
+celery
+vine==1.3.0
 fastapi>=0.60.1
 python-multipart
-amqp==2.3.2
+amqp
 alembic
 sqlalchemy
 psycopg2-binary

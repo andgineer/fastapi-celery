@@ -4,6 +4,6 @@
 # Examples:
 # test.sh -k token -s
 ./compose.sh \
-  run --no-deps \
+  run --no-deps --rm \
   tests /start.sh \
   "$@"

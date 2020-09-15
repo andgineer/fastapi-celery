@@ -37,7 +37,7 @@ PY_IGNORE_IMPORTMISMATCH=1 \
   python -m pytest  \
     --instafail \
     --picked=first \
-    -s -v \
+    -s -vv --no-hints \
     $PYTEST_ARGS \
     "$@"
 

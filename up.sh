@@ -9,5 +9,5 @@
   --build \
   "$@"
 
-./compose.sh logs -f "$@"
+./compose.sh logs --tail 50 -f "$@"
 

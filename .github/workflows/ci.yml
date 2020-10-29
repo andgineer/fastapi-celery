@@ -34,7 +34,7 @@ jobs:
     - name: Test with pytest
       run: |
         set -o allexport  # enables all following variable definitions to be exported
-        source ../env/dev-backend.env
-        source ../env/dev-celeryworker.env
+        source env/dev-backend.env
+        source env/dev-celeryworker.env
         set +o allexport
         cd backend && ./test.sh

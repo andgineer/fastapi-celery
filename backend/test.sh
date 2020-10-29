@@ -61,7 +61,7 @@ if [[ $RUN_DOCTESTS == 1 ]]; then
     else
       echo
       echo -e $RED"doctests FAIL!"$NC
-      EXIT_CODE=1
+      EXIT_CODE=$((1 && $EXIT_CODE))
     fi
     echo
 fi

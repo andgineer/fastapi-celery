@@ -57,11 +57,11 @@ if [[ $RUN_DOCTESTS == 1 ]]; then
     if [ $? -eq 0 ]; then
       echo
       echo -e $GREEN".. doctests success .."$NC
-      EXIT_CODE=0
+      EXIT_CODE=$((0 || $EXIT_CODE))
     else
       echo
       echo -e $RED"doctests FAIL!"$NC
-      EXIT_CODE=$((1 && $EXIT_CODE))
+      EXIT_CODE=1
     fi
     echo
 fi

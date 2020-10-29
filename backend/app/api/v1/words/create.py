@@ -2,10 +2,10 @@ from fastapi import UploadFile, File
 from starlette import status
 from starlette.requests import Request
 from starlette.responses import Response
-from app.api.v1 import models as api_models
+
 from app.api.create_task import create_task
+from app.api.v1 import models as api_models
 from app.api.v1.words import router
-import app.controllers.tasks as tasks
 
 
 @router.post(

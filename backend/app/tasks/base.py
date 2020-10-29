@@ -1,7 +1,6 @@
 import inspect
 from celery import Task
 from celery.utils.log import get_task_logger
-import celery.states
 import logging
 
 
@@ -74,5 +73,3 @@ class ErrorLoggingTask(Task):
         if logger.isEnabledFor(logging.DEBUG):
             kwargs['exc_info'] = exc
         super().on_failure(exc, task_id, args, kwargs, einfo)
-
-

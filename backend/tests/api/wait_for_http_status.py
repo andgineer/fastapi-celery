@@ -7,7 +7,7 @@ from typing import Callable, Tuple, Union, FrozenSet, Set, List
 
 def wait_for_http_status(
         http_request: Callable[[], Response],
-        wait_for_status: Union[Tuple,FrozenSet,Set,List] = frozenset({status.HTTP_200_OK}),
+        wait_for_status: Union[Tuple, FrozenSet, Set, List] = frozenset({status.HTTP_200_OK}),
         response_func: Callable[[Response], bool] = None,
         max_wait_seconds: float = 30,  # with xdist we really need as much on my macbook pro
         sleep_seconds: float = 0.3

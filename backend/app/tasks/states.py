@@ -2,4 +2,3 @@
 
 class TaskStates:
     PROGRESS = 'PROGRESS'
-

@@ -42,4 +42,3 @@ def sql_model_property_getter(db_object: Union[List, Dict], model: Type[BaseMode
     if isinstance(db_object, InstrumentedAttribute):
         db_object = default
     return list_to_pydantic_list(db_object, model)
-

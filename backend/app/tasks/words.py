@@ -1,14 +1,12 @@
-from celery.utils.log import get_task_logger
+import celery.app.task
 import celery.exceptions
 import celery.states
+from celery.utils.log import get_task_logger
 
 from app.celery_app import celery_app
-from app.tasks.base import ErrorLoggingTask
-import app.api.v1.models as api_model
-import celery.app.task
 from app.controllers.words import count_words
+from app.tasks.base import ErrorLoggingTask
 from app.tasks.states import TaskStates
-
 
 logger = get_task_logger(__name__)
 

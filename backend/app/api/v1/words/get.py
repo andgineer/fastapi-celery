@@ -1,12 +1,12 @@
 from itertools import chain
+from typing import Optional
+
 from fastapi import Path
 from starlette import status
 from starlette.responses import Response
-from app.api.v1 import models as api_models
-import app.controllers.tasks as tasks
-from typing import Optional
-from app.api.get_task import get_task
 
+from app.api.get_task import get_task
+from app.api.v1 import models as api_models
 from app.api.v1.words import router
 
 
@@ -18,15 +18,15 @@ from app.api.v1.words import router
             status.HTTP_202_ACCEPTED: {'description': 'Results are not ready yet.'},
             status.HTTP_200_OK: {'description': 'Results.'},
         }.items())
-   },
+               },
 )
 def words_result(
-    words_id: str = Path(
-        None,
-        description='words ID',
-        example='0ed49234-2069-4bf1-955b-124df445dc24'
-    ),
-    response: Response = None,
+        words_id: str = Path(
+            None,
+            description='words ID',
+            example='0ed49234-2069-4bf1-955b-124df445dc24'
+        ),
+        response: Response = None,
 ) -> Optional[api_models.Words]:
     """
     Returns result of `POST /words`.

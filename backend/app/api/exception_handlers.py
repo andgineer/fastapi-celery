@@ -24,7 +24,5 @@ async def db_exception_handler(request: Request, exc: sqlalchemy.exc.IntegrityEr
 async def db_not_found_exception_handler(request: Request, exc: sqlalchemy.orm.exc.NoResultFound):
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
-        content=GeneralErrorResponse(message=f'Not found').dict(),
+        content=GeneralErrorResponse(message='Not found').dict(),
     )
-
-

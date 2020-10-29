@@ -8,6 +8,9 @@ import pytest
 from app.celery_app import get_task_packages
 
 
+print('>>> celery fixtures are importing <<<')
+
+
 @pytest.fixture(scope='session')
 def celery_config():
     """
@@ -57,4 +60,3 @@ def use_celery_app_trap():
     https://docs.celeryproject.org/en/stable/userguide/testing.html
     """
     return True
-

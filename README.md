@@ -1,3 +1,4 @@
+[![Build Status](https://github.com/andgineer/fastapi-celery/workflows/ci/badge.svg)](https://github.com/andgineer/fastapi-celery/actions)
 # Python backend: FastAPI/Gunicorn + SQLAlchemy/Postgres + Celery/Redis + nginx
 
 Application template to quick start your API server.

@@ -41,15 +41,29 @@ PY_IGNORE_IMPORTMISMATCH=1 \
     $PYTEST_ARGS \
     "$@"
 
+if [ $? -eq 0 ]; then
+  echo
+  echo -e $GREEN".. pytest success .."$NC
+  EXIT_CODE=0
+else
+  echo
+  echo -e $RED".. pytest FAIL!"$NC
+  EXIT_CODE=1
+fi
+
 if [[ $RUN_DOCTESTS == 1 ]]; then
     python -m unittest --verbose
 
     if [ $? -eq 0 ]; then
       echo
-      echo -e $GREEN"success!"$NC
+      echo -e $GREEN".. doctests success .."$NC
+      EXIT_CODE=0
     else
       echo
-      echo -e $RED"fail"$NC
+      echo -e $RED"doctests FAIL!"$NC
+      EXIT_CODE=1
     fi
     echo
 fi
+
+exit $EXIT_CODE

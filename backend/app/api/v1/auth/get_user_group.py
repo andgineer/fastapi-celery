@@ -1,12 +1,19 @@
-from fastapi.security import SecurityScopes
-from fastapi.openapi.models import SecuritySchemeType
-from pydantic import Field, ValidationError, BaseModel
-from fastapi.security.base import SecurityBase
-from fastapi import Depends, HTTPException, status, Request
-from typing import Tuple, Optional
-import jwt
+from typing import Optional
+from typing import Tuple
+
 import app.config as app_config  # to not shadow global app var with FastAPI app
+import jwt
 from app.api.v1 import models as api_models
+from fastapi import Depends
+from fastapi import HTTPException
+from fastapi import Request
+from fastapi import status
+from fastapi.openapi.models import SecuritySchemeType
+from fastapi.security import SecurityScopes
+from fastapi.security.base import SecurityBase
+from pydantic import BaseModel
+from pydantic import Field
+from pydantic import ValidationError
 
 
 def extract_token(authorization_header_value: str) -> Tuple[str, str]:
@@ -26,9 +33,7 @@ class JWTSchema(SecurityBase):
 
 class JwtPasswordBearer(SecurityBase):
     def __init__(
-        self,
-        tokenUrl: str,
-        scopes: dict = None,
+        self, tokenUrl: str, scopes: dict = None,
     ):
         if not scopes:
             scopes = {}
@@ -49,17 +54,11 @@ class JwtPasswordBearer(SecurityBase):
 
 
 jwt_scheme = JwtPasswordBearer(
-    tokenUrl="/api/auth",
-    scopes={
-        "admin": "Create/delete",
-        "user": "Use"
-    },
+    tokenUrl="/api/auth", scopes={"admin": "Create/delete", "user": "Use"},
 )
 
 
-def get_user_group(
-    security_scopes: SecurityScopes, token: str = Depends(jwt_scheme)
-):
+def get_user_group(security_scopes: SecurityScopes, token: str = Depends(jwt_scheme)):
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
     else:
@@ -73,7 +72,7 @@ def get_user_group(
         payload = jwt.decode(
             token,
             app_config.get_config().jwt_secret_key,
-            algorithms=[app_config.get_config().jwt_algorithm]
+            algorithms=[app_config.get_config().jwt_algorithm],
         )
         user_group: str = payload.get("sub")
         if user_group is None:

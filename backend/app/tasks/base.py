@@ -1,8 +1,8 @@
 import inspect
-from celery import Task
-from celery.utils.log import get_task_logger
 import logging
 
+from celery import Task
+from celery.utils.log import get_task_logger
 
 logger = get_task_logger(__name__)
 
@@ -45,7 +45,9 @@ class ErrorLoggingTask(Task):
         Returns:
             None: The return value of this handler is ignored.
         """
-        logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}")
+        logger.info(
+            f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}"
+        )
         logger.info(f"task_id: {task_id}")
         logger.info(f"args: {args}")
         logger.info(f"kwargs: {kwargs}")
@@ -66,10 +68,12 @@ class ErrorLoggingTask(Task):
         Returns:
             None: The return value of this handler is ignored.
         """
-        logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}")
+        logger.error(
+            f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}"
+        )
         logger.error(f"task_id: {task_id}")
         logger.error(f"args: {args}")
         logger.error(f"einfo: {einfo}")
         if logger.isEnabledFor(logging.DEBUG):
-            kwargs['exc_info'] = exc
+            kwargs["exc_info"] = exc
         super().on_failure(exc, task_id, args, kwargs, einfo)

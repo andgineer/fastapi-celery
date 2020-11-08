@@ -25,19 +25,20 @@ def data_path(tmpdir, request) -> Path:
     :param request: A request object gives access to the requesting test context
         https://docs.pytest.org/en/latest/reference.html?highlight=request#std:fixture-request
     """
-    if hasattr(request, 'param'):
+    if hasattr(request, "param"):
         test_data_dir = os.path.join(
             os.path.split(os.path.splitext(request.module.__file__)[0])[0],
-            request.param
+            request.param,
         )
     else:
         head, tail = os.path.split(os.path.splitext(request.module.__file__)[0])
-        if tail.startswith('test_'):
-            tail = tail[len('test_'):]
-        test_data_dir = os.path.join(head, tail) + '_data'
+        if tail.startswith("test_"):
+            tail = tail[len("test_") :]
+        test_data_dir = os.path.join(head, tail) + "_data"
 
-    assert os.path.isdir(test_data_dir), \
-        f'data_path fixture: Cannot find test data folder {test_data_dir}'
+    assert os.path.isdir(
+        test_data_dir
+    ), f"data_path fixture: Cannot find test data folder {test_data_dir}"
     dir_util.copy_tree(test_data_dir, str(tmpdir))
 
     return Path(tmpdir)

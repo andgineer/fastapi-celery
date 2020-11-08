@@ -1,12 +1,12 @@
 """
 Injection functions to replace `get_config()` and `get_session()` in app under test
 """
+from typing import Optional
+
+import fakeredis
+from app.config import Config
 from app.db.session import get_session
 from sqlalchemy.orm import Session
-from app.config import Config
-from typing import Optional
-import fakeredis
-
 
 HTTP_TIMEOUT_SECONDS = 10
 
@@ -16,11 +16,11 @@ class TestConfig(Config):
 
     @property
     def celery_broker_uri(self):
-        return 'memory://'
+        return "memory://"
 
     @property
     def celery_backend_uri(self):
-        return 'rpc://'
+        return "rpc://"
 
     @property
     def redis(self):
@@ -29,15 +29,15 @@ class TestConfig(Config):
     def __init__(self, config=None):
         if config is not None:  # init from pytest config
             # --host: server to test. if None we unittest with FASTAPI test client
-            self.host = config.getoption('host')
+            self.host = config.getoption("host")
 
             # --header: HTTP headers for all requests
-            header_strings = config.getoption('headers')
+            header_strings = config.getoption("headers")
             if header_strings is None:
                 header_strings = {}
             self.headers = {}
             for option in header_strings:
-                key, _, value = option.partition(':')
+                key, _, value = option.partition(":")
                 self.headers[key] = value.strip()
         else:
             self.host = None

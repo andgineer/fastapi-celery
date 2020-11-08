@@ -1,19 +1,17 @@
-from sqlalchemy import event
-from sqlalchemy.orm import sessionmaker
-import sqlalchemy.exc
-import app.db.session as app_session
-import pytest
-import app.config as app_config
 import logging
 import uuid
 
+import app.config as app_config
+import app.db.session as app_session
+import pytest
+import sqlalchemy.exc
+from sqlalchemy import event
+from sqlalchemy.orm import sessionmaker
 
 log = logging.getLogger()
 
 
-@pytest.fixture(
-    scope='session',
-)
+@pytest.fixture(scope="session",)
 def db(pytestconfig):
     """
     SQLAlchemy DB session from app.db.session.
@@ -33,9 +31,7 @@ def db(pytestconfig):
         session.close()
 
 
-@pytest.fixture(
-    scope='function',
-)
+@pytest.fixture(scope="function",)
 def db_indepotent(pytestconfig):
     """
     DB session that roll back all DB modifications made in a test.
@@ -53,18 +49,19 @@ def db_indepotent(pytestconfig):
         yield None  # no sense using local DB when we test external Server
         return  # stop iterations for this fixture generator
     try:
-        connection = app_session.engine(
-            app_config.get_config()
-        ).connect()
+        connection = app_session.engine(app_config.get_config()).connect()
     except sqlalchemy.exc.OperationalError:
-        pytest.exit(f'Tests have to connect to DB {app_config.get_config().db_uri}', returncode=2)
+        pytest.exit(
+            f"Tests have to connect to DB {app_config.get_config().db_uri}",
+            returncode=2,
+        )
 
     # begin a non-ORM transaction
     trans = connection.begin()
-    session = sessionmaker(info={'test_session_id': str(uuid.uuid4())})(bind=connection)
+    session = sessionmaker(info={"test_session_id": str(uuid.uuid4())})(bind=connection)
 
     session.begin_nested()  # SAVEPOINT
-    log.debug(f'[[[ savepoint transaction ]]] Start in {session.info}')
+    log.debug(f"[[[ savepoint transaction ]]] Start in {session.info}")
 
     app_session._session = session  # Inject session to the server code under test
     # todo This session should not be used in parallel by backend handlers and Celery tasks.
@@ -79,13 +76,15 @@ def db_indepotent(pytestconfig):
         Each time that SAVEPOINT ends, reopen it
         """
         if transaction.nested and not transaction._parent.nested:
-            log.debug(f'[[[ savepoint transaction ]]] Restart in {session.info}')
+            log.debug(f"[[[ savepoint transaction ]]] Restart in {session.info}")
             session.begin_nested()
 
     yield session
 
-    app_session._session = None  # remove so server code in future will generate session by itself
+    app_session._session = (
+        None  # remove so server code in future will generate session by itself
+    )
     session.close()
-    log.debug(f'[[[ savepoint transaction ]]] Rollback in {session.info}')
+    log.debug(f"[[[ savepoint transaction ]]] Rollback in {session.info}")
     trans.rollback()  # roll back to the SAVEPOINT
     connection.close()

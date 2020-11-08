@@ -1,6 +1,6 @@
 ## Migrate DB to the latest version
 
-To create all tables and other object in DB 
+To create all tables and other object in DB
 
 ```console
 ./alembic-dev.sh upgrade head
@@ -30,4 +30,3 @@ After creating postgres container (it will be init with `schema.sql`)
 ```console
 ./upsert-dev.sh
 ```
-

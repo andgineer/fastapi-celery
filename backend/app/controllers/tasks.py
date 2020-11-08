@@ -1,8 +1,8 @@
+from typing import Optional
+
 import celery.result
 from app.celery_app import celery_app
-import celery.result
 from app.config import get_config
-from typing import Optional
 
 
 class TasksDatabase:
@@ -13,7 +13,7 @@ class TasksDatabase:
     """
 
     def __init__(self):
-        self.tasks_hash = 'celery_task_ids'
+        self.tasks_hash = "celery_task_ids"
         self.redis = get_config().redis
 
     def create(self, task_id: str):
@@ -54,7 +54,7 @@ def get(task_id: str) -> Optional[dict]:
         else:
             return task.result
     else:
-        raise ValueError(f'No such task {task_id}')
+        raise ValueError(f"No such task {task_id}")
 
 
 def delete(task_id: str):
@@ -64,4 +64,4 @@ def delete(task_id: str):
         task.forget()
         tasks_db.delete(task_id)
     else:
-        raise ValueError(f'No such task {task_id}')
+        raise ValueError(f"No such task {task_id}")

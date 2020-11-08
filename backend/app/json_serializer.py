@@ -8,7 +8,8 @@ Usage:
 >>> obj['datetime'] == dt.isoformat()
 True
 """
-from datetime import date, datetime
+from datetime import date
+from datetime import datetime
 
 
 def json_serial(obj):
@@ -24,4 +25,5 @@ def json_serial(obj):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

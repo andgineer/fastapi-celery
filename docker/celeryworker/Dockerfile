@@ -41,4 +41,3 @@ RUN mkdir /var/run/celery/
 COPY backend/app /app
 
 CMD ["bash", "/start.sh"]
-

@@ -1,4 +1,2 @@
-
-
 class TaskStates:
-    PROGRESS = 'PROGRESS'
+    PROGRESS = "PROGRESS"

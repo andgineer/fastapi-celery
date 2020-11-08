@@ -1,6 +1,6 @@
 import app.controllers.tasks as tasks
-from starlette.responses import Response
 from fastapi import status
+from starlette.responses import Response
 
 
 def get_task(task_id: str, response: Response):

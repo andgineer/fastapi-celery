@@ -1,6 +1,7 @@
-from fastapi import APIRouter
-from app import modules_load
 from pathlib import Path
+
+from app import modules_load
+from fastapi import APIRouter
 
 router = APIRouter()
 

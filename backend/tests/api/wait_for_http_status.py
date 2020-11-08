@@ -1,16 +1,24 @@
 import time
+from typing import Callable
+from typing import FrozenSet
+from typing import List
+from typing import Set
+from typing import Tuple
+from typing import Union
+
 import pytest
-from starlette import status
 from requests import Response
-from typing import Callable, Tuple, Union, FrozenSet, Set, List
+from starlette import status
 
 
 def wait_for_http_status(
-        http_request: Callable[[], Response],
-        wait_for_status: Union[Tuple, FrozenSet, Set, List] = frozenset({status.HTTP_200_OK}),
-        response_func: Callable[[Response], bool] = None,
-        max_wait_seconds: float = 30,  # with xdist we really need as much on my macbook pro
-        sleep_seconds: float = 0.3
+    http_request: Callable[[], Response],
+    wait_for_status: Union[Tuple, FrozenSet, Set, List] = frozenset(
+        {status.HTTP_200_OK}
+    ),
+    response_func: Callable[[Response], bool] = None,
+    max_wait_seconds: float = 30,  # with xdist we really need as much on my macbook pro
+    sleep_seconds: float = 0.3,
 ) -> Response:
     """
     Waits for `http_request(uri)` to return result.status_code from
@@ -29,15 +37,17 @@ def wait_for_http_status(
         if response.status_code in wait_for_status:
             break
         if response.status_code != status.HTTP_202_ACCEPTED:
-            pytest.fail(f'Unexpected HTTP status `{response.status_code}`')
+            pytest.fail(f"Unexpected HTTP status `{response.status_code}`")
         if response_func is not None and response_func(response.json()):
             break
         time.sleep(sleep_seconds)
         waiting_time += sleep_seconds
     else:
         if response is not None:
-            pytest.fail(f'Enumeration result is being in status `{response.status_code}` '
-                        f'more than {waiting_time:.5} secs')
+            pytest.fail(
+                f"Enumeration result is being in status `{response.status_code}` "
+                f"more than {waiting_time:.5} secs"
+            )
         else:
-            pytest.fail('The request returns None')
+            pytest.fail("The request returns None")
     return response

@@ -1,22 +1,18 @@
-from fastapi import UploadFile, File
+from app.api.create_task import create_task
+from app.api.v1 import models as api_models
+from app.api.v1.words import router
+from fastapi import File
+from fastapi import UploadFile
 from starlette import status
 from starlette.requests import Request
 from starlette.responses import Response
 
-from app.api.create_task import create_task
-from app.api.v1 import models as api_models
-from app.api.v1.words import router
-
 
 @router.post(
-    '',
-    status_code=status.HTTP_303_SEE_OTHER,
-    responses=api_models.ErrorResponses
+    "", status_code=status.HTTP_303_SEE_OTHER, responses=api_models.ErrorResponses
 )
 async def create_words_count_task(
-    text: UploadFile = File(
-        ..., description="Text"
-    ),
+    text: UploadFile = File(..., description="Text"),
     request: Request = None,
     response: Response = None,
 ) -> None:
@@ -28,9 +24,8 @@ async def create_words_count_task(
     If it’s not ready yet the GET request will return 202 status code.
     """
     create_task(
-        task_name='tasks.words',
+        task_name="tasks.words",
         task_args=[(await text.read()).decode()],
         request=request,
         response=response,
     )
-

@@ -18,7 +18,7 @@ if ! (return 0 2>/dev/null) ; then
 fi
 
 if type conda 2>/dev/null; then
-    if conda info --envs | grep ${ENV_NAME}; then
+    if conda info --envs | grep "\b${ENV_NAME}\s"; then
       echo -e $CYAN"activating environment ${ENV_NAME}"$NC
     else
       echo -e $CYAN"creating environment ${ENV_NAME}"$NC

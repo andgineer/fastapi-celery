@@ -1,4 +1,14 @@
 version: '3.3'
+
+# we use env vars values from host.
+x-proxies: &proxies
+  no_proxy:
+  http_proxy:
+  https_proxy:
+  NO_PROXY:
+  HTTP_PROXY:
+  HTTPS_PROXY:
+
 services:
 
   postgres:
@@ -41,6 +51,7 @@ services:
       dockerfile: docker/tests/Dockerfile
       args:
         env: dev
+        <<: *proxies
     volumes:
       - ./backend:/backend/:ro
     env_file:

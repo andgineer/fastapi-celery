@@ -103,7 +103,7 @@ class TextClientWithTools(TextClientTooling, TestClient):
     pass
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def client():
     """
     Client to call API from tests.

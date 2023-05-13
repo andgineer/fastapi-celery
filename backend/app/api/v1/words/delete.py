@@ -11,7 +11,7 @@ log = logging.getLogger()
 @router.delete("/{words_id}", responses=api_models.ErrorResponses)
 def delete_words_result(
     words_id: str = Path(
-        None, description="words ID", example="0ed49234-2069-4bf1-955b-124df445dc24"
+        ..., description="words ID", example="0ed49234-2069-4bf1-955b-124df445dc24"
     ),
 ):
     """

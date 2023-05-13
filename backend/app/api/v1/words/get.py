@@ -24,7 +24,7 @@ from starlette.responses import Response
 )
 def words_result(
     words_id: str = Path(
-        None, description="words ID", example="0ed49234-2069-4bf1-955b-124df445dc24"
+        ..., description="words ID", example="0ed49234-2069-4bf1-955b-124df445dc24"
     ),
     response: Response = None,
 ) -> Optional[api_models.Words]:

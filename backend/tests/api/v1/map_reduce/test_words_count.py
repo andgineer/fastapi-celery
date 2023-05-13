@@ -9,7 +9,7 @@ def test_words_count(data_path, client, celery_session_worker, celery_session_ap
     words_file_path = data_path / "words.txt"
     with words_file_path.open() as words_file:
         response: Response = client.post(
-            "/api/words", files={"text": ("text.txt", words_file.read()),}
+            "/api/words", files={"text": ("text.txt", words_file.read()),}, follow_redirects=False
         )
     assert response.status_code == status.HTTP_303_SEE_OTHER
     uri = response.headers["Location"]

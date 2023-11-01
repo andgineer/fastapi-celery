@@ -14,9 +14,11 @@ RUN echo http proxy: ${http_proxy} ${HTTP_PROXY} \
     && echo https proxy: ${https_proxy} ${HTTPS_PROXY}
 
 RUN apt-get update \
-    && apt-get install -y netcat \
-    && conda install -c conda-forge rdkit \
-    && conda install pip \
+    && apt-get install -y netcat
+
+#RUN conda install -c conda-forge rdkit
+
+RUN conda install pip \
     && pip install uvicorn gunicorn
 
 COPY docker/backend/requirements.txt /requirements.txt

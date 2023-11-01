@@ -1,6 +1,6 @@
 celery
 pytest-celery
-vine==1.3.0
+vine
 fastapi>=0.16.0
 python-multipart
 requests
@@ -20,4 +20,3 @@ pytest-benchmark
 fakeredis
 pytest-clarity
 httpx
-

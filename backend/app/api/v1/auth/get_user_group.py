@@ -33,7 +33,9 @@ class JWTSchema(SecurityBase):
 
 class JwtPasswordBearer(SecurityBase):
     def __init__(
-        self, tokenUrl: str, scopes: dict = None,
+        self,
+        tokenUrl: str,
+        scopes: dict = None,
     ):
         if not scopes:
             scopes = {}
@@ -54,7 +56,8 @@ class JwtPasswordBearer(SecurityBase):
 
 
 jwt_scheme = JwtPasswordBearer(
-    tokenUrl="/api/auth", scopes={"admin": "Create/delete", "user": "Use"},
+    tokenUrl="/api/auth",
+    scopes={"admin": "Create/delete", "user": "Use"},
 )
 
 

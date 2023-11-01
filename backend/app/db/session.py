@@ -22,7 +22,9 @@ def engine(config: Config) -> Engine:
         return _engine
 
     _engine = create_engine(
-        config.db_uri, pool_pre_ping=True, pool_size=config.db_pool_size,
+        config.db_uri,
+        pool_pre_ping=True,
+        pool_size=config.db_pool_size,
     )
 
     # event listeners to visualize potential connection pool leakage

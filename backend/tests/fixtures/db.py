@@ -11,7 +11,9 @@ from sqlalchemy.orm import sessionmaker
 log = logging.getLogger()
 
 
-@pytest.fixture(scope="session",)
+@pytest.fixture(
+    scope="session",
+)
 def db(pytestconfig):
     """
     SQLAlchemy DB session from app.db.session.
@@ -31,7 +33,9 @@ def db(pytestconfig):
         session.close()
 
 
-@pytest.fixture(scope="function",)
+@pytest.fixture(
+    scope="function",
+)
 def db_indepotent(pytestconfig):
     """
     DB session that roll back all DB modifications made in a test.

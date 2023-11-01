@@ -33,7 +33,7 @@ class Config:
 
 def get_task_packages(path: str) -> List[str]:
     result = []
-    for (dirpath, dirnames, filenames) in os.walk(path):
+    for dirpath, dirnames, filenames in os.walk(path):
         for name in filenames:
             if "__" not in dirpath:  # exclude __pycache__
                 result.append(

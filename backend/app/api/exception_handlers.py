@@ -1,12 +1,13 @@
+import logging
+from pprint import pformat
+
 import sqlalchemy.exc
 import sqlalchemy.orm.exc
 from app.api.v1.models import GeneralErrorResponse
 from fastapi import Request
 from fastapi import status
-from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
-from pprint import pformat
-import logging
+from fastapi.responses import JSONResponse
 
 
 log = logging.getLogger()

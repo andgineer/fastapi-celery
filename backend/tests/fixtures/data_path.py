@@ -1,8 +1,8 @@
 import os.path
-from distutils import dir_util
 from pathlib import Path
 
 import pytest
+from distutils import dir_util
 
 
 @pytest.fixture

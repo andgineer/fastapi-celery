@@ -25,12 +25,17 @@ def test_get_token_success(client):
 
 
 @pytest.mark.does_not_change_db
-@given(st.text(min_size=1, max_size=32, alphabet=ascii_letters + digits),)
+@given(
+    st.text(min_size=1, max_size=32, alphabet=ascii_letters + digits),
+)
 @settings(max_examples=10, deadline=None)
 def test_get_token_wrong_login(client, wrong_login):
     response = client.post(
         "/api/auth",
-        json={"login": wrong_login, "password": app_config().admin_password,},
+        json={
+            "login": wrong_login,
+            "password": app_config().admin_password,
+        },
     )
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert (
@@ -39,12 +44,17 @@ def test_get_token_wrong_login(client, wrong_login):
 
 
 @pytest.mark.does_not_change_db
-@given(st.text(min_size=1, max_size=32, alphabet=ascii_letters + digits),)
+@given(
+    st.text(min_size=1, max_size=32, alphabet=ascii_letters + digits),
+)
 @settings(max_examples=10, deadline=None)
 def test_get_token_wrong_password(client, wrong_password):
     response = client.post(
         "/api/auth",
-        json={"login": app_config().admin_login, "password": wrong_password,},
+        json={
+            "login": app_config().admin_login,
+            "password": wrong_password,
+        },
     )
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert (

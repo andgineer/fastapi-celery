@@ -2,19 +2,19 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/psf/black
-    rev: 19.10b0
+    rev: 23.10.1
     hooks:
       - id: black
-        language_version: python3.7
+        language_version: python3.11
 
   - repo: https://github.com/kynan/nbstripout
-    rev: master
+    rev: 0.6.1
     hooks:
       - id: nbstripout
         files: ".ipynb"
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+    rev: v4.5.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -26,6 +26,6 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.3.6
+    rev: v3.12.0
     hooks:
       - id: reorder-python-imports

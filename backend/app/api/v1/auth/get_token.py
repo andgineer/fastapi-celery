@@ -41,7 +41,10 @@ def get_token(
     credentials: api_models.Credentials = Body(
         None,
         description="User credentials",
-        example={"login": "admin", "password": "admin",},
+        example={
+            "login": "admin",
+            "password": "admin",
+        },
     ),
 ):
     """
@@ -52,5 +55,7 @@ def get_token(
     """
     if not authenticate_admin(login=credentials.login, password=credentials.password):
         raise HTTPException(status_code=400, detail="Incorrect user login or password")
-    access_token = create_access_token(payload={"sub": "admin", "scopes": ["admin"]},)
+    access_token = create_access_token(
+        payload={"sub": "admin", "scopes": ["admin"]},
+    )
     return {"token": access_token, "type": "bearer"}

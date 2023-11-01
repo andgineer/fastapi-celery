@@ -4,7 +4,10 @@ from app.api.v1.words import router as words_router
 from fastapi import APIRouter
 
 TAGS = [
-    {"name": "tests", "description": "Requests to test the service health.",},
+    {
+        "name": "tests",
+        "description": "Requests to test the service health.",
+    },
     {
         "name": "security",
         "description": "JWT auth",

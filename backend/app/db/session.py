@@ -2,11 +2,9 @@ import logging
 from typing import Optional
 
 from app.config import Config
-from sqlalchemy import create_engine
-from sqlalchemy import event
+from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
-from sqlalchemy.orm import Session
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 
 _engine: Optional[Engine] = None  # cache
 _session_maker: Optional[sessionmaker] = None  # cache
@@ -34,18 +32,13 @@ def engine(config: Config) -> Engine:
     def receive_checkout(dbapi_connection, connection_record, connection_proxy):
         nonlocal connections_checked_out_counter
         connections_checked_out_counter += 1
-        log.debug(
-            "@" * 5
-            + f" DB connection checkOUT. Used: {connections_checked_out_counter}"
-        )
+        log.debug("@" * 5 + f" DB connection checkOUT. Used: {connections_checked_out_counter}")
 
     @event.listens_for(_engine, "checkin")
     def receive_checkin(dbapi_connection, connection_record):
         nonlocal connections_checked_out_counter
         connections_checked_out_counter -= 1
-        log.debug(
-            "@" * 5 + f" DB connection checkIN. Used: {connections_checked_out_counter}"
-        )
+        log.debug("@" * 5 + f" DB connection checkIN. Used: {connections_checked_out_counter}")
 
     return _engine
 
@@ -53,9 +46,7 @@ def engine(config: Config) -> Engine:
 def session_maker(config: Config) -> sessionmaker:
     global _session_maker
     if not _session_maker:
-        _session_maker = sessionmaker(
-            autocommit=False, autoflush=False, bind=engine(config)
-        )
+        _session_maker = sessionmaker(autocommit=False, autoflush=False, bind=engine(config))
     return _session_maker
 
 

@@ -1,19 +1,13 @@
-from typing import Optional
-from typing import Tuple
+from typing import Optional, Tuple
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import jwt
 from app.api.v1 import models as api_models
-from fastapi import Depends
-from fastapi import HTTPException
-from fastapi import Request
-from fastapi import status
+from fastapi import Depends, HTTPException, Request, status
 from fastapi.openapi.models import SecuritySchemeType
 from fastapi.security import SecurityScopes
 from fastapi.security.base import SecurityBase
-from pydantic import BaseModel
-from pydantic import Field
-from pydantic import ValidationError
+from pydantic import BaseModel, Field, ValidationError
 
 
 def extract_token(authorization_header_value: str) -> Tuple[str, str]:

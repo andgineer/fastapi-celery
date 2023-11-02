@@ -9,6 +9,8 @@ from app.db.session import get_session
 from sqlalchemy.orm import Session
 
 HTTP_TIMEOUT_SECONDS = 10
+_config: Optional[Config] = None  # Inject test config here
+_session: Optional[Session] = None  # Inject test session here
 
 
 class TestConfig(Config):
@@ -45,27 +47,11 @@ class TestConfig(Config):
         super().__init__()
 
 
-_config: Optional[Config] = None
-
-
 def get_test_config():
-    """
-    test config injection - should replace `get_config()` in app under test
-    """
-    if _config is not None:
-        return _config
-    else:
-        return TestConfig()
-
-
-_session: Optional[Session] = None
+    """Test config injection from `_config`."""
+    return _config if _config is not None else TestConfig()
 
 
 def get_test_session(config: Config) -> Session:
-    """
-    Tests can inject session using `session`
-    """
-    if _session is not None:
-        return _session
-    else:
-        return get_session(config)
+    """Test session injection from `_session`."""
+    return _session if _session is not None else get_session(config)

@@ -1,5 +1,14 @@
 import logging
 from pathlib import Path
+import os
+
+# os.environ["ADMIN_LOGIN"] = "admin"
+# os.environ["ADMIN_PASSWORD"] = "admin"
+# os.environ["JWT_SECRET_KEY"] = "11d25e094faa6ca2556c818133b7a9563b93f7077f6f0f4caa6cf63b44e8d3e3"
+# os.environ["AMQP_USERNAME"] = "guest"
+# os.environ["AMQP_PASSWORD"] = "guest"
+# os.environ["AMQP_HOST"] = "redis"
+# os.environ["AMQP_PORT"] = "6379"
 
 import app.config
 import app.db.session
@@ -27,14 +36,14 @@ def pytest_addoption(parser):
         "--host",
         type="string",
         dest="host",
-        help=f"""External server to test. Run tests for the host. Skips tests marked as unittests.""",
+        help="""External server to test. Run tests for the host. Skips tests marked as unittests.""",
     )
     parser.addoption(
         "--header",
         type="string",
         nargs="*",
         dest="headers",
-        help=f"""HTTP headers to add to all API requests.""",
+        help="""HTTP headers to add to all API requests.""",
     )
 
 

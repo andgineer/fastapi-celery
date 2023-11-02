@@ -1,7 +1,4 @@
-from typing import Dict
-from typing import List
-from typing import Type
-from typing import Union
+from typing import Dict, List, Type, Union
 
 from pydantic import BaseModel
 from sqlalchemy.orm.attributes import InstrumentedAttribute
@@ -41,9 +38,7 @@ def sql_model_property_setter(
         return pydantic_list_to_list(value)
 
 
-def sql_model_property_getter(
-    db_object: Union[List, Dict], model: Type[BaseModel], default=None
-):
+def sql_model_property_getter(db_object: Union[List, Dict], model: Type[BaseModel], default=None):
     """
     Loads DB object (usually JSONB) in the pydantic `model`.
     """

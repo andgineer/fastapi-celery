@@ -8,13 +8,14 @@ import app.config as app_config  # to not shadow global app var with FastAPI app
 import app.db.session as app_session
 import sqlalchemy.exc
 import sqlalchemy.orm.exc
-from app.api.exception_handlers import db_exception_handler
-from app.api.exception_handlers import db_not_found_exception_handler
-from app.api.exception_handlers import general_exception_handler
-from app.api.exception_handlers import unhandled_exception_middleware
-from app.api.exception_handlers import validation_exception_handler
-from app.api.routing import router
-from app.api.routing import TAGS
+from app.api.exception_handlers import (
+    db_exception_handler,
+    db_not_found_exception_handler,
+    general_exception_handler,
+    unhandled_exception_middleware,
+    validation_exception_handler,
+)
+from app.api.routing import TAGS, router
 from app.config import API_V1_STR
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError

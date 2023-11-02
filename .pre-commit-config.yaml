@@ -1,31 +1,88 @@
-# See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
+exclude: |
+    (?x)(
+        tests/|
+        setup.py|
+        version.py
+    )
 repos:
-  - repo: https://github.com/psf/black
-    rev: 23.10.1
-    hooks:
-      - id: black
-        language_version: python3.11
-
-  - repo: https://github.com/kynan/nbstripout
-    rev: 0.6.1
-    hooks:
-      - id: nbstripout
-        files: ".ipynb"
-
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+        args: ["--unsafe"]
       - id: check-added-large-files
-      - id: pretty-format-json
-        args: ["--autofix"]
-      - id: check-merge-conflict
-      - id: trailing-whitespace
 
-  - repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.12.0
+  - repo: https://github.com/myint/autoflake
+    rev: v2.2.1
     hooks:
-      - id: reorder-python-imports
+      - id: autoflake
+        name: Cleanup imports
+        args:
+          - --in-place
+          - --remove-all-unused-imports
+          - --expand-star-imports
+          - --ignore-init-module-imports
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+      - id: isort
+        name: Sorts imports
+        args: [
+            # Align isort with black formatting
+            "--multi-line=3",
+            "--trailing-comma",
+            "--force-grid-wrap=0",
+            "--use-parentheses",
+            "--line-width=99",
+          ]
+
+  - repo: https://github.com/psf/black
+    rev: 23.10.1
+    hooks:
+      - id: black
+        name: Fixes formatting
+        language_version: python3
+        args: ["--line-length=99"]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        name: Checks pep8 style
+        args:
+          - --max-line-length=99
+          # F405 - init imports * from module
+          # F401 - ignore imports used in init
+          # F403 - import * used in init
+          - --exclude=__init__.py
+          # ignore long comments (E501), as long lines are formatted by black
+          # ignore Whitespace before ':' (E203)
+          # ignore Line break occurred before a binary operator (W503)
+          # ignore module level import not at top of file (E402) to skip tests with uninstalled modules (pytest.importorskip)
+          - --ignore=E501,E203,W503,E402
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: MyPy
+        entry: |
+          mypy
+          --ignore-missing-imports
+          --install-types
+          --non-interactive
+          --strict
+          --implicit-reexport
+          --warn-unused-ignores
+          --cache-fine-grained
+          --no-namespace-packages
+        files: \.py$
+        language: python
+
+      - id: pylint
+        name: Pylint
+        entry: pylint --max-line-length=99 --ignore-imports=yes
+        files: \.py$
+        language: python

@@ -1,16 +1,13 @@
 from app.api.create_task import create_task
 from app.api.v1 import models as api_models
 from app.api.v1.words import router
-from fastapi import File
-from fastapi import UploadFile
+from fastapi import File, UploadFile
 from starlette import status
 from starlette.requests import Request
 from starlette.responses import Response
 
 
-@router.post(
-    "", status_code=status.HTTP_303_SEE_OTHER, responses=api_models.ErrorResponses
-)
+@router.post("", status_code=status.HTTP_303_SEE_OTHER, responses=api_models.ErrorResponses)
 async def create_words_count_task(
     text: UploadFile = File(..., description="Text"),
     request: Request = None,

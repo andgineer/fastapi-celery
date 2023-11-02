@@ -3,8 +3,7 @@ Unittest hook to add doctests to unittest run
 """
 import app.config
 import app.db.session
-from tests.config import get_test_config
-from tests.config import get_test_session
+from tests.config import get_test_config, get_test_session
 
 app.config.get_config = get_test_config
 app.db.session.get_session = get_test_session

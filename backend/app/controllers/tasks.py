@@ -47,14 +47,10 @@ def get(task_id: str) -> Optional[dict]:
     If task finished return task result.
     Else return None
     """
-    if tasks_db.exists(task_id):
-        task: celery.result.AsyncResult = celery_app.AsyncResult(task_id)
-        if not task.ready():
-            return None
-        else:
-            return task.result
-    else:
+    if not tasks_db.exists(task_id):
         raise ValueError(f"No such task {task_id}")
+    task: celery.result.AsyncResult = celery_app.AsyncResult(task_id)
+    return task.result if task.ready() else None
 
 
 def delete(task_id: str):

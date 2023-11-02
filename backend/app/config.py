@@ -48,6 +48,7 @@ class Config:
     Create the object with proper env and then get fastapi `app` or `celery_app`
     """
 
+    print(f"LOGIN: {os.getenv(EnvironmentVarNames.admin_login)}")
     # todo separate config for celery worker - it does not need admin password for example
     admin_login: str = os.getenv(EnvironmentVarNames.admin_login, None)
     admin_password: str = os.getenv(EnvironmentVarNames.admin_password, None)
@@ -55,7 +56,10 @@ class Config:
     if not admin_login or not admin_password or not jwt_secret_key:
         raise Exception(
             f'\n\n{"!"*110}\n'
-            f"(!) Please specify admin login / password and JWT secret key in env vars "
+            f"(!) Please specify admin login (got {admin_login})"
+            f" / password (got {admin_password})"
+            f" and JWT secret key (got {jwt_secret_key})"
+            f"\nin env vars "
             f"{EnvironmentVarNames.admin_login} / {EnvironmentVarNames.admin_password}, "
             f"{EnvironmentVarNames.jwt_secret_key} (!)\n"
             f'{"!" * 110}\n\n'
@@ -74,9 +78,7 @@ class Config:
     mq_port = os.environ[EnvironmentVarNames.mq_port]
 
     def __init__(self):
-        log.info(
-            f'<<<Backend started with MQ "{self.mq_uri}" and DB "{self.db_uri}">>>'
-        )
+        log.info(f'<<<Backend started with MQ "{self.mq_uri}" and DB "{self.db_uri}">>>')
 
     @property
     def db_uri(self) -> str:
@@ -87,9 +89,7 @@ class Config:
 
     @property
     def mq_uri(self):
-        return (
-            f"pyamqp://{self.mq_user}:{self.mq_password}@{self.mq_host}:{self.mq_port}/"
-        )
+        return f"pyamqp://{self.mq_user}:{self.mq_password}@{self.mq_host}:{self.mq_port}/"
 
     @property
     def redis_host(self):

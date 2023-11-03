@@ -1,18 +1,18 @@
-from typing import Dict, List, Type, Union
+from typing import Any, Dict, List, Type, Union
 
 from pydantic import BaseModel
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 
-def list_to_pydantic_list(obj, model: Type[BaseModel]):
+def list_to_pydantic_list(obj: Any, model: Type[BaseModel]) -> Union[List[BaseModel], BaseModel]:
     """
     Convert unlimited nested lists of dicts to nested lists of pydantic `model`s.
     """
-    if isinstance(obj, list):
-        result = [list_to_pydantic_list(item, model) for item in obj]
-    else:
-        result = model.parse_obj(obj)
-    return result
+    return (
+        [list_to_pydantic_list(item, model) for item in obj]
+        if isinstance(obj, list)
+        else model.model_validate(obj)
+    )
 
 
 def pydantic_list_to_list(obj):

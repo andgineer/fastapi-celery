@@ -1,5 +1,6 @@
 import inspect
 import logging
+from typing import Any
 
 from celery import Task
 from celery.utils.log import get_task_logger
@@ -8,21 +9,22 @@ logger = get_task_logger(__name__)
 
 
 class ErrorLoggingTask(Task):
-    def on_success(self, retval, task_id, args, kwargs):
+    def on_success(self, retval: Any, task_id: str, args: Any, kwargs: Any) -> None:
         """Success handler.
 
         Run by the worker if the tasks executes successfully.
 
         Arguments:
-            retval (Any): The return value of the tasks.
-            task_id (str): Unique id of the executed tasks.
-            args (Tuple): Original arguments for the executed tasks.
-            kwargs (Dict): Original keyword arguments for the executed tasks.
+            retval: The return value of the tasks.
+            task_id: Unique id of the executed tasks.
+            args: Original arguments for the executed tasks.
+            kwargs: Original keyword arguments for the executed tasks.
 
         Returns:
             None: The return value of this handler is ignored.
         """
-        logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}")
+        if inspect.currentframe():
+            logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}")
         logger.info(f"retval: {retval}")
         logger.info(f"task_id: {task_id}")
         logger.info(f"args: {args}")

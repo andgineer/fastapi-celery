@@ -8,7 +8,7 @@ API_V1_STR = "/api"
 
 
 @lru_cache()
-def get_config():
+def get_config() -> "Config":
     return Config()
 
 
@@ -23,9 +23,7 @@ DB_PASSWORD_DEFAULT = "postgres"
 
 
 class EnvironmentVarNames:
-    """
-    OS environment vars with configuration.
-    """
+    """OS environment vars with configuration."""
 
     admin_login = "ADMIN_LOGIN"  # login to get admin JWT
     admin_password = "ADMIN_PASSWORD"  # password to get admin JWT
@@ -44,9 +42,7 @@ class EnvironmentVarNames:
 
 
 class Config:
-    """
-    Create the object with proper env and then get fastapi `app` or `celery_app`
-    """
+    """Create the object with proper env and then get fastapi `app` or `celery_app`."""
 
     print(f"LOGIN: {os.getenv(EnvironmentVarNames.admin_login)}")
     # todo separate config for celery worker - it does not need admin password for example
@@ -77,7 +73,7 @@ class Config:
     mq_host = os.environ[EnvironmentVarNames.mq_host]
     mq_port = os.environ[EnvironmentVarNames.mq_port]
 
-    def __init__(self):
+    def __init__(self) -> None:
         log.info(f'<<<Backend started with MQ "{self.mq_uri}" and DB "{self.db_uri}">>>')
 
     @property
@@ -88,24 +84,24 @@ class Config:
         )
 
     @property
-    def mq_uri(self):
+    def mq_uri(self) -> str:
         return f"pyamqp://{self.mq_user}:{self.mq_password}@{self.mq_host}:{self.mq_port}/"
 
     @property
-    def redis_host(self):
+    def redis_host(self) -> str:
         return self.mq_host
 
     @property
-    def redis_port(self):
-        return self.mq_port
+    def redis_port(self) -> int:
+        return int(self.mq_port)
 
     @property
-    def redis_db(self):
+    def redis_db(self) -> int:
         return 1
 
     @property
-    def redis(self):
-        return redis.Redis(
+    def redis(self) -> redis.Redis:
+        return redis.Redis(  # type: ignore
             host=self.redis_host,
             port=self.redis_port,
             password=self.redis_password,
@@ -113,13 +109,13 @@ class Config:
         )
 
     @property
-    def redis_password(self):
+    def redis_password(self) -> str:
         return self.mq_password
 
     @property
-    def celery_broker_uri(self):
+    def celery_broker_uri(self) -> str:
         return f"redis://:{self.mq_password}@{self.mq_host}:{self.mq_port}/0"
 
     @property
-    def celery_backend_uri(self):
+    def celery_backend_uri(self) -> str:
         return self.celery_broker_uri

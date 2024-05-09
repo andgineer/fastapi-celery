@@ -1,40 +1,116 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+#
 name: ci
+
+env:
+  PRIMARY_PYTHON_VERSION: '3.12'
+  PRIMARY_PLATFORM: 'ubuntu-latest'
+  PYTEST_CMD: >
+    set -o allexport  # enables all following variable definitions to be exported
+    source env/dev-backend.env
+    source env/dev-celeryworker.env
+    set +o allexport
+    cd backend && ./test.sh
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, main ]
+
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
-  build:
+  # Test compatibility with the matrix of Python versions and platforms
+  matrix-build:
+    strategy:
+      matrix:
+        python-version: ["3.10", 3.11, 3.12]
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
 
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install uv environment
+      uses: andgineer/uv-venv@v1
+    - name: Install dependencies
+      run: uv pip install -r docker/tests/requirements.txt
+
+    - name: Test with pytest
+      run: ${{ env.PYTEST_CMD }}
+
+# Build with publishing Allure report, coverage report
+  primary-build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ env.PRIMARY_PYTHON_VERSION }}
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.11
+        python-version: ${{ env.PRIMARY_PYTHON_VERSION }}
+
+    - name: Install uv environment
+      uses: andgineer/uv-venv@v1
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        pip install -r docker/tests/requirements.txt
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        set -o allexport  # enables all following variable definitions to be exported
-        source env/dev-backend.env
-        source env/dev-celeryworker.env
-        set +o allexport
-        cd backend && ./test.sh
+      run: uv pip install -r docker/tests/requirements.txt
+    - name: Test with pytest and Allure report
+      run: "${{ env.PYTEST_CMD }}
+
+    - name: Load Allure test report history
+      uses: actions/checkout@v4
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages-dir
+
+    - name: Generate Allure test report
+      uses: andgineer/allure-report@v3.3
+      id: allure-report
+      if: always()
+      with:
+        allure-results: allure-results
+        website: gh-pages-dir
+        reports-site-path: builds/tests
+
+    - name: Publish Allure test report
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ always() && (steps.allure-report.outcome == 'success') }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ${{ steps.allure-report.outputs.reports-site }}
+        destination_dir: ${{ steps.allure-report.outputs.reports-site-path }}
+
+    - name: Coverage comment
+      id: coverage_comment
+      if: always()
+      uses: py-cov-action/python-coverage-comment-action@v3
+      with:
+        GITHUB_TOKEN: ${{ github.token }}
+        MINIMUM_GREEN: 85
+        MINIMUM_ORANGE: 70
+
+    - name: Store Pull Request comment to be posted
+      uses: actions/upload-artifact@v3
+      if: steps.coverage_comment.outputs.COMMENT_FILE_WRITTEN == 'true'
+      with:
+        name: python-coverage-comment-action
+        path: python-coverage-comment-action.txt
+
+    - name: Upload coverage data to coveralls.io
+      if: always()
+      uses: coverallsapp/github-action@v2
+

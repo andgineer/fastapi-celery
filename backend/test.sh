@@ -38,7 +38,6 @@ PY_IGNORE_IMPORTMISMATCH=1 \
     --instafail \
     --picked=first \
     -s -vv \
-    --alluredir=./allure-results"
     $PYTEST_ARGS \
     "$@"
 

@@ -7,13 +7,12 @@ name: ci
 env:
   PRIMARY_PYTHON_VERSION: '3.12'
   PRIMARY_PLATFORM: 'ubuntu-latest'
-  PYTEST_CMD: >
+  PYTEST_CMD: |
     set -o allexport  # enables all following variable definitions to be exported
     source env/dev-backend.env
     source env/dev-celeryworker.env
     set +o allexport
     cd backend && ./test.sh
-
 on:
   push:
     branches: [ master, main ]
@@ -66,7 +65,7 @@ jobs:
     - name: Install dependencies
       run: uv pip install -r docker/tests/requirements.txt
     - name: Test with pytest and Allure report
-      run: ${{ env.PYTEST_CMD }}
+      run: "${{ env.PYTEST_CMD }}  --alluredir=./allure-results"
 
     - name: Load Allure test report history
       uses: actions/checkout@v4

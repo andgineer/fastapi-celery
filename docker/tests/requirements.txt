@@ -20,4 +20,4 @@ pytest-benchmark
 fakeredis
 pytest-clarity
 httpx
-pytest-allure
+allure-pytest

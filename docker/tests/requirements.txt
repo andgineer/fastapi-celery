@@ -21,3 +21,5 @@ fakeredis
 pytest-clarity
 httpx
 allure-pytest
+invoke
+

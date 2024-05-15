@@ -6,7 +6,6 @@
 ./compose.sh \
   up \
   -d \
-  --build \
   "$@"
 
 ./compose.sh logs --tail 50 -f "$@"

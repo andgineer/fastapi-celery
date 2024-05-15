@@ -1,4 +1,3 @@
-version: '3.3'
 services:
 
   postgres:
@@ -26,6 +25,8 @@ services:
     build:
       context: ./
       dockerfile: docker/backend/Dockerfile
+      args:
+        - SSL_CERT_FILE=/usr/local/share/ca-certificates/custom_cacert.crt
     depends_on:
       - redis
       - celeryworker
@@ -40,6 +41,8 @@ services:
     build:
       context: ./
       dockerfile: docker/celeryworker/Dockerfile
+      args:
+        - SSL_CERT_FILE=/usr/local/share/ca-certificates/custom_cacert.crt
     restart: always
     depends_on:
       - redis

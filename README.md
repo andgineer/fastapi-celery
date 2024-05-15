@@ -21,7 +21,8 @@ container). And Celery worker with live reload.
 ### Build and run all containers
 
 ```console
-./up-dev.sh
+./build.sh
+./up.sh
 ```
 
 To stop all containers but postgres use

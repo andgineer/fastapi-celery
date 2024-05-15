@@ -34,13 +34,13 @@ def pytest_addoption(parser):
     """
     parser.addoption(
         "--host",
-        type="string",
+        type=str,
         dest="host",
         help="""External server to test. Run tests for the host. Skips tests marked as unittests.""",
     )
     parser.addoption(
         "--header",
-        type="string",
+        type=str,
         nargs="*",
         dest="headers",
         help="""HTTP headers to add to all API requests.""",

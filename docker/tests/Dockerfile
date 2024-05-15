@@ -13,10 +13,27 @@ ENV HTTPS_PROXY=$HTTPS_PROXY
 RUN echo http proxy: ${http_proxy} ${HTTP_PROXY} \
     && echo https proxy: ${https_proxy} ${HTTPS_PROXY}
 
-RUN apt-get update
+# Local-specific script to set up corporate proxy etc
+ARG SSL_CERT_FILE
+ENV SSL_CERT_FILE=$SSL_CERT_FILE
+ENV REQUESTS_CA_BUNDLE=$SSL_CERT_FILE
+RUN echo $SSL_CERT_FILE
+#ENV AWS_CA_BUNDLE=$SSL_CERT_FILE
+#ENV NODE_EXTRA_CA_CERTS=$SSL_CERT_FILE
+#ENV CURL_CA_BUNDLE=$SSL_CERT_FILE
+COPY .setup-scripts* /.setup-scripts
+RUN /.setup-scripts/debian.sh || true
+
+# workaround for psutil installation problem: command 'gcc' failed
+RUN apt-get update && apt-get install -y \
+      build-essential python3-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN pip install --no-binary :all: --compile psutil
 
 #RUN conda install -c conda-forge rdkit
 
+RUN pip install pip --upgrade --no-cache-dir
 RUN conda install pip
 
 COPY docker/tests/requirements.txt /requirements.txt

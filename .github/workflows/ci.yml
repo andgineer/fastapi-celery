@@ -8,10 +8,10 @@ env:
   PRIMARY_PYTHON_VERSION: '3.12'
   PRIMARY_PLATFORM: 'ubuntu-latest'
   PYTEST_CMD: >-
-    set -o allexport  # enables all following variable definitions to be exported
-    source env/dev-backend.env
-    source env/dev-celeryworker.env
-    set +o allexport
+    set -o allexport  &&
+    source env/dev-backend.env &&
+    source env/dev-celeryworker.env &&
+    set +o allexport &&
     cd backend && ./test.sh
 on:
   push:

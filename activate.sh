@@ -26,7 +26,7 @@ if type conda 2>/dev/null; then
         conda install mamba --name base -c conda-forge
       fi
       echo -e $CYAN"creating conda environment ${ENV_NAME}"$NC
-      conda create -y --name ${ENV_NAME} python=3.11
+      conda create -y --name ${ENV_NAME} python=3.12
       conda activate ${ENV_NAME}
       conda install -y pip
       pip install -r docker/backend/requirements.txt

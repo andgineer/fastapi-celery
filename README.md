@@ -25,10 +25,16 @@ container). And Celery worker with live reload.
 ./up.sh
 ```
 
-To stop all containers but postgres use
-```console
-./stop.sh
-```
+### Sanity check with hurl
+
+Install [hurl](https://hurl.dev/)
+
+    hurl docker/words.hurl
+
+That will get auth tocket from backend running in the Docker, send `words` request to API and check response
+(it should be number of words in file `docker/words.txt`).
+
+### Local debug
 
 You can debug backend and celery tasks code locally, outside containers.
 Backend and Celery worker will connect to Postgres and Redis in containers.

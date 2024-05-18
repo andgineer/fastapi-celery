@@ -38,6 +38,9 @@ PY_IGNORE_IMPORTMISMATCH=1 \
   python -m pytest  \
     --instafail \
     --picked=first \
+    --junitxml=./../pytest.xml \
+    --cov-report=term-missing:skip-covered \
+    --cov=app \
     -s -vv \
     $PYTEST_ARGS \
     "$@"

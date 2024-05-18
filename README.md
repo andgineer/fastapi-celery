@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/andgineer/fastapi-celery/workflows/ci/badge.svg)](https://github.com/andgineer/fastapi-celery/actions)
+[![Coverage](https://raw.githubusercontent.com/andgineer/fastapi-celery/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/fastapi-celery/blob/python-coverage-comment-action-data/htmlcov/index.html)
 # Python backend: FastAPI/Gunicorn + SQLAlchemy/Postgres + Celery/Redis + nginx
 
 Application template to quick start your API server.
@@ -121,3 +122,10 @@ Because there are only `<CPU number> + 1` workers in production mode.
 Or even only one worker in live reload (`$env=dev`) mode.
 
 Nginx will buffer requests so your server will serve a lot of parallel clients.
+
+## Allure test report
+
+* [Allure report](https://andgineer.github.io/fastapi-celery/builds/tests/)
+
+## Coverage report
+* [Coveralls](https://coveralls.io/github/andgineer/fastapi-celery)

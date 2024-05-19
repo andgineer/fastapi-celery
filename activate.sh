@@ -1,6 +1,10 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+#
+# "Set-ups or/and activates development environment"
+#
 
-ENV_NAME="fastapi-celery"
+VENV_FOLDER="venv"
+PRIMARY_PYTHON_VERSION="3.12"  # sync with .github/workflows/docs.yml&static.yml
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -14,31 +18,31 @@ if ! (return 0 2>/dev/null) ; then
     echo -e $RED"This script should be sourced like"$NC
     echo "    . ./activate.sh"
     echo
-    exit 1  # we detected we are NOT source'd so we can use exit
+    exit 1
 fi
 
-if type conda 2>/dev/null; then
-    if conda info --envs | grep "\b${ENV_NAME}\s"; then
-      echo -e $CYAN"activating environment ${ENV_NAME}"$NC
+# virtual env
+if [[ ! -d ${VENV_FOLDER} ]] ; then
+    unset CONDA_PREFIX  # if conda is installed, it will mess with the virtual env
+
+    echo -e $CYAN"Creating virtual environment for python in ${VENV_FOLDER}"$NC
+    if uv venv ${VENV_FOLDER} --python=python${PRIMARY_PYTHON_VERSION}; then
+      START_TIME=$(date +%s)
+
+      . ${VENV_FOLDER}/bin/activate
+      uv pip install --upgrade pip
+      uv pip install -r docker/backend/requirements.txt
+      uv pip install -r docker/celeryworker/requirements.txt
+      uv pip install -r docker/tests/requirements.txt
+
+      END_TIME=$(date +%s)
+      echo "Environment created in $((END_TIME - $START_TIME)) seconds"
     else
-      if [[ -z $(conda list --name base | grep mamba) ]]; then
-        echo "..installing mamba.."
-        conda install mamba --name base -c conda-forge
-      fi
-      echo -e $CYAN"creating conda environment ${ENV_NAME}"$NC
-      conda create -y --name ${ENV_NAME} python=3.12
-      conda activate ${ENV_NAME}
-      conda install -y pip
-      pip install -r docker/backend/requirements.txt
-      pip install -r docker/celeryworker/requirements.txt
-      pip install -r docker/tests/requirements.txt
-      conda deactivate  # RE-activate conda env so python will have access to conda installed deps
+      echo -e $RED"Error to create virtual env. Do you have Astral's UV installed ( https://github.com/astral-sh/uv )?"$NC
+      return 1
     fi
 else
-    echo
-    echo -e $RED"(!) Please install anaconda"$NC
-    echo
-    return 1  # we are source'd so we cannot use exit
+    echo -e $CYAN"Activating virtual environment ..."$NC
+    . ${VENV_FOLDER}/bin/activate
 fi
 
-conda activate ${ENV_NAME}

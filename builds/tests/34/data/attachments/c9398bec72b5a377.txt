@@ -1,0 +1,90 @@
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': '0', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': 'k', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': 'ao', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': 'qvPjkK', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': 'EzTy2nHuSrifJ', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': '4T5AXahAsA1ntY', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': '546', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': '9aVOjhJViZB0b4MnF', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': 'st', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}
+DEBUG    asyncio:selector_events.py:64 Using selector: EpollSelector
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     root:config.py:77 <<<Backend started with MQ "pyamqp://guest:guest@redis:6379/" and DB "postgresql+psycopg2://postgres:postgres@postgres/postgres">>>
+INFO     httpx:_client.py:1026 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:77 ->> POST /api/auth
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: {'login': 'Tl', 'password': 'admin'}
+INFO     root:client.py:88 <<- 400
+INFO     root:client.py:91 {'detail': 'Incorrect user login or password'}

@@ -40,6 +40,7 @@ PY_IGNORE_IMPORTMISMATCH=1 \
     --picked=first \
     --junitxml=./../pytest.xml \
     --cov-report=term-missing:skip-covered \
+    --cov-report=json:../coverage.json \
     --cov=app \
     -s -vv \
     $PYTEST_ARGS \

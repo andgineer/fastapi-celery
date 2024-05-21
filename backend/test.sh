@@ -39,6 +39,7 @@ PY_IGNORE_IMPORTMISMATCH=1 \
     --instafail \
     --picked=first \
     --cov-report=term-missing:skip-covered \
+    --cov-config=../.coveragerc \
     --cov=app \
     -s -vv \
     $PYTEST_ARGS \

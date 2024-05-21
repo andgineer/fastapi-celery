@@ -1,6 +1,5 @@
 [run]
 relative_files = true
-data_file = ./../.coverage
 omit =
     */tests/*
     */*_check.py

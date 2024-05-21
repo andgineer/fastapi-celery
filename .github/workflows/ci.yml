@@ -7,8 +7,7 @@ name: ci
 env:
   PRIMARY_PYTHON_VERSION: '3.12'
   PRIMARY_PLATFORM: 'ubuntu-latest'
-  PYTEST_CMD: >-
-    cd backend && ./test.sh
+  PYTEST_CMD: ./test.sh
 on:
   push:
     branches: [ master, main ]

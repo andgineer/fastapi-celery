@@ -21,7 +21,7 @@ from importlib import import_module
 from os.path import isfile
 
 PY_EXT = ".py"
-SRC_DIR = "app/**"
+SRC_DIR = "backend/app/**"
 
 
 def load_tests(loader, tests, ignore):

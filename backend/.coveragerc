@@ -1,3 +1,18 @@
 [run]
+relative_files = true
+data_file = ./../.coverage
 omit =
-        app/tests/*
+    */tests/*
+    */*_check.py
+    */__init__.py
+    */conftest.py
+    */.tox/*
+    */.venv/*
+    */.eggs/*
+    */docs/*
+    */build/*
+    */dist/*
+    */.git/*
+    */.github/*
+    */.vscode/*
+    */.pytest_cache/*

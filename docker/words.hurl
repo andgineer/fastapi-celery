@@ -1,3 +1,5 @@
+# Sanity check
+
 # Authenticate with admin:admin credentials
 POST http://localhost/api/auth
 Content-Type: application/json
@@ -11,7 +13,7 @@ HTTP 200
 [Captures]
 token: jsonpath "$.token"
 
-# POST /api/words with plain text body
+# POST /api/words to start a job
 POST http://localhost/api/words
 Authorization: Bearer {{token}}
 [MultipartFormData]
@@ -21,6 +23,7 @@ HTTP 303
 [Captures]
 location: header "Location"
 
+# Wait for the job to finish and check the result
 GET http://localhost{{location}}
 Authorization: Bearer {{token}}
 [Options]

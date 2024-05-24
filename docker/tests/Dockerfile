@@ -46,8 +46,7 @@ ENV env=$env
 # we mount this as volume for live reload on changes for debugging
 COPY backend /backend
 
-ENV PYTHONPATH=/
-WORKDIR /backend
+ENV PYTHONPATH=/backend
 
 COPY docker/tests/start.sh /
 RUN chmod +x /*.sh

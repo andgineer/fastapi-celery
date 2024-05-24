@@ -41,7 +41,7 @@ PY_IGNORE_IMPORTMISMATCH=1 PYTHONPATH=backend \
     --cov-report=term-missing:skip-covered \
     --cov=backend/app \
     -s -vv \
-    backend/tests \
+    backend/tests/ \
     $PYTEST_ARGS \
     "$@"
 

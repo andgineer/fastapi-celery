@@ -11,4 +11,4 @@ from hypothesis import strategies as st
     st.text(min_size=1, max_size=32, alphabet=ascii_letters + digits),
 )
 def test_extract_token(bearer_str, token_str):
-    assert extract_token(bearer_str + " " + token_str) == (bearer_str, token_str)
+    assert extract_token(f"{bearer_str} {token_str}") == (bearer_str, token_str)

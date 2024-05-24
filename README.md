@@ -32,7 +32,7 @@ Install [hurl](https://hurl.dev/)
 
     hurl docker/words.hurl
 
-That will get auth tocket from backend running in the Docker, send `words` request to API and check response
+That will get auth token from backend running in the Docker, send `words` request to API and check response
 (it should be number of words in file `docker/words.txt`).
 
 ### Local debug

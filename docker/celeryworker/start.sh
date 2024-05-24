@@ -15,7 +15,7 @@ if [ $env == 'dev' ] ; then
     --pattern=*.py \
     --recursive \
     -- \
-    celery worker -A app.celery_app \
+    celery -A app.celery_app worker \
     -l debug \
     -Q main-queue \
     -c 1 \
@@ -23,7 +23,7 @@ if [ $env == 'dev' ] ; then
     --heartbeat-interval 10 \
     --statedb=/var/run/celery/%n.state
 else
-  celery worker -A app.celery_app \
+  celery -A app.celery_app worker \
     -l info \
     -Q main-queue \
     -c 1 \

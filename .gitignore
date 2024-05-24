@@ -4,3 +4,4 @@
 .idea/
 *.py-e
 .venv/
+.hypothesis/

@@ -1,9 +1,8 @@
-import os.path
+import os
+import shutil
 from pathlib import Path
 
 import pytest
-from distutils import dir_util
-
 
 @pytest.fixture
 def data_path(tmpdir, request) -> Path:
@@ -34,11 +33,17 @@ def data_path(tmpdir, request) -> Path:
         head, tail = os.path.split(os.path.splitext(request.module.__file__)[0])
         if tail.startswith("test_"):
             tail = tail[len("test_") :]
-        test_data_dir = os.path.join(head, tail) + "_data"
+        test_data_dir = f"{os.path.join(head, tail)}_data"
 
-    assert os.path.isdir(
-        test_data_dir
-    ), f"data_path fixture: Cannot find test data folder {test_data_dir}"
-    dir_util.copy_tree(test_data_dir, str(tmpdir))
+    assert os.path.isdir(test_data_dir), f"data_path fixture: Cannot find test data folder {test_data_dir}"
+
+    # Copy contents of test_data_dir to tmpdir
+    for item in os.listdir(test_data_dir):
+        src = os.path.join(test_data_dir, item)
+        dest = os.path.join(tmpdir, item)
+        if os.path.isdir(src):
+            shutil.copytree(src, dest)
+        else:
+            shutil.copy2(src, dest)
 
     return Path(tmpdir)

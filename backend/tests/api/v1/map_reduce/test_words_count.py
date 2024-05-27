@@ -1,6 +1,3 @@
-import time
-
-import celery.result
 import pytest
 from fastapi import status
 from requests import Response

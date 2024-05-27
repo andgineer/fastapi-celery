@@ -21,7 +21,7 @@ def test_celery_boilerplate_task_direct(
     function_mock.assert_called()
 
 
-@patch("app.tasks.debug.dummy_function")
+@patch("backend.app.tasks.debug.dummy_function")
 def test_celery_boilerplate_send_task(
     function_mock, celery_worker, celery_app
 ):

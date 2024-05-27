@@ -29,6 +29,8 @@ class Config:
     # task_ignore_result = True  # now we control this per task
     task_compression = "gzip"
     result_compression = "gzip"
+    broker_connection_retry = True
+    broker_connection_retry_on_startup = True
 
 
 def get_task_packages(path: str) -> List[str]:
@@ -51,6 +53,7 @@ try:
     )
     celery_app.config_from_object(Config)
     celery_app.connection().ensure_connection(max_retries=3, timeout=15)
+    print(f">>> celery_app: {app_config.get_config().celery_backend_uri}, {app_config.get_config().celery_broker_uri}")
 except OperationalError:
     raise RuntimeError(
         f"Connection to {app_config.get_config().celery_broker_uri} broker refused."

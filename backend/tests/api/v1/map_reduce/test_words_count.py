@@ -1,3 +1,6 @@
+import time
+
+import celery.result
 import pytest
 from fastapi import status
 from requests import Response
@@ -5,7 +8,7 @@ from tests.api.wait_for_http_status import wait_for_http_status
 
 
 @pytest.mark.parametrize("data_path", [("../map_reduce_data")], indirect=["data_path"])
-def test_words_count(data_path, client, celery_session_worker, celery_session_app):
+def test_words_count(data_path, client, celery_worker, celery_app):
     words_file_path = data_path / "words.txt"
     with words_file_path.open() as words_file:
         response: Response = client.post(
@@ -21,6 +24,9 @@ def test_words_count(data_path, client, celery_session_worker, celery_session_ap
     assert uri.startswith("/api/words/")
     response = wait_for_http_status(
         lambda: client.get(uri),
-        max_wait_seconds=300,
+        max_wait_seconds=100,
     )
+    print(response.status_code)
+    print(response.text)
     assert response.json()["count"] == 69
+

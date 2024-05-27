@@ -74,7 +74,7 @@ class Config:
     mq_port = os.environ[EnvironmentVarNames.mq_port]
 
     def __init__(self) -> None:
-        log.info(f'<<<Backend started with MQ "{self.mq_uri}" and DB "{self.db_uri}">>>')
+        log.info(f'<<<Backend started with MQ "{self.mq_uri}" and DB "{self.db_uri}", celery "{self.celery_backend_uri}", "{self.celery_broker_uri}">>>')
 
     @property
     def db_uri(self) -> str:

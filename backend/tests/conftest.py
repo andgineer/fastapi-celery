@@ -2,6 +2,12 @@ import logging
 from pathlib import Path
 import os
 
+os.environ["CELERY_TRACK_STARTED"] = "True"
+os.environ["CELERY_IGNORE_RESULT"] = "False"
+os.environ["CELERY_TASK_RESULT_EXPIRES"] = "6000"
+
+pytest_plugins = ("celery.contrib.pytest", )
+
 # os.environ["ADMIN_LOGIN"] = "admin"
 # os.environ["ADMIN_PASSWORD"] = "admin"
 # os.environ["JWT_SECRET_KEY"] = "11d25e094faa6ca2556c818133b7a9563b93f7077f6f0f4caa6cf63b44e8d3e3"
@@ -12,7 +18,7 @@ import os
 
 import app.config
 import app.db.session
-import config as test_config
+import tests.config as test_config
 import pytest
 from app import modules_load
 
@@ -20,12 +26,13 @@ app.config.get_config = test_config.get_test_config
 app.db.session.get_session = test_config.get_test_session
 
 # we have to import fixtures only after injecting test config
-modules_load.asterisk(Path(__file__).parent / "fixtures", "fixtures", globals())
-from fixtures.client import TestClientExternal  # just to remove warning
+modules_load.asterisk(Path(__file__).parent / "fixtures", "tests.fixtures", globals())
+from tests.fixtures.client import TestClientExternal  # just to remove warning
 
 # - in fact it is already imported with `modules_load`
 
 log = logging.getLogger()
+logging.basicConfig(format="%(asctime)s - %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 
 
 def pytest_addoption(parser):

@@ -1,5 +1,4 @@
 celery
-pytest-celery
 vine
 fastapi>=0.16.0
 python-multipart

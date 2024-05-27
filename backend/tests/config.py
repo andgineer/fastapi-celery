@@ -18,11 +18,11 @@ class TestConfig(Config):
 
     @property
     def celery_broker_uri(self):
-        return "memory://"
+        return "memory://localhost//"
 
     @property
     def celery_backend_uri(self):
-        return "rpc://"
+        return "cache+memory://"
 
     @property
     def redis(self):

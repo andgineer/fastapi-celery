@@ -16,11 +16,11 @@ def celery_config():
     Setup Celery test app configuration (for fixture celery_app)
     https://docs.celeryproject.org/en/stable/userguide/testing.html
     """
+    print(">>> celery_config <<<")
     return {
-        "broker_url": "memory://",
-        "result_backend": "rpc://",
-        "task_always_eager": False,
-        "task_store_eager_results": True,
+        "broker_url": "memory://localhost//",
+        "result_backend": "cache+memory://",
+        "task_always_eager": True,
         "broker_connection_retry_on_startup": True,
         "task_ignore_result": False,
     }
@@ -32,9 +32,10 @@ def celery_worker_parameters():
     Setup Celery worker parameters
     https://docs.celeryproject.org/en/stable/userguide/testing.html
     """
+    print(">>> celery_worker_parameters <<<")
     return {
         "queues": ("main-queue", "celery"),
-        "loglevel": "DEBUG",
+        "loglevel": "INFO",
         "without_heartbeat": False,
     }
 

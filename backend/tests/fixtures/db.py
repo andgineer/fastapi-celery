@@ -12,7 +12,7 @@ log = logging.getLogger()
 
 
 @pytest.fixture(
-    scope="session",
+    scope="function",
 )
 def db(pytestconfig):
     """

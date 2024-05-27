@@ -46,7 +46,7 @@ def wait_for_http_status(
         if response is not None:
             pytest.fail(
                 f"Enumeration result is being in status `{response.status_code}` "
-                f"more than {waiting_time:.5} secs"
+                f"more than {waiting_time} secs"
             )
         else:
             pytest.fail("The request returns None")

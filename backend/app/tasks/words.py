@@ -15,6 +15,7 @@ logger = get_task_logger(__name__)
     base=ErrorLoggingTask,
     bind=True,
     throws=(celery.exceptions.InvalidTaskError, ValueError),
+    acks_late=True,
 )
 def words(self: celery.app.task.Task, text: str) -> int:
     """
@@ -28,7 +29,7 @@ def words(self: celery.app.task.Task, text: str) -> int:
             logger.info(f">>> tasks.words {str(self.request.id)} finished <<<")
             return result
         except Exception as e:
-            raise celery.exceptions.InvalidTaskError(str(e))
+            raise celery.exceptions.InvalidTaskError(str(e)) from e
     except Exception as e:
         self.update_state(state=celery.states.FAILURE)
         raise e

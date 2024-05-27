@@ -11,11 +11,11 @@ def get_task(task_id: str, response: Response):
     """
     try:
         results = tasks.get(task_id)
-        if results is None:
-            response.status_code = status.HTTP_202_ACCEPTED
-        elif isinstance(results, Exception):
+        if isinstance(results, Exception):
             response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
             return None
+        elif results is None:
+            response.status_code = status.HTTP_202_ACCEPTED
         return results
     except Exception:
         response.status_code = status.HTTP_404_NOT_FOUND

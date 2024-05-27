@@ -7,7 +7,7 @@ from pprint import pprint
 from urllib.parse import urljoin
 
 import app.main
-import config
+import tests.config as config
 import pytest
 import requests
 from starlette.testclient import TestClient
@@ -103,7 +103,7 @@ class TextClientWithTools(TextClientTooling, TestClient):
     pass
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def client():
     """
     Client to call API from tests.

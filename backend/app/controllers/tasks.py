@@ -1,3 +1,5 @@
+import logging
+import time
 from typing import Optional
 
 import celery.result
@@ -54,10 +56,9 @@ def get(task_id: str) -> Optional[dict]:
 
 
 def delete(task_id: str):
-    if tasks_db.exists(task_id):
-        task: celery.result.AsyncResult = celery_app.AsyncResult(task_id)
-        task.revoke(terminate=True)
-        task.forget()
-        tasks_db.delete(task_id)
-    else:
+    if not tasks_db.exists(task_id):
         raise ValueError(f"No such task {task_id}")
+    task: celery.result.AsyncResult = celery_app.AsyncResult(task_id)
+    task.revoke(terminate=True)
+    task.forget()
+    tasks_db.delete(task_id)

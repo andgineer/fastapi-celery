@@ -14,6 +14,7 @@ def test_celery_boilerplate_task_direct(celery_worker, celery_app):
     Shows how to test celery tasks with test worker
     """
     with patch("app.tasks.debug.dummy_function") as function_mock:
+        time.sleep(0.1)  # give worker time to get patched function
         function_mock.return_value = 44
         assert app.tasks.debug.dummy_task.delay().get(timeout=10) == 44
         function_mock.assert_called()

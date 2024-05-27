@@ -64,7 +64,7 @@ jobs:
     - name: Install dependencies
       run: uv pip install -r docker/tests/requirements.txt
     - name: Test with pytest and Allure report
-      run: "${{ env.PYTEST_CMD }}  --alluredir=./../allure-results"
+      run: "${{ env.PYTEST_CMD }}  --alluredir=./allure-results"
 
     - name: Load Allure test report history
       uses: actions/checkout@v4

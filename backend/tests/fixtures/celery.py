@@ -55,19 +55,7 @@ def celery_includes():
     Add additional imports for embedded workers
     https://docs.celeryproject.org/en/stable/userguide/testing.html
     """
-    return get_task_packages(os.path.join(app_folder(), "tasks"))
-
-
-def app_folder():
-    """Backend app folder relative to pytest working dir.
-
-    Tests can be run from the project root folder or from the backend/ folder.
-    """
-    return (
-        "app"
-        if os.path.isdir(os.path.join(os.getcwd(), "app"))
-        else os.path.join("backend", "app")
-    )
+    return get_task_packages(os.path.join("backend", "app", "tasks"))
 
 
 @pytest.fixture(scope="session")

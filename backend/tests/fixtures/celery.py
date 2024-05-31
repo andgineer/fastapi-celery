@@ -36,7 +36,7 @@ def celery_worker_parameters():
     return {
         "queues": ("main-queue", "celery"),
         "loglevel": "INFO",
-        "without_heartbeat": False,
+        "without_heartbeat": True,
     }
 
 

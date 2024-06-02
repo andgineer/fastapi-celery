@@ -1,0 +1,13 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Jun 02 16:53:46 GMT 2024","Sun Jun 02 16:53:46 GMT 2024","7","backend.tests.api.v1","test_root","","","","test_read_root",""
+"passed","Sun Jun 02 16:53:44 GMT 2024","Sun Jun 02 16:53:44 GMT 2024","117","backend.tests.api.v1.auth","test_get_token","","","","test_get_token_success",""
+"passed","Sun Jun 02 16:53:43 GMT 2024","Sun Jun 02 16:53:44 GMT 2024","1056","backend.tests.api.v1.auth","test_extract_token","","","","test_extract_token",""
+"passed","Sun Jun 02 16:53:46 GMT 2024","Sun Jun 02 16:53:47 GMT 2024","1019","backend.tests","test_celery_boilerplate","","","","test_celery_boilerplate_task_direct","
+    Shows how to test celery tasks with test worker
+    "
+"passed","Sun Jun 02 16:53:44 GMT 2024","Sun Jun 02 16:53:44 GMT 2024","122","backend.tests.api.v1.auth","test_get_token","","","","test_get_token_wrong_password",""
+"passed","Sun Jun 02 16:53:43 GMT 2024","Sun Jun 02 16:53:44 GMT 2024","920","backend.tests.api.v1.auth","test_get_token","","","","test_get_token_wrong_login",""
+"passed","Sun Jun 02 16:53:43 GMT 2024","Sun Jun 02 16:53:44 GMT 2024","918","backend.tests","test_celery_boilerplate","","","","test_celery_boilerplate_send_task","
+    Shows how to test full celery loop - sending and executing task
+    "
+"passed","Sun Jun 02 16:53:43 GMT 2024","Sun Jun 02 16:53:44 GMT 2024","833","backend.tests.api.v1.map_reduce","test_words_count","","","","test_words_count[../map_reduce_data]",""

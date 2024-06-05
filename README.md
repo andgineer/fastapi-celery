@@ -26,11 +26,11 @@
 | backend/app/main.py                         |       28 |        5 |     82% |51-53, 60-62 |
 | backend/app/modules\_load.py                |        8 |        0 |    100% |           |
 | backend/app/tasks/base.py                   |       28 |       12 |     57% |48-52, 69-75 |
-| backend/app/tasks/debug.py                  |       20 |        9 |     55% |  9, 23-33 |
+| backend/app/tasks/debug.py                  |       20 |        8 |     60% |     23-33 |
 | backend/app/tasks/states.py                 |        2 |        0 |    100% |           |
 | backend/app/tasks/words.py                  |       23 |        5 |     78% |     31-35 |
 | backend/app/version.py                      |        1 |        0 |    100% |           |
-|                                   **TOTAL** |  **478** |  **104** | **78%** |           |
+|                                   **TOTAL** |  **478** |  **103** | **78%** |           |
 
 
 ## Setup coverage badge

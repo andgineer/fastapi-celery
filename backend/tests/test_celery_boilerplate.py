@@ -25,11 +25,11 @@ def test_celery_boilerplate_send_task(celery_worker, celery_app):
         assert task.result == 33
 
 
-def test_celery_boilerplate_task_direct(celery_worker, celery_app):
+def test_celery_boilerplate_task_direct(celery_worker, celery_app, monkeypatch):
     """
     Shows how to test celery tasks with test worker
     """
-    with patch("app.tasks.debug.dummy_function", return_value=33):
-        celery_worker.reload(reload=True)
-        assert app.tasks.debug.dummy_task.delay().get(timeout=10) == 33
+    monkeypatch.setattr(app.tasks.debug, "dummy_function", lambda: 44)
+    celery_worker.reload(reload=True)
+    assert app.tasks.debug.dummy_task.delay().get(timeout=10) == 44
 

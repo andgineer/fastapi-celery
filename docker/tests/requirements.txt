@@ -14,7 +14,6 @@ identify==2.6.0
 idna==3.7
 iniconfig==2.0.0
 isort==5.13.2
--e git+ssh://git@github.com/andgineer/joplin-bulker.git@3d7680cb852813f9a5f44b055cb3fe608caea287#egg=joplin_bulker
 joppy==0.2.3
 markdown-it-py==3.0.0
 mccabe==0.7.0

@@ -1,2 +1,0 @@
-INFO     celery.worker.strategy:strategy.py:161 Task tasks.dummy[3ed22cea-1933-4c06-9dc7-b217d4051d04] received
-INFO     celery.app.trace:trace.py:128 Task tasks.dummy[3ed22cea-1933-4c06-9dc7-b217d4051d04] succeeded in 0.0004010930000077906s: 33

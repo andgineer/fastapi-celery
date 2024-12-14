@@ -36,8 +36,7 @@ def sql_model_property_setter(
     """
     if isinstance(value, InstrumentedAttribute) or not value:
         return default  # type: ignore
-    else:
-        return pydantic_list_to_list(value)
+    return pydantic_list_to_list(value)
 
 
 def sql_model_property_getter(

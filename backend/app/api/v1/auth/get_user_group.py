@@ -28,7 +28,7 @@ class JWTSchema(SecurityBase):
 class JwtPasswordBearer(SecurityBase):
     def __init__(
         self,
-        tokenUrl: str,
+        tokenUrl: str,  # pylint: disable=unused-argument
         scopes: dict = None,
     ):
         if not scopes:

@@ -14,7 +14,7 @@ def get_task(task_id: str, response: Response) -> None:
         if isinstance(results, Exception):
             response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
             return None
-        elif results is None:
+        if results is None:
             response.status_code = status.HTTP_202_ACCEPTED
         return results
     except Exception:

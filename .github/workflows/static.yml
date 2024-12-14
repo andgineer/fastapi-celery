@@ -29,7 +29,7 @@ jobs:
         uses: andgineer/uv-venv@v1
 
       - run: |
-          uv pip install -r docker/tests/requirements.txt pip
+          uv pip install -r docker/tests/requirements.txt
           uv pip freeze | grep -i "mypy\|types-\|pydantic\|fastapi"
           python --version
           pre-commit run --verbose --all-files

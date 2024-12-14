@@ -6,10 +6,10 @@
 |-------------------------------------------- | -------: | -------: | ------: | --------: |
 | backend/app/api/create\_task.py             |        9 |        0 |    100% |           |
 | backend/app/api/exception\_handlers.py      |       26 |        9 |     65% |20-23, 33, 43-44, 54-55, 65 |
-| backend/app/api/get\_task.py                |       15 |        5 |     67% |15-16, 20-22 |
+| backend/app/api/get\_task.py                |       16 |        5 |     69% |17-18, 22-24 |
 | backend/app/api/routing.py                  |       11 |        0 |    100% |           |
 | backend/app/api/v1/auth/get\_token.py       |       18 |        0 |    100% |           |
-| backend/app/api/v1/auth/get\_user\_group.py |       49 |       24 |     51% |18, 35, 41-49, 59-88 |
+| backend/app/api/v1/auth/get\_user\_group.py |       49 |       24 |     51% |18, 35, 41-49, 61-90 |
 | backend/app/api/v1/models/auth.py           |       11 |        0 |    100% |           |
 | backend/app/api/v1/models/errors.py         |        7 |        0 |    100% |           |
 | backend/app/api/v1/models/words.py          |        3 |        0 |    100% |           |
@@ -21,16 +21,16 @@
 | backend/app/config.py                       |       73 |        9 |     88% |12, 53, 98, 102, 106, 110, 119, 123, 127 |
 | backend/app/controllers/tasks.py            |       33 |        8 |     76% |28, 53, 59-64 |
 | backend/app/controllers/words.py            |        2 |        0 |    100% |           |
-| backend/app/db/session.py                   |       32 |        6 |     81% |20, 38-39, 47-48, 66 |
-| backend/app/json\_serializer.py             |        8 |        8 |      0% |     12-29 |
-| backend/app/main.py                         |       28 |        5 |     82% |52-54, 61-63 |
-| backend/app/modules\_load.py                |        8 |        0 |    100% |           |
-| backend/app/tasks/base.py                   |       28 |       12 |     57% |50-56, 73-81 |
-| backend/app/tasks/debug.py                  |       20 |        9 |     55% |  9, 23-35 |
+| backend/app/db/session.py                   |       32 |        6 |     81% |20, 38-39, 50-51, 69 |
+| backend/app/json\_serializer.py             |        9 |        9 |      0% |     12-30 |
+| backend/app/main.py                         |       29 |        5 |     83% |55-57, 64-66 |
+| backend/app/modules\_load.py                |        9 |        0 |    100% |           |
+| backend/app/tasks/base.py                   |       33 |       16 |     52% |56-62, 86-94 |
+| backend/app/tasks/debug.py                  |       21 |        8 |     62% |     27-39 |
 | backend/app/tasks/states.py                 |        2 |        0 |    100% |           |
-| backend/app/tasks/words.py                  |       23 |        5 |     78% |     31-35 |
+| backend/app/tasks/words.py                  |       24 |        5 |     79% |     33-37 |
 | backend/app/version.py                      |        1 |        0 |    100% |           |
-|                                   **TOTAL** |  **479** |  **104** | **78%** |           |
+|                                   **TOTAL** |  **490** |  **108** | **78%** |           |
 
 
 ## Setup coverage badge

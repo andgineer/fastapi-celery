@@ -25,7 +25,7 @@ def words_result(
     words_id: str = Path(
         ..., description="words ID", example="0ed49234-2069-4bf1-955b-124df445dc24"
     ),
-    response: Response | None = None,
+    response: Response = None,  # type: ignore
 ) -> Optional[api_models.Words]:
     """
     Returns result of `POST /words`.

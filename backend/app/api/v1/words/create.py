@@ -12,8 +12,8 @@ from starlette.responses import Response
 )
 async def create_words_count_task(
     text: UploadFile = File(..., description="Text"),
-    request: Request | None = None,
-    response: Response | None = None,
+    request: Request = None,  # type: ignore
+    response: Response = None,  # type: ignore
 ) -> None:
     """
     Calculates number of words in the text.

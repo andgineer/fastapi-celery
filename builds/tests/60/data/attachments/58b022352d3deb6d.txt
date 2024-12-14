@@ -1,0 +1,4 @@
+INFO     celery.worker.consumer.connection:connection.py:22 Connected to memory://localhost//
+INFO     celery.app.trace:trace.py:128 Task celery.ping[0c8e1943-72c3-46ac-aab7-ea846fa37bb5] succeeded in 0.01650007299997469s: 'pong'
+INFO     celery.worker.strategy:strategy.py:161 Task tasks.dummy[51d0b874-2389-42d8-bed8-96d984090591] received
+INFO     celery.app.trace:trace.py:128 Task tasks.dummy[51d0b874-2389-42d8-bed8-96d984090591] succeeded in 0.008855730999982825s: 44

@@ -15,7 +15,9 @@ def authenticate_admin(login: str, password: str) -> bool:
     )
 
 
-def create_access_token(payload: dict, expires_delta: timedelta = timedelta(minutes=15)):
+def create_access_token(
+    payload: dict, expires_delta: timedelta = timedelta(minutes=15)
+):
     """
     Create JWT
     """

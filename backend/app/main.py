@@ -2,6 +2,7 @@
 Backend main
 Starts FASTAPI app
 """
+
 import logging
 
 import app.config as app_config  # to not shadow global app var with FastAPI app

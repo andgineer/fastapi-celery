@@ -32,13 +32,18 @@ def engine(config: Config) -> Engine:
     def receive_checkout(dbapi_connection, connection_record, connection_proxy):
         nonlocal connections_checked_out_counter
         connections_checked_out_counter += 1
-        log.debug("@" * 5 + f" DB connection checkOUT. Used: {connections_checked_out_counter}")
+        log.debug(
+            "@" * 5
+            + f" DB connection checkOUT. Used: {connections_checked_out_counter}"
+        )
 
     @event.listens_for(_engine, "checkin")
     def receive_checkin(dbapi_connection, connection_record):
         nonlocal connections_checked_out_counter
         connections_checked_out_counter -= 1
-        log.debug("@" * 5 + f" DB connection checkIN. Used: {connections_checked_out_counter}")
+        log.debug(
+            "@" * 5 + f" DB connection checkIN. Used: {connections_checked_out_counter}"
+        )
 
     return _engine
 
@@ -46,7 +51,9 @@ def engine(config: Config) -> Engine:
 def session_maker(config: Config) -> sessionmaker:
     global _session_maker
     if not _session_maker:
-        _session_maker = sessionmaker(autocommit=False, autoflush=False, bind=engine(config))
+        _session_maker = sessionmaker(
+            autocommit=False, autoflush=False, bind=engine(config)
+        )
     return _session_maker
 
 

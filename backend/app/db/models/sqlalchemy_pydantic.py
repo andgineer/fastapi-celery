@@ -4,7 +4,9 @@ from pydantic import BaseModel
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 
-def list_to_pydantic_list(obj: Any, model: Type[BaseModel]) -> Union[List[BaseModel], BaseModel]:
+def list_to_pydantic_list(
+    obj: Any, model: Type[BaseModel]
+) -> Union[List[BaseModel], BaseModel]:
     """
     Convert unlimited nested lists of dicts to nested lists of pydantic `model`s.
     """
@@ -15,7 +17,7 @@ def list_to_pydantic_list(obj: Any, model: Type[BaseModel]) -> Union[List[BaseMo
     )
 
 
-def pydantic_list_to_list(obj):
+def pydantic_list_to_list(obj: Any) -> Union[List[str], Dict[str, Any]]:
     """
     Convert unlimited nested lists of pydantic model`s to nested lists of dicts.
     """
@@ -23,22 +25,26 @@ def pydantic_list_to_list(obj):
         result = [pydantic_list_to_list(item) for item in obj]
     else:
         result = obj.dict(exclude_unset=True)
-    return result
+    return result  # type: ignore
 
 
 def sql_model_property_setter(
-    value: BaseModel, model: Type[BaseModel], default=None
-) -> Union[List, Dict]:
+    value: BaseModel, model: Type[BaseModel], default: Any = None
+) -> Union[List[Any], Dict[str, Any]]:
     """
     Returns pydantic `model` as object safe to store in DB JSONB.
     """
     if isinstance(value, InstrumentedAttribute) or not value:
-        return default
+        return default  # type: ignore
     else:
         return pydantic_list_to_list(value)
 
 
-def sql_model_property_getter(db_object: Union[List, Dict], model: Type[BaseModel], default=None):
+def sql_model_property_getter(
+    db_object: Union[List[str], Dict[str, Any]],
+    model: Type[BaseModel],
+    default: Any = None,
+) -> Union[List[BaseModel], BaseModel]:
     """
     Loads DB object (usually JSONB) in the pydantic `model`.
     """

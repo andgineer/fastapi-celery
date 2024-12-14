@@ -21,4 +21,5 @@ pytest-clarity
 httpx
 allure-pytest
 invoke
+pylint
 

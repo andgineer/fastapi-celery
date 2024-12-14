@@ -40,11 +40,12 @@ def ver_task_factory(version_type: str):
 
 @task
 def compile_requirements(c: Context):
-    "Convert requirements.in to requirements.txt and requirements.dev.txt."
+    """Convert requirements.in to requirements.txt and requirements.dev.txt."""
     start_time = subprocess.check_output(["date", "+%s"]).decode().strip()
-    c.run("uv pip compile requirements.in --output-file=requirements.txt --upgrade --refresh-package github-custom-actions")
+    c.run("uv pip compile requirements/requirements.celery.in --output-file=docker/celeryworker/requirements.txt --upgrade")
+    c.run("uv pip compile requirements/requirements.in --output-file=docker/backend/requirements.txt --upgrade")
     reqs_time = subprocess.check_output(["date", "+%s"]).decode().strip()
-    c.run("uv pip compile requirements.dev.in --output-file=requirements.dev.txt --upgrade")
+    c.run("uv pip compile requirements/requirements.dev.in --output-file=docker/tests/requirements.txt --upgrade")
     end_time = subprocess.check_output(["date", "+%s"]).decode().strip()
     print(f"Req's compilation time: {int(reqs_time) - int(start_time)} seconds")
     print(f"Req's dev compilation time: {int(end_time) - int(reqs_time)} seconds")
@@ -54,7 +55,8 @@ def compile_requirements(c: Context):
 @task(pre=[compile_requirements])
 def reqs(c: Context):
     """Upgrade requirements including pre-commit."""
-    c.run("pip install -r requirements.dev.txt")
+    c.run("pre-commit autoupdate")
+    c.run("uv pip install -r docker/tests/requirements.txt")
 
 
 @task

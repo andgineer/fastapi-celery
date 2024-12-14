@@ -31,8 +31,6 @@ if [[ ! -d ${VENV_FOLDER} ]] ; then
 
       . ${VENV_FOLDER}/bin/activate
       uv pip install --upgrade pip
-      uv pip install -r docker/backend/requirements.txt
-      uv pip install -r docker/celeryworker/requirements.txt
       uv pip install -r docker/tests/requirements.txt
 
       END_TIME=$(date +%s)

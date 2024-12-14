@@ -1,0 +1,9 @@
+-r requirements.celery.in
+python-multipart
+amqp
+uvicorn
+gunicorn
+jupyterlab
+pytest
+pyjwt
+

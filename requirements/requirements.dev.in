@@ -1,0 +1,21 @@
+-r requirements.in
+requests
+pytest
+hypothesis
+coverage
+pytest-cov
+pytest-instafail
+pytest-picked
+pytest-xdist
+pyjwt
+pytest-benchmark
+fakeredis
+pytest-clarity
+httpx
+allure-pytest
+invoke
+mypy
+pylint
+pre-commit
+typing_extensions
+

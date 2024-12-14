@@ -1,0 +1,8 @@
+celery
+vine
+fastapi>=0.60.1
+sqlalchemy
+alembic
+psycopg2-binary
+numpy
+redis

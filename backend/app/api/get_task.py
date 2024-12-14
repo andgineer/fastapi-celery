@@ -3,7 +3,7 @@ from fastapi import status
 from starlette.responses import Response
 
 
-def get_task(task_id: str, response: Response):
+def get_task(task_id: str, response: Response) -> None:
     """
     Set response status code to 202 if task in process and 500 if it failed.
 

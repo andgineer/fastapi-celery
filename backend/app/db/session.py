@@ -1,5 +1,5 @@
 import logging
-from typing import Optional
+from typing import Optional, Any
 
 from app.config import Config
 from sqlalchemy import create_engine, event
@@ -29,7 +29,9 @@ def engine(config: Config) -> Engine:
     connections_checked_out_counter = 0
 
     @event.listens_for(_engine, "checkout")
-    def receive_checkout(dbapi_connection, connection_record, connection_proxy):
+    def receive_checkout(
+        dbapi_connection: Any, connection_record: Any, connection_proxy: Any
+    ) -> None:
         nonlocal connections_checked_out_counter
         connections_checked_out_counter += 1
         log.debug(

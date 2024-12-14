@@ -1,18 +1,18 @@
-from typing import Dict
+from typing import Dict, Any
 
 from pydantic import BaseModel
 
 
-class GeneralErrorResponse(BaseModel):
+class GeneralErrorResponse(BaseModel):  # type: ignore
     message: str
 
 
-class ValidationErrorResponse(BaseModel):
+class ValidationErrorResponse(BaseModel):  # type: ignore
     """
     Pydantic params validation error
     """
 
-    detail: Dict
+    detail: Dict[str, Any]
 
 
 ErrorResponses = {

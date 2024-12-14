@@ -1,5 +1,6 @@
 import logging
 from pprint import pformat
+from typing import Callable, Any
 
 import sqlalchemy.exc
 import sqlalchemy.orm.exc
@@ -11,7 +12,9 @@ from fastapi.responses import JSONResponse
 log = logging.getLogger()
 
 
-async def unhandled_exception_middleware(request: Request, call_next):
+async def unhandled_exception_middleware(
+    request: Request, call_next: Callable[[Any], Any]
+) -> JSONResponse:
     try:
         return await call_next(request)
     except Exception as e:
@@ -23,14 +26,16 @@ async def unhandled_exception_middleware(request: Request, call_next):
         )
 
 
-async def general_exception_handler(request: Request, exc: Exception):
+async def general_exception_handler(request: Request, exc: Exception) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
         content=GeneralErrorResponse(message=str(exc)).dict(),
     )
 
 
-async def validation_exception_handler(request: Request, exc: RequestValidationError):
+async def validation_exception_handler(
+    request: Request, exc: RequestValidationError
+) -> JSONResponse:
     message = f"{pformat(exc.errors())}\n{pformat(exc.body)}"
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -38,7 +43,9 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
-async def db_exception_handler(request: Request, exc: sqlalchemy.exc.IntegrityError):
+async def db_exception_handler(
+    request: Request, exc: sqlalchemy.exc.IntegrityError
+) -> JSONResponse:
     detail = str(exc).split("DETAIL:")[1].split("\n")[0]
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
@@ -48,7 +55,7 @@ async def db_exception_handler(request: Request, exc: sqlalchemy.exc.IntegrityEr
 
 async def db_not_found_exception_handler(
     request: Request, exc: sqlalchemy.orm.exc.NoResultFound
-):
+) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
         content=GeneralErrorResponse(message="Not found").dict(),

@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from itertools import chain
+from typing import Dict, Any
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import jwt
@@ -9,14 +10,14 @@ from fastapi import Body, HTTPException
 
 
 def authenticate_admin(login: str, password: str) -> bool:
-    return (
+    return (  # type: ignore
         login == app_config.get_config().admin_login
         and password == app_config.get_config().admin_password
     )
 
 
 def create_access_token(
-    payload: dict, expires_delta: timedelta = timedelta(minutes=15)
+    payload: Dict[str, Any], expires_delta: timedelta = timedelta(minutes=15)
 ):
     """
     Create JWT
@@ -34,7 +35,7 @@ def create_access_token(
     )
 
 
-@router.post("", response_model=api_models.Token)
+@router.post("", response_model=api_models.Token)  # type: ignore
 def get_token(
     credentials: api_models.Credentials = Body(
         None,

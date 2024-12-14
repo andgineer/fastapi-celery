@@ -14,7 +14,7 @@ on:
       - main
       - master
 jobs:
-  deploy:
+  static:
     env:
       PRIMARY_PYTHON_VERSION: '3.12'
     runs-on: ubuntu-latest

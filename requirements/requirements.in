@@ -4,6 +4,4 @@ amqp
 uvicorn
 gunicorn
 jupyterlab
-pytest
 pyjwt
-

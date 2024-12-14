@@ -18,4 +18,12 @@ mypy
 pylint
 pre-commit
 typing_extensions
+types-cffi
+types-pyOpenSSL
+types-PyYAML
+types-redis
+types-requests
+types-setuptools
+types-six
+types-toml
 

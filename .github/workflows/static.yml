@@ -32,4 +32,4 @@ jobs:
           uv pip install -r docker/tests/requirements.txt
           uv pip freeze | grep -i "mypy\|types-\|pydantic\|fastapi"
           python --version
-          pre-commit run --verbose --all-files
+          uv run pre-commit run --verbose --all-files

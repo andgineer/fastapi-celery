@@ -19,11 +19,11 @@ def authenticate_admin(login: str, password: str) -> bool:
 
 def create_access_token(
     payload: Dict[str, Any], expires_delta: timedelta = timedelta(minutes=15)
-):
+) -> str:
     """
     Create JWT
     """
-    return jwt.encode(
+    return jwt.encode(  # type: ignore
         payload=dict(
             chain(
                 payload.copy().items(),

@@ -6,7 +6,7 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/")  # type: ignore
 async def read_root() -> Dict[str, str]:
     message = f"{version.VERSION}"
     return {"version": message}

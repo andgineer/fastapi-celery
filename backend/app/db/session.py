@@ -28,7 +28,7 @@ def engine(config: Config) -> Engine:
     # event listeners to visualize potential connection pool leakage
     connections_checked_out_counter = 0
 
-    @event.listens_for(_engine, "checkout")
+    @event.listens_for(_engine, "checkout")  # type: ignore
     def receive_checkout(
         dbapi_connection: Any,  # pylint: disable=unused-argument
         connection_record: Any,  # pylint: disable=unused-argument
@@ -41,8 +41,11 @@ def engine(config: Config) -> Engine:
             + f" DB connection checkOUT. Used: {connections_checked_out_counter}"
         )
 
-    @event.listens_for(_engine, "checkin")
-    def receive_checkin(dbapi_connection, connection_record):  # pylint: disable=unused-argument
+    @event.listens_for(_engine, "checkin")  # type: ignore
+    def receive_checkin(
+        dbapi_connection: Any,  # pylint: disable=unused-argument
+        connection_record: Any,  # pylint: disable=unused-argument
+    ) -> Any:
         nonlocal connections_checked_out_counter
         connections_checked_out_counter -= 1
         log.debug(  # pylint: disable=logging-not-lazy

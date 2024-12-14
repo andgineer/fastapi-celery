@@ -9,7 +9,7 @@ from starlette import status
 from starlette.responses import Response
 
 
-@router.get(
+@router.get(  # type: ignore
     "/{words_id}",
     responses=dict(
         chain(

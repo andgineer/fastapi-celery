@@ -4,6 +4,7 @@ Starts FASTAPI app
 """
 
 import logging
+from typing import Callable, Any
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import app.db.session as app_session
@@ -41,8 +42,10 @@ app.middleware("http")(unhandled_exception_middleware)
 app.include_router(router, prefix=API_V1_STR)
 
 
-@app.middleware("http")
-async def db_session_middleware(request: Request, call_next):
+@app.middleware("http")  # type: ignore
+async def db_session_middleware(
+    request: Request, call_next: Callable[[Request], Any]
+) -> Any:
     """
     Opens DB session for each API request
     """

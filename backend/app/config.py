@@ -46,9 +46,9 @@ class Config:
 
     print(f"LOGIN: {os.getenv(EnvironmentVarNames.admin_login)}")
     # todo separate config for celery worker - it does not need admin password for example
-    admin_login: str = os.getenv(EnvironmentVarNames.admin_login, None)
-    admin_password: str = os.getenv(EnvironmentVarNames.admin_password, None)
-    jwt_secret_key: str = os.getenv(EnvironmentVarNames.jwt_secret_key, None)
+    admin_login: str = os.environ[EnvironmentVarNames.admin_login]
+    admin_password: str = os.environ[EnvironmentVarNames.admin_password]
+    jwt_secret_key: str = os.environ[EnvironmentVarNames.jwt_secret_key]
     if not admin_login or not admin_password or not jwt_secret_key:
         raise Exception(  # pylint: disable=broad-exception-raised
             f'\n\n{"!"*110}\n'
@@ -106,8 +106,8 @@ class Config:
         return 1
 
     @property
-    def redis(self) -> redis.Redis:
-        return redis.Redis(  # type: ignore
+    def redis(self) -> redis.Redis:  # type: ignore
+        return redis.Redis(
             host=self.redis_host,
             port=self.redis_port,
             password=self.redis_password,

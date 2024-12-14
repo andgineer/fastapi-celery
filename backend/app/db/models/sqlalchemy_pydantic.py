@@ -17,7 +17,7 @@ def list_to_pydantic_list(
     )
 
 
-def pydantic_list_to_list(obj: Any) -> Union[List[str], Dict[str, Any]]:
+def pydantic_list_to_list(obj: Any) -> List[Any] | Dict[str, Any]:
     """
     Convert unlimited nested lists of pydantic model`s to nested lists of dicts.
     """

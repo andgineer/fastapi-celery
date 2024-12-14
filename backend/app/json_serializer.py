@@ -10,9 +10,10 @@ True
 """
 
 from datetime import date, datetime
+from typing import Any
 
 
-def json_serial(obj):
+def json_serial(obj: Any) -> str:
     """
     Serialize datetime to ISO 8601 format (YYYY-MM-DDTHH:MM:SS)
     (javascript compatible)

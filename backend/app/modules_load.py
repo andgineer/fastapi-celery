@@ -1,8 +1,9 @@
 from importlib import import_module
 from pathlib import Path
+from typing import Any
 
 
-def asterisk(path: Path, package, globals):
+def asterisk(path: Path, package: Any, globals: Any) -> None:
     """
     Imports all symbols from all modules in the `path`
     """

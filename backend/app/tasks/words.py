@@ -1,3 +1,5 @@
+from typing import Any
+
 import celery.app.task
 import celery.exceptions
 import celery.states
@@ -10,14 +12,14 @@ from celery.utils.log import get_task_logger
 logger = get_task_logger(__name__)
 
 
-@celery_app.task(
+@celery_app.task(  # type: ignore
     name="tasks.words",
     base=ErrorLoggingTask,
     bind=True,
     throws=(celery.exceptions.InvalidTaskError, ValueError),
     acks_late=True,
 )
-def words(self: celery.app.task.Task, text: str) -> int:
+def words(self: celery.app.task.Task, text: str) -> Any:  # Celery serializes result
     """
     Count words
     """

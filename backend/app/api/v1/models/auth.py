@@ -9,7 +9,7 @@ class Token(BaseModel):  # type: ignore
 
 
 class TokenData(BaseModel):  # type: ignore
-    user_group: str = None
+    user_group: str | None = None
     scopes: List[str] = []
 
 

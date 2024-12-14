@@ -1,0 +1,33 @@
+
+# build docs from docstrings and markdown-file in folder docs
+# publish them as github pages
+#
+#note for myself
+#
+# Do not forget to set git branch `gh-pages` as source for github pages.
+# This branch auto-updated by `mkdocs gh-deploy`
+#
+name: static source code checks
+on:
+  push:
+    branches:
+      - main
+      - master
+jobs:
+  deploy:
+    env:
+      PRIMARY_PYTHON_VERSION: '3.12'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
+
+
+      - name: Install uv environment
+        uses: andgineer/uv-venv@v1
+
+      - run: |
+          uv pip install -r docker/tests/requirements.txt
+          pre-commit run --verbose --all-files

@@ -1,4 +1,4 @@
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Any, Dict
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import jwt
@@ -20,16 +20,16 @@ def extract_token(authorization_header_value: str) -> Tuple[str, str]:
     return scheme, token
 
 
-class JWTSchema(SecurityBase):
+class JWTSchema(SecurityBase):  # type: ignore
     type_ = Field(SecuritySchemeType.apiKey, alias="type")
     flows: BaseModel
 
 
-class JwtPasswordBearer(SecurityBase):
+class JwtPasswordBearer(SecurityBase):  # type: ignore
     def __init__(
         self,
         tokenUrl: str,  # pylint: disable=unused-argument
-        scopes: dict = None,
+        scopes: Dict[str, Any] | None = None,
     ):
         if not scopes:
             scopes = {}
@@ -55,7 +55,9 @@ jwt_scheme = JwtPasswordBearer(
 )
 
 
-def get_user_group(security_scopes: SecurityScopes, token: str = Depends(jwt_scheme)):
+def get_user_group(
+    security_scopes: SecurityScopes, token: str = Depends(jwt_scheme)
+) -> str:
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
     else:

@@ -21,5 +21,8 @@ pytest-clarity
 httpx
 allure-pytest
 invoke
-pylint
 
+# lint
+pre-commit
+mypy
+pylint

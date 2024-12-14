@@ -1,6 +1,6 @@
 from typing import List
 
-import app.controllers.tasks as tasks
+from app.controllers import tasks
 from fastapi import status
 from starlette.requests import Request
 from starlette.responses import Response

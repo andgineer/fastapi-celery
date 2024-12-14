@@ -76,8 +76,8 @@ def get_user_group(security_scopes: SecurityScopes, token: str = Depends(jwt_sch
             raise credentials_exception
         token_scopes = payload.get("scopes", [])
         token_data = api_models.TokenData(scopes=token_scopes, user_group=user_group)
-    except (jwt.PyJWTError, ValidationError):
-        raise credentials_exception
+    except (jwt.PyJWTError, ValidationError) as e:
+        raise credentials_exception from e
     for scope in security_scopes.scopes:
         if scope not in token_data.scopes:
             raise HTTPException(

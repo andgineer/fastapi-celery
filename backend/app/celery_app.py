@@ -59,10 +59,10 @@ try:
     print(
         f">>> celery_app: {app_config.get_config().celery_backend_uri}, {app_config.get_config().celery_broker_uri}"
     )
-except OperationalError:
+except OperationalError as e:
     raise RuntimeError(
         f"Connection to {app_config.get_config().celery_broker_uri} broker refused."
-    )
+    ) from e
 
 logger.info(f"Connection to {mq_uri} established.")
 

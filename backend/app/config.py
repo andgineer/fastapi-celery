@@ -16,7 +16,7 @@ log = logging.getLogger()
 
 
 DB_HOST_DEFAUL = "postgres"
-DB_POOL_SIZE_DEFAUL = 10
+DB_POOL_SIZE_DEFAUL = "10"
 DB_DATABASE_DEFAULT = "postgres"
 DB_USER_DEFAULT = "postgres"
 DB_PASSWORD_DEFAULT = "postgres"
@@ -50,7 +50,7 @@ class Config:
     admin_password: str = os.getenv(EnvironmentVarNames.admin_password, None)
     jwt_secret_key: str = os.getenv(EnvironmentVarNames.jwt_secret_key, None)
     if not admin_login or not admin_password or not jwt_secret_key:
-        raise Exception(
+        raise Exception(  # pylint: disable=broad-exception-raised
             f'\n\n{"!"*110}\n'
             f"(!) Please specify admin login (got {admin_login})"
             f" / password (got {admin_password})"
@@ -66,7 +66,9 @@ class Config:
     db_user: str = os.getenv(EnvironmentVarNames.db_user, DB_USER_DEFAULT)
     db_password: str = os.getenv(EnvironmentVarNames.db_password, DB_PASSWORD_DEFAULT)
     db_host: str = os.getenv(EnvironmentVarNames.db_host, DB_HOST_DEFAUL)
-    db_pool_size: int = os.getenv(EnvironmentVarNames.db_pool_size, DB_POOL_SIZE_DEFAUL)
+    db_pool_size: int = int(
+        os.getenv(EnvironmentVarNames.db_pool_size, DB_POOL_SIZE_DEFAUL)
+    )
 
     mq_user = os.environ[EnvironmentVarNames.mq_user]
     mq_password = os.environ[EnvironmentVarNames.mq_password]

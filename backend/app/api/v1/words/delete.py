@@ -1,7 +1,7 @@
 import logging
 
 import app.api.v1.models as api_models
-import app.controllers.tasks as tasks
+from app.controllers import tasks
 from app.api.v1.words import router
 from fastapi import Path
 

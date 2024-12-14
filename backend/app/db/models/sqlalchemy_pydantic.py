@@ -21,15 +21,17 @@ def pydantic_list_to_list(obj: Any) -> Union[List[str], Dict[str, Any]]:
     """
     Convert unlimited nested lists of pydantic model`s to nested lists of dicts.
     """
-    if isinstance(obj, list):
-        result = [pydantic_list_to_list(item) for item in obj]
-    else:
-        result = obj.dict(exclude_unset=True)
-    return result  # type: ignore
+    return (
+        [pydantic_list_to_list(item) for item in obj]
+        if isinstance(obj, list)
+        else obj.dict(exclude_unset=True)
+    )
 
 
 def sql_model_property_setter(
-    value: BaseModel, model: Type[BaseModel], default: Any = None
+    value: BaseModel,
+    model: Type[BaseModel],  # pylint: disable=unused-argument
+    default: Any = None,
 ) -> Union[List[Any], Dict[str, Any]]:
     """
     Returns pydantic `model` as object safe to store in DB JSONB.

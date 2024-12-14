@@ -19,9 +19,9 @@ TAGS = [
 ]
 
 ROUTE_TABLE = [
-    dict(router=root_router, tag="tests"),
-    dict(prefix="/auth", router=auth_router, tag="security"),
-    dict(prefix="/words", router=words_router, tag="words"),
+    {"router": root_router, "tag": "tests"},
+    {"prefix": "/auth", "router": auth_router, "tag": "security"},
+    {"prefix": "/words", "router": words_router, "tag": "words"},
 ]
 
 

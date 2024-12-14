@@ -15,7 +15,7 @@ log = logging.getLogger()
 
 
 def engine(config: Config) -> Engine:
-    global _engine
+    global _engine  # pylint: disable=global-statement
     if _engine:
         return _engine
 
@@ -30,20 +30,22 @@ def engine(config: Config) -> Engine:
 
     @event.listens_for(_engine, "checkout")
     def receive_checkout(
-        dbapi_connection: Any, connection_record: Any, connection_proxy: Any
+        dbapi_connection: Any,  # pylint: disable=unused-argument
+        connection_record: Any,  # pylint: disable=unused-argument
+        connection_proxy: Any,  # pylint: disable=unused-argument
     ) -> None:
         nonlocal connections_checked_out_counter
         connections_checked_out_counter += 1
-        log.debug(
+        log.debug(  # pylint: disable=logging-not-lazy
             "@" * 5
             + f" DB connection checkOUT. Used: {connections_checked_out_counter}"
         )
 
     @event.listens_for(_engine, "checkin")
-    def receive_checkin(dbapi_connection, connection_record):
+    def receive_checkin(dbapi_connection, connection_record):  # pylint: disable=unused-argument
         nonlocal connections_checked_out_counter
         connections_checked_out_counter -= 1
-        log.debug(
+        log.debug(  # pylint: disable=logging-not-lazy
             "@" * 5 + f" DB connection checkIN. Used: {connections_checked_out_counter}"
         )
 
@@ -51,7 +53,7 @@ def engine(config: Config) -> Engine:
 
 
 def session_maker(config: Config) -> sessionmaker:
-    global _session_maker
+    global _session_maker  # pylint: disable=global-statement
     if not _session_maker:
         _session_maker = sessionmaker(
             autocommit=False, autoflush=False, bind=engine(config)
@@ -62,5 +64,4 @@ def session_maker(config: Config) -> sessionmaker:
 def get_session(config: Config) -> Session:
     if _injected_session_maker is not None:
         return _injected_session_maker()
-    else:
-        return session_maker(config)()
+    return session_maker(config)()

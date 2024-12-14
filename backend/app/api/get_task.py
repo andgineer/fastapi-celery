@@ -1,4 +1,4 @@
-import app.controllers.tasks as tasks
+from app.controllers import tasks
 from fastapi import status
 from starlette.responses import Response
 

@@ -8,7 +8,7 @@ from celery.utils.log import get_task_logger
 logger = get_task_logger(__name__)
 
 
-class ErrorLoggingTask(Task):
+class ErrorLoggingTask(Task):  # pylint: disable=abstract-method
     def on_success(self, retval: Any, task_id: str, args: Any, kwargs: Any) -> None:
         """Success handler.
 
@@ -32,7 +32,7 @@ class ErrorLoggingTask(Task):
         logger.info(f"args: {args}")
         logger.info(f"kwargs: {kwargs}")
 
-    def on_retry(self, exc, task_id, args, kwargs, einfo):
+    def on_retry(self, exc, task_id, args, kwargs, einfo):  # pylint: disable=too-many-positional-arguments
         """Retry handler.
 
         This is run by the worker when the tasks is to be retried.
@@ -55,7 +55,7 @@ class ErrorLoggingTask(Task):
         logger.info(f"kwargs: {kwargs}")
         logger.info(f"einfo: {einfo}")
 
-    def on_failure(self, exc, task_id, args, kwargs, einfo):
+    def on_failure(self, exc, task_id, args, kwargs, einfo):  # pylint: disable=too-many-positional-arguments
         """Error handler.
 
         This is run by the worker when the tasks fails.

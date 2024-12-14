@@ -26,7 +26,10 @@ async def unhandled_exception_middleware(
         )
 
 
-async def general_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+async def general_exception_handler(
+    request: Request,  # pylint: disable=unused-argument
+    exc: Exception,
+) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
         content=GeneralErrorResponse(message=str(exc)).dict(),
@@ -34,7 +37,8 @@ async def general_exception_handler(request: Request, exc: Exception) -> JSONRes
 
 
 async def validation_exception_handler(
-    request: Request, exc: RequestValidationError
+    request: Request,  # pylint: disable=unused-argument
+    exc: RequestValidationError,
 ) -> JSONResponse:
     message = f"{pformat(exc.errors())}\n{pformat(exc.body)}"
     return JSONResponse(
@@ -44,7 +48,8 @@ async def validation_exception_handler(
 
 
 async def db_exception_handler(
-    request: Request, exc: sqlalchemy.exc.IntegrityError
+    request: Request,  # pylint: disable=unused-argument
+    exc: sqlalchemy.exc.IntegrityError,
 ) -> JSONResponse:
     detail = str(exc).split("DETAIL:")[1].split("\n")[0]
     return JSONResponse(
@@ -54,7 +59,8 @@ async def db_exception_handler(
 
 
 async def db_not_found_exception_handler(
-    request: Request, exc: sqlalchemy.orm.exc.NoResultFound
+    request: Request,  # pylint: disable=unused-argument
+    exc: sqlalchemy.orm.exc.NoResultFound,  # pylint: disable=unused-argument
 ) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,

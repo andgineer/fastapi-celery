@@ -3,11 +3,11 @@ from typing import Dict, Any
 from pydantic import BaseModel
 
 
-class GeneralErrorResponse(BaseModel):  # type: ignore
+class GeneralErrorResponse(BaseModel):
     message: str
 
 
-class ValidationErrorResponse(BaseModel):  # type: ignore
+class ValidationErrorResponse(BaseModel):
     """
     Pydantic params validation error
     """

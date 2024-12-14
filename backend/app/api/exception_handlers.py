@@ -16,7 +16,7 @@ async def unhandled_exception_middleware(
     request: Request, call_next: Callable[[Any], Any]
 ) -> JSONResponse:
     try:
-        return await call_next(request)
+        return await call_next(request)  # type: ignore
     except Exception as e:
         log.error(f"Unhandled exception {e}")
         # todo for some app it is not secure to reveal unhandled exception to client

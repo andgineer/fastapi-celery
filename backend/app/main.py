@@ -42,7 +42,7 @@ app.middleware("http")(unhandled_exception_middleware)
 app.include_router(router, prefix=API_V1_STR)
 
 
-@app.middleware("http")  # type: ignore
+@app.middleware("http")
 async def db_session_middleware(
     request: Request, call_next: Callable[[Request], Any]
 ) -> Any:

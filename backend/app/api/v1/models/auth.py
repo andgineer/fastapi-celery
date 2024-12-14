@@ -3,16 +3,16 @@ from typing import List
 from pydantic import BaseModel
 
 
-class Token(BaseModel):  # type: ignore
+class Token(BaseModel):
     token: str
     type: str
 
 
-class TokenData(BaseModel):  # type: ignore
+class TokenData(BaseModel):
     user_group: str | None = None
     scopes: List[str] = []
 
 
-class Credentials(BaseModel):  # type: ignore
+class Credentials(BaseModel):
     login: str
     password: str

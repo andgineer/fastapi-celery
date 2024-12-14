@@ -4,9 +4,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 
-def list_to_pydantic_list(
-    obj: Any, model: Type[BaseModel]
-) -> Union[List[BaseModel], BaseModel]:
+def list_to_pydantic_list(obj: Any, model: Type[BaseModel]) -> List[Any] | BaseModel:
     """
     Convert unlimited nested lists of dicts to nested lists of pydantic `model`s.
     """

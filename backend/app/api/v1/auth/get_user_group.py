@@ -20,12 +20,12 @@ def extract_token(authorization_header_value: str) -> Tuple[str, str]:
     return scheme, token
 
 
-class JWTSchema(SecurityBase):  # type: ignore
+class JWTSchema(SecurityBase):
     type_ = Field(SecuritySchemeType.apiKey, alias="type")
     flows: BaseModel
 
 
-class JwtPasswordBearer(SecurityBase):  # type: ignore
+class JwtPasswordBearer(SecurityBase):
     def __init__(
         self,
         tokenUrl: str,  # pylint: disable=unused-argument
@@ -34,11 +34,11 @@ class JwtPasswordBearer(SecurityBase):  # type: ignore
         if not scopes:
             scopes = {}
         self.scopes = scopes
-        self.model = JWTSchema()
+        self.model = JWTSchema()  # type: ignore
         self.scheme_name = self.__class__.__name__
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization: str = request.headers.get("Authorization")  # type: ignore
         scheme, param = extract_token(authorization)
         if not authorization or scheme.lower() != "bearer":
             raise HTTPException(

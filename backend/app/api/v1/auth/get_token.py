@@ -23,7 +23,7 @@ def create_access_token(
     """
     Create JWT
     """
-    return jwt.encode(  # type: ignore
+    return jwt.encode(
         payload=dict(
             chain(
                 payload.copy().items(),

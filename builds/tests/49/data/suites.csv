@@ -1,7 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon May 27 14:35:23 GMT 2024","Mon May 27 14:35:24 GMT 2024","1186","backend.tests.api.v1.auth","test_extract_token","","","","test_extract_token",""
-"passed","Mon May 27 14:35:25 GMT 2024","Mon May 27 14:35:26 GMT 2024","1031","backend.tests.api.v1.map_reduce","test_words_count","","","","test_words_count[../map_reduce_data]",""
-"passed","Mon May 27 14:35:23 GMT 2024","Mon May 27 14:35:24 GMT 2024","951","backend.tests.api.v1.auth","test_get_token","","","","test_get_token_wrong_password",""
-"passed","Mon May 27 14:35:23 GMT 2024","Mon May 27 14:35:24 GMT 2024","1021","backend.tests.api.v1.auth","test_get_token","","","","test_get_token_wrong_login",""
-"passed","Mon May 27 14:35:23 GMT 2024","Mon May 27 14:35:24 GMT 2024","460","backend.tests.api.v1.auth","test_get_token","","","","test_get_token_success",""
-"passed","Mon May 27 14:35:24 GMT 2024","Mon May 27 14:35:24 GMT 2024","10","backend.tests.api.v1","test_root","","","","test_read_root",""

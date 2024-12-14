@@ -16,7 +16,7 @@
 | backend/app/api/v1/root.py                  |        8 |        0 |    100% |           |
 | backend/app/api/v1/words/create.py          |       10 |        0 |    100% |           |
 | backend/app/api/v1/words/delete.py          |        9 |        1 |     89% |        22 |
-| backend/app/api/v1/words/get.py             |       14 |        0 |    100% |           |
+| backend/app/api/v1/words/get.py             |       12 |        0 |    100% |           |
 | backend/app/celery\_app.py                  |       33 |        3 |     91% | 62-63, 73 |
 | backend/app/config.py                       |       73 |        9 |     88% |12, 53, 96, 100, 104, 108, 117, 121, 125 |
 | backend/app/controllers/tasks.py            |       33 |        8 |     76% |28, 53, 59-64 |
@@ -30,7 +30,7 @@
 | backend/app/tasks/states.py                 |        2 |        0 |    100% |           |
 | backend/app/tasks/words.py                  |       23 |        5 |     78% |     31-35 |
 | backend/app/version.py                      |        1 |        0 |    100% |           |
-|                                   **TOTAL** |  **481** |  **103** | **79%** |           |
+|                                   **TOTAL** |  **479** |  **103** | **78%** |           |
 
 
 ## Setup coverage badge

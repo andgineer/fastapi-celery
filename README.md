@@ -5,10 +5,10 @@
 | Name                                        |    Stmts |     Miss |   Cover |   Missing |
 |-------------------------------------------- | -------: | -------: | ------: | --------: |
 | backend/app/api/create\_task.py             |        9 |        0 |    100% |           |
-| backend/app/api/exception\_handlers.py      |       25 |        9 |     64% |17-20, 27, 34-35, 42-43, 52 |
+| backend/app/api/exception\_handlers.py      |       26 |        9 |     65% |20-23, 30, 39-40, 49-50, 59 |
 | backend/app/api/get\_task.py                |       15 |        5 |     67% |15-16, 20-22 |
 | backend/app/api/routing.py                  |       11 |        0 |    100% |           |
-| backend/app/api/v1/auth/get\_token.py       |       17 |        0 |    100% |           |
+| backend/app/api/v1/auth/get\_token.py       |       18 |        0 |    100% |           |
 | backend/app/api/v1/auth/get\_user\_group.py |       49 |       24 |     51% |18, 35, 41-49, 59-88 |
 | backend/app/api/v1/models/auth.py           |       11 |        0 |    100% |           |
 | backend/app/api/v1/models/errors.py         |        7 |        0 |    100% |           |
@@ -21,16 +21,16 @@
 | backend/app/config.py                       |       73 |        9 |     88% |12, 53, 96, 100, 104, 108, 117, 121, 125 |
 | backend/app/controllers/tasks.py            |       33 |        8 |     76% |28, 53, 59-64 |
 | backend/app/controllers/words.py            |        2 |        0 |    100% |           |
-| backend/app/db/session.py                   |       32 |        6 |     81% |20, 34-35, 43-44, 62 |
+| backend/app/db/session.py                   |       32 |        6 |     81% |20, 36-37, 45-46, 64 |
 | backend/app/json\_serializer.py             |        8 |        8 |      0% |     12-29 |
 | backend/app/main.py                         |       28 |        5 |     82% |52-54, 61-63 |
 | backend/app/modules\_load.py                |        8 |        0 |    100% |           |
 | backend/app/tasks/base.py                   |       28 |       12 |     57% |50-56, 73-81 |
-| backend/app/tasks/debug.py                  |       20 |        9 |     55% |  9, 23-35 |
+| backend/app/tasks/debug.py                  |       20 |        8 |     60% |     23-35 |
 | backend/app/tasks/states.py                 |        2 |        0 |    100% |           |
 | backend/app/tasks/words.py                  |       23 |        5 |     78% |     31-35 |
 | backend/app/version.py                      |        1 |        0 |    100% |           |
-|                                   **TOTAL** |  **479** |  **104** | **78%** |           |
+|                                   **TOTAL** |  **481** |  **103** | **79%** |           |
 
 
 ## Setup coverage badge

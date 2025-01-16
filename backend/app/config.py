@@ -51,14 +51,14 @@ class Config:
     jwt_secret_key: str = os.environ[EnvironmentVarNames.jwt_secret_key]
     if not admin_login or not admin_password or not jwt_secret_key:
         raise Exception(  # pylint: disable=broad-exception-raised
-            f'\n\n{"!"*110}\n'
+            f"\n\n{'!' * 110}\n"
             f"(!) Please specify admin login (got {admin_login})"
             f" / password (got {admin_password})"
             f" and JWT secret key (got {jwt_secret_key})"
             f"\nin env vars "
             f"{EnvironmentVarNames.admin_login} / {EnvironmentVarNames.admin_password}, "
             f"{EnvironmentVarNames.jwt_secret_key} (!)\n"
-            f'{"!" * 110}\n\n'
+            f"{'!' * 110}\n\n"
         )
     jwt_algorithm = "HS256"
 

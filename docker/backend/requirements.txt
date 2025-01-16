@@ -8,7 +8,7 @@ amqp==5.3.1
     #   kombu
 annotated-types==0.7.0
     # via pydantic
-anyio==4.7.0
+anyio==4.8.0
     # via
     #   httpx
     #   jupyter-server
@@ -25,7 +25,7 @@ asttokens==3.0.0
     # via stack-data
 async-lru==2.0.4
     # via jupyterlab
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   jsonschema
     #   referencing
@@ -46,9 +46,9 @@ certifi==2024.12.14
     #   requests
 cffi==1.17.1
     # via argon2-cffi-bindings
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
-click==8.1.7
+click==8.1.8
     # via
     #   celery
     #   click-didyoumean
@@ -95,13 +95,13 @@ idna==3.10
     #   requests
 ipykernel==6.29.5
     # via jupyterlab
-ipython==8.30.0
+ipython==8.31.0
     # via ipykernel
 isoduration==20.11.0
     # via jsonschema
 jedi==0.19.2
     # via ipython
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   jupyter-server
     #   jupyterlab
@@ -132,11 +132,11 @@ jupyter-core==5.7.2
     #   nbclient
     #   nbconvert
     #   nbformat
-jupyter-events==0.10.0
+jupyter-events==0.11.0
     # via jupyter-server
 jupyter-lsp==2.2.5
     # via jupyterlab
-jupyter-server==2.14.2
+jupyter-server==2.15.0
     # via
     #   jupyter-lsp
     #   jupyterlab
@@ -144,7 +144,7 @@ jupyter-server==2.14.2
     #   notebook-shim
 jupyter-server-terminals==0.5.3
     # via jupyter-server
-jupyterlab==4.3.3
+jupyterlab==4.3.4
     # via -r requirements/requirements.in
 jupyterlab-pygments==0.3.0
     # via nbconvert
@@ -163,11 +163,11 @@ matplotlib-inline==0.1.7
     # via
     #   ipykernel
     #   ipython
-mistune==3.0.2
+mistune==3.1.0
     # via nbconvert
-nbclient==0.10.1
+nbclient==0.10.2
     # via nbconvert
-nbconvert==7.16.4
+nbconvert==7.16.5
     # via jupyter-server
 nbformat==5.10.4
     # via
@@ -178,7 +178,7 @@ nest-asyncio==1.6.0
     # via ipykernel
 notebook-shim==0.2.4
     # via jupyterlab
-numpy==2.2.0
+numpy==2.2.1
     # via -r requirements/requirements.celery.in
 overrides==7.7.0
     # via jupyter-server
@@ -204,7 +204,7 @@ prompt-toolkit==3.0.48
     # via
     #   click-repl
     #   ipython
-psutil==6.1.0
+psutil==6.1.1
     # via ipykernel
 psycopg2-binary==2.9.10
     # via -r requirements/requirements.celery.in
@@ -216,11 +216,11 @@ pure-eval==0.2.3
     # via stack-data
 pycparser==2.22
     # via cffi
-pydantic==2.10.3
+pydantic==2.10.5
     # via fastapi
-pydantic-core==2.27.1
+pydantic-core==2.27.2
     # via pydantic
-pygments==2.18.0
+pygments==2.19.1
     # via
     #   ipython
     #   nbconvert
@@ -231,9 +231,9 @@ python-dateutil==2.9.0.post0
     #   arrow
     #   celery
     #   jupyter-client
-python-json-logger==3.2.0
+python-json-logger==3.2.1
     # via jupyter-events
-python-multipart==0.0.19
+python-multipart==0.0.20
     # via -r requirements/requirements.in
 pyyaml==6.0.2
     # via jupyter-events
@@ -265,7 +265,7 @@ rpds-py==0.22.3
     #   referencing
 send2trash==1.8.3
     # via jupyter-server
-setuptools==75.6.0
+setuptools==75.8.0
     # via jupyterlab
 six==1.17.0
     # via
@@ -275,7 +275,7 @@ sniffio==1.3.1
     # via anyio
 soupsieve==2.6
     # via beautifulsoup4
-sqlalchemy==2.0.36
+sqlalchemy==2.0.37
     # via
     #   -r requirements/requirements.celery.in
     #   alembic
@@ -288,7 +288,7 @@ terminado==0.18.1
     #   jupyter-server
     #   jupyter-server-terminals
 tinycss2==1.4.0
-    # via nbconvert
+    # via bleach
 tornado==6.4.2
     # via
     #   ipykernel
@@ -326,9 +326,9 @@ tzdata==2024.2
     #   kombu
 uri-template==1.3.0
     # via jsonschema
-urllib3==2.2.3
+urllib3==2.3.0
     # via requests
-uvicorn==0.33.0
+uvicorn==0.34.0
     # via -r requirements/requirements.in
 vine==5.1.0
     # via

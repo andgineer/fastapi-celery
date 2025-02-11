@@ -79,7 +79,7 @@ coverage==7.6.10
     # via
     #   -r requirements/requirements.dev.in
     #   pytest-cov
-cryptography==44.0.0
+cryptography==44.0.1
     # via
     #   types-pyopenssl
     #   types-redis

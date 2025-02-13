@@ -36,7 +36,7 @@ def create_access_token(
 
 
 @router.post("", response_model=api_models.Token)  # type: ignore
-def get_token(
+def get_token(  # type: ignore
     credentials: api_models.Credentials = Body(
         None,
         description="User credentials",

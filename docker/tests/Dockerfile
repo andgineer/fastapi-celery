@@ -16,8 +16,18 @@ RUN echo http proxy: ${http_proxy} ${HTTP_PROXY} \
 # Local-specific script to set up corporate proxy etc
 ARG SSL_CERT_FILE
 ENV SSL_CERT_FILE=$SSL_CERT_FILE
-ENV REQUESTS_CA_BUNDLE=$SSL_CERT_FILE
-RUN echo $SSL_CERT_FILE
+
+# Conditional certificate setup
+RUN if [ -n "$SSL_CERT_FILE" ] && [ -f "$SSL_CERT_FILE" ]; then \
+    echo "Using custom certificate: $SSL_CERT_FILE" && \
+    export SSL_CERT_FILE=$SSL_CERT_FILE && \
+    export REQUESTS_CA_BUNDLE=$SSL_CERT_FILE; \
+    else \
+    echo "Using system certificates" && \
+    export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && \
+    export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt; \
+    fi
+
 #ENV AWS_CA_BUNDLE=$SSL_CERT_FILE
 #ENV NODE_EXTRA_CA_CERTS=$SSL_CERT_FILE
 #ENV CURL_CA_BUNDLE=$SSL_CERT_FILE

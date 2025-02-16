@@ -3,5 +3,5 @@ INFO     root:client.py:77 ->> POST /api/auth
 INFO     root:client.py:83 Query params: None
 INFO     root:client.py:86 Request body: {'login': 'admin', 'password': 'admin'}
 INFO     root:client.py:88 <<- 200
-INFO     root:client.py:91 {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInNjb3BlcyI6WyJhZG1pbiJdLCJleHAiOjE3Mzk2ODU1MjN9.qkkNwLvq-u05KBPgPT8nF2PAqtzfLM-3VPj_peqXmFk',
+INFO     root:client.py:91 {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInNjb3BlcyI6WyJhZG1pbiJdLCJleHAiOjE3Mzk3MDQ2OTd9.YM6lq4ER5OKGC6P87DrWEImZzg3z75byY-gnPLXqDJ8',
  'type': 'bearer'}

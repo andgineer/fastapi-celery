@@ -7,7 +7,7 @@ import redis
 API_V1_STR = "/api"
 
 
-@lru_cache()
+@lru_cache
 def get_config() -> "Config":
     return Config()
 
@@ -58,7 +58,7 @@ class Config:
             f"\nin env vars "
             f"{EnvironmentVarNames.admin_login} / {EnvironmentVarNames.admin_password}, "
             f"{EnvironmentVarNames.jwt_secret_key} (!)\n"
-            f"{'!' * 110}\n\n"
+            f"{'!' * 110}\n\n",
         )
     jwt_algorithm = "HS256"
 
@@ -67,7 +67,7 @@ class Config:
     db_password: str = os.getenv(EnvironmentVarNames.db_password, DB_PASSWORD_DEFAULT)
     db_host: str = os.getenv(EnvironmentVarNames.db_host, DB_HOST_DEFAUL)
     db_pool_size: int = int(
-        os.getenv(EnvironmentVarNames.db_pool_size, DB_POOL_SIZE_DEFAUL)
+        os.getenv(EnvironmentVarNames.db_pool_size, DB_POOL_SIZE_DEFAUL),
     )
 
     mq_user = os.environ[EnvironmentVarNames.mq_user]
@@ -77,7 +77,7 @@ class Config:
 
     def __init__(self) -> None:
         log.info(
-            f'<<<Backend started with MQ "{self.mq_uri}" and DB "{self.db_uri}", celery "{self.celery_backend_uri}", "{self.celery_broker_uri}">>>'
+            f'<<<Backend started with MQ "{self.mq_uri}" and DB "{self.db_uri}", celery "{self.celery_backend_uri}", "{self.celery_broker_uri}">>>',
         )
 
     @property
@@ -89,9 +89,7 @@ class Config:
 
     @property
     def mq_uri(self) -> str:
-        return (
-            f"pyamqp://{self.mq_user}:{self.mq_password}@{self.mq_host}:{self.mq_port}/"
-        )
+        return f"pyamqp://{self.mq_user}:{self.mq_password}@{self.mq_host}:{self.mq_port}/"
 
     @property
     def redis_host(self) -> str:

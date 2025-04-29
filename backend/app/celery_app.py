@@ -21,11 +21,11 @@ class Config:
     https://docs.celeryproject.org/en/latest/userguide/configuration.html#configuration-and-defaults
     """
 
-    task_acks_late = (
-        True  # guarantee task completion but the task may be executed twice
-    )
+    task_acks_late = True  # guarantee task completion but the task may be executed twice
     # if the worker crashes mid execution
-    result_expires = 600  # A built-in periodic task will delete the results after this time (seconds)
+    result_expires = (
+        600  # A built-in periodic task will delete the results after this time (seconds)
+    )
     # assuming that celery beat is enabled. The task runs daily at 4am.
     # task_ignore_result = True  # now we control this per task
     task_compression = "gzip"
@@ -40,9 +40,7 @@ def get_task_packages(path: str) -> List[str]:
         for name in filenames:
             if "__" not in dirpath:  # exclude __pycache__
                 result.append(
-                    os.path.join(dirpath, name.split(".")[0])
-                    .replace("/", ".")
-                    .replace("\\", ".")
+                    os.path.join(dirpath, name.split(".")[0]).replace("/", ".").replace("\\", "."),
                 )
     return result
 
@@ -57,11 +55,11 @@ try:
     celery_app.config_from_object(Config)
     celery_app.connection().ensure_connection(max_retries=3, timeout=15)
     print(
-        f">>> celery_app: {app_config.get_config().celery_backend_uri}, {app_config.get_config().celery_broker_uri}"
+        f">>> celery_app: {app_config.get_config().celery_backend_uri}, {app_config.get_config().celery_broker_uri}",
     )
 except OperationalError as e:
     raise RuntimeError(
-        f"Connection to {app_config.get_config().celery_broker_uri} broker refused."
+        f"Connection to {app_config.get_config().celery_broker_uri} broker refused.",
     ) from e
 
 logger.info(f"Connection to {mq_uri} established.")

@@ -4,7 +4,7 @@ Starts FASTAPI app
 """
 
 import logging
-from typing import Callable, Any
+from typing import Any, Callable
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import app.db.session as app_session
@@ -44,7 +44,8 @@ app.include_router(router, prefix=API_V1_STR)
 
 @app.middleware("http")
 async def db_session_middleware(
-    request: Request, call_next: Callable[[Request], Any]
+    request: Request,
+    call_next: Callable[[Request], Any],
 ) -> Any:
     """
     Opens DB session for each API request

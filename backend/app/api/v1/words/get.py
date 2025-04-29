@@ -18,12 +18,14 @@ from starlette.responses import Response
                 status.HTTP_202_ACCEPTED: {"description": "Results are not ready yet."},
                 status.HTTP_200_OK: {"description": "Results."},
             }.items(),
-        )
+        ),
     ),
 )
 def words_result(
     words_id: str = Path(
-        ..., description="words ID", example="0ed49234-2069-4bf1-955b-124df445dc24"
+        ...,
+        description="words ID",
+        example="0ed49234-2069-4bf1-955b-124df445dc24",
     ),
     response: Response = None,  # type: ignore
 ) -> Optional[api_models.Words]:

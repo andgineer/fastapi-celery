@@ -7,7 +7,10 @@ from starlette.responses import Response
 
 
 def create_task(
-    task_name: str, task_args: List[str], request: Request, response: Response
+    task_name: str,
+    task_args: List[str],
+    request: Request,
+    response: Response,
 ) -> None:
     """
     Create task and return the task id in `Location` header with 303 status code.

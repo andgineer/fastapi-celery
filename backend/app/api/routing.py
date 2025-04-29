@@ -29,7 +29,9 @@ router = APIRouter()
 for route in ROUTE_TABLE:
     if "prefix" in route:
         router.include_router(
-            route["router"], tags=[route["tag"]], prefix=route["prefix"]
+            route["router"],
+            tags=[route["tag"]],
+            prefix=route["prefix"],
         )
     else:
         router.include_router(route["router"], tags=[route["tag"]])

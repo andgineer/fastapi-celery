@@ -1,6 +1,6 @@
 import inspect
 import logging
-from typing import Any, Tuple, Dict
+from typing import Any, Dict, Tuple
 
 from celery import Task
 from celery.utils.log import get_task_logger

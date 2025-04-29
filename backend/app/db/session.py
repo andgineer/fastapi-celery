@@ -1,5 +1,5 @@
 import logging
-from typing import Optional, Any
+from typing import Any, Optional
 
 from app.config import Config
 from sqlalchemy import create_engine, event
@@ -37,8 +37,7 @@ def engine(config: Config) -> Engine:
         nonlocal connections_checked_out_counter
         connections_checked_out_counter += 1
         log.debug(  # pylint: disable=logging-not-lazy
-            "@" * 5
-            + f" DB connection checkOUT. Used: {connections_checked_out_counter}"
+            "@" * 5 + f" DB connection checkOUT. Used: {connections_checked_out_counter}",
         )
 
     @event.listens_for(_engine, "checkin")
@@ -49,7 +48,7 @@ def engine(config: Config) -> Engine:
         nonlocal connections_checked_out_counter
         connections_checked_out_counter -= 1
         log.debug(  # pylint: disable=logging-not-lazy
-            "@" * 5 + f" DB connection checkIN. Used: {connections_checked_out_counter}"
+            "@" * 5 + f" DB connection checkIN. Used: {connections_checked_out_counter}",
         )
 
     return _engine
@@ -59,7 +58,9 @@ def session_maker(config: Config) -> Any:
     global _session_maker  # pylint: disable=global-statement
     if not _session_maker:
         _session_maker = sessionmaker(
-            autocommit=False, autoflush=False, bind=engine(config)
+            autocommit=False,
+            autoflush=False,
+            bind=engine(config),
         )
     return _session_maker
 

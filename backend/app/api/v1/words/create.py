@@ -8,7 +8,9 @@ from starlette.responses import Response
 
 
 @router.post(  # type: ignore
-    "", status_code=status.HTTP_303_SEE_OTHER, responses=api_models.ErrorResponses
+    "",
+    status_code=status.HTTP_303_SEE_OTHER,
+    responses=api_models.ErrorResponses,
 )
 async def create_words_count_task(
     text: UploadFile = File(..., description="Text"),

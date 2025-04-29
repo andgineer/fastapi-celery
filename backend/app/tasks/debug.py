@@ -21,7 +21,9 @@ def dummy_task() -> Any:  # Celery serializes result
 
 
 @celery_app.task(  # type: ignore
-    name="tasks.create_test_task", base=ErrorLoggingTask, acks_late=True
+    name="tasks.create_test_task",
+    base=ErrorLoggingTask,
+    acks_late=True,
 )
 def create_test_task(total: int) -> None:
     import time
@@ -31,11 +33,13 @@ def create_test_task(total: int) -> None:
     for i in range(total):
         logger.info(f"{i}")
         celery_app.current_task.update_state(
-            state="PROGRESS", meta={"current": i, "total": total}
+            state="PROGRESS",
+            meta={"current": i, "total": total},
         )
         if np.random.uniform(0, 1) > 0.5:
             time.sleep(1)
 
     celery_app.current_task.update_state(
-        state="SUCCESS", meta={"current": total, "total": total}
+        state="SUCCESS",
+        meta={"current": total, "total": total},
     )

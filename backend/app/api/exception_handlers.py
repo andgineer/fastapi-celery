@@ -1,6 +1,6 @@
 import logging
 from pprint import pformat
-from typing import Callable, Any
+from typing import Any, Callable
 
 import sqlalchemy.exc
 import sqlalchemy.orm.exc
@@ -13,7 +13,8 @@ log = logging.getLogger()
 
 
 async def unhandled_exception_middleware(
-    request: Request, call_next: Callable[[Any], Any]
+    request: Request,
+    call_next: Callable[[Any], Any],
 ) -> JSONResponse:
     try:
         return await call_next(request)  # type: ignore

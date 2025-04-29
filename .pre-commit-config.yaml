@@ -7,42 +7,70 @@ exclude: |
         version.py
     )
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
-    rev: v0.9.6
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
     hooks:
-      # Run the linter.
+      - id: check-yaml
+      - id: end-of-file-fixer
+        exclude_types: [ python ]
+      - id: trailing-whitespace
+        exclude_types: [ python ]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.3
+    hooks:
       - id: ruff
-        args:
-          - --fix
-          - --ignore=F401,F403,E203,E402
-          - --line-length=99
-      # Run the formatter.
+        exclude: ^tests/
+        args: [
+          --fix-only,
+          --line-length=100,
+          --select=PL,    # All Pylint rules
+          --select=A001,  # Shadowing Python builtins
+          --select=ARG,   # Unused function arguments
+          --select=B,     # Bugbear rules (B002,B006,etc)
+          --select=BLE,   # Blind except
+          --select=C,     # Complexity
+          --select=COM,   # Comma placement
+          --select=E,     # pycodestyle errors
+          --select=F,     # Pyflakes
+          --select=G,     # Logging format
+          --select=I,     # Import ordering
+          --select=ISC,   # Implicit string concatenation
+          --select=N,     # Naming
+          --select=PIE,   # Misc rules
+          --select=Q,     # Quotes
+          --select=RET,   # Return statement
+          --select=S,     # Security
+          --select=SIM,   # Code simplification
+          --select=SLF,   # Private member access
+          --select=TID,   # Tidy imports
+          --select=TRY,   # Exception handling
+          --select=UP,    # Upgrade syntax
+          --select=W,     # Warnings
+          '--ignore=B019,S101,G004,TRY003,TRY300,TRY301,TRY400'  # Ignore docstring and `assert` detection
+        ]
+      - id: ruff
+        name: ruff-format-tests
+        files: ^tests/
+        args: [
+          --fix,
+          --line-length=99,
+          --exit-zero    # Don't fail on issues
+        ]
       - id: ruff-format
-
+        args: [
+          --line-length=100
+        ]
   - repo: local
     hooks:
-
       - id: mypy
         name: mypy
-        entry: |
-          mypy
-          --ignore-missing-imports
-          --install-types
-          --non-interactive
-          --strict
-          --implicit-reexport
-          --warn-unused-ignores
-          --cache-fine-grained
-          --no-namespace-packages
-        files: \.py$
-        exclude: tasks.py
-        language: python
-
-
-      - id: pylint
-        name: Pylint
-        entry: pylint
-        files: \.py$
-        exclude: tasks.py
-        language: python
+        entry: mypy
+        args: [
+          "--install-types",
+          "--non-interactive",
+          "--ignore-missing-imports",
+          "--namespace-packages",
+          "--explicit-package-bases"
+        ]
+        language: system
+        types: [ python ]

@@ -1,4 +1,4 @@
-from typing import Optional, Tuple, Any, Dict
+from typing import Any, Dict, Optional, Tuple
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import jwt
@@ -56,7 +56,8 @@ jwt_scheme = JwtPasswordBearer(
 
 
 def get_user_group(
-    security_scopes: SecurityScopes, token: str = Depends(jwt_scheme)
+    security_scopes: SecurityScopes,
+    token: str = Depends(jwt_scheme),
 ) -> str:
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'

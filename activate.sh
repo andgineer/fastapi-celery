@@ -43,4 +43,3 @@ else
     echo -e $CYAN"Activating virtual environment ..."$NC
     . ${VENV_FOLDER}/bin/activate
 fi
-

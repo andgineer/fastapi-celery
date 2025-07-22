@@ -119,7 +119,7 @@ httpx==0.28.1
     # via
     #   -r requirements/requirements.dev.in
     #   jupyterlab
-hypothesis==6.136.1
+hypothesis==6.136.2
     # via -r requirements/requirements.dev.in
 identify==2.6.12
     # via pre-commit
@@ -133,7 +133,7 @@ iniconfig==2.1.0
     # via pytest
 invoke==2.2.0
     # via -r requirements/requirements.dev.in
-ipykernel==6.29.5
+ipykernel==6.30.0
     # via jupyterlab
 ipython==9.4.0
     # via ipykernel
@@ -488,7 +488,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.31.2
+virtualenv==20.32.0
     # via pre-commit
 wcwidth==0.2.13
     # via prompt-toolkit

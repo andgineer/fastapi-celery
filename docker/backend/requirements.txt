@@ -93,7 +93,7 @@ idna==3.10
     #   httpx
     #   jsonschema
     #   requests
-ipykernel==6.29.5
+ipykernel==6.30.0
     # via jupyterlab
 ipython==9.4.0
     # via ipykernel

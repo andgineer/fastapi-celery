@@ -1,0 +1,25 @@
+INFO     celery.worker.consumer.connection:connection.py:22 Connected to memory://localhost//
+INFO     celery.app.trace:trace.py:128 Task celery.ping[da356891-bd3e-4778-8fb3-4fc91c84e1ba] succeeded in 0.044793073000001016s: 'pong'
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/words "HTTP/1.1 303 See Other"
+INFO     root:client.py:77 ->> POST /api/words
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:86 Request body: None
+INFO     root:client.py:88 <<- 303
+INFO     root:client.py:91 None
+INFO     httpx:_client.py:1025 HTTP Request: GET http://testserver/api/words/4fe5c78c-7091-45d4-8233-0ef08f3b77c0 "HTTP/1.1 202 Accepted"
+INFO     root:client.py:77 ->> GET /api/words/4fe5c78c-7091-45d4-8233-0ef08f3b77c0
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:88 <<- 202
+INFO     root:client.py:94 
+INFO     httpx:_client.py:1025 HTTP Request: GET http://testserver/api/words/4fe5c78c-7091-45d4-8233-0ef08f3b77c0 "HTTP/1.1 202 Accepted"
+INFO     root:client.py:77 ->> GET /api/words/4fe5c78c-7091-45d4-8233-0ef08f3b77c0
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:88 <<- 202
+INFO     root:client.py:94 
+INFO     celery.worker.strategy:strategy.py:161 Task tasks.words[4fe5c78c-7091-45d4-8233-0ef08f3b77c0] received
+INFO     celery.app.trace:trace.py:128 Task tasks.words[4fe5c78c-7091-45d4-8233-0ef08f3b77c0] succeeded in 0.03017091600000299s: 69
+INFO     httpx:_client.py:1025 HTTP Request: GET http://testserver/api/words/4fe5c78c-7091-45d4-8233-0ef08f3b77c0 "HTTP/1.1 200 OK"
+INFO     root:client.py:77 ->> GET /api/words/4fe5c78c-7091-45d4-8233-0ef08f3b77c0
+INFO     root:client.py:83 Query params: None
+INFO     root:client.py:88 <<- 200
+INFO     root:client.py:91 {'count': 69}

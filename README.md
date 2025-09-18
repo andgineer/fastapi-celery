@@ -2,12 +2,12 @@
 [![Coverage](https://raw.githubusercontent.com/andgineer/fastapi-celery/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/fastapi-celery/blob/python-coverage-comment-action-data/htmlcov/index.html)
 # Python backend: FastAPI/Gunicorn + SQLAlchemy/Postgres + Celery/Redis + nginx
 
-Application template to quick start your API server.
+Application template to quickly start your API server.
 
 Fully Dockerized local development environment.
 
-In dev mode (`$env=dev``) uses `uvicorn` with live-reload (sources mounted to the
-container). And Celery worker with live reload.
+In dev mode (`$env=dev`) uses `uvicorn` with live-reload (sources mounted to the
+container) and Celery worker with live reload.
 
 ## Installation
 
@@ -32,14 +32,14 @@ Install [hurl](https://hurl.dev/)
 
     hurl docker/words.hurl
 
-That will get auth token from backend running in the Docker, send `words` request to API and check response
-(it should be number of words in file `docker/words.txt`).
+This will get an auth token from the backend running in Docker, send a `words` request to the API and check the response
+(it should be the number of words in file `docker/words.txt`).
 
 ### Local debug
 
-You can debug backend and celery tasks code locally, outside containers.
-Backend and Celery worker will connect to Postgres and Redis in containers.
-For that you need in your `/etc/hosts`:
+You can debug backend and Celery task code locally, outside containers.
+The backend and Celery worker will connect to Postgres and Redis in containers.
+For this you need in your `/etc/hosts`:
 
     127.0.0.1   postgres
     127.0.0.1   redis
@@ -60,8 +60,8 @@ See docker/postgres/README.md.
 
 ## Testing
 
-You only need `Posgtres` to run test container.
-We use `fakeredis` to emulate `Redis`, `fastapi` `test client` to emulate fastapi server.
+You only need `Postgres` to run the test container.
+We use `fakeredis` to emulate `Redis` and FastAPI test client to emulate the FastAPI server.
 
 ```console
 ./up.sh postgres
@@ -74,18 +74,18 @@ We use `fakeredis` to emulate `Redis`, `fastapi` `test client` to emulate fastap
 ./run.sh tests python -m pytest -v  # run tests `verbosely`
 ```
 
-### Run tests locally (as unit-tests without server running)
+### Run tests locally (as unit tests without server running)
 
-in `/etc/hosts` we need
+In `/etc/hosts` you need:
 
     127.0.0.1   postgres
 
-in folder `/backend` execute
+In the `/backend` folder execute:
 
 ```console
 ./test.sh -k token  # run tests with `token` in test name
 ./test.sh -m='unittest and not slow'  # run all fast unittests (locally)
-./test.sh -m=benchmark  # run all tests that mesures speed using pytest-benchmark
+./test.sh -m=benchmark  # run all tests that measure speed using pytest-benchmark
 ./test.sh --markers  # see all markers that we can use with `-m` key
 ./test.sh --cov  # run tests with coverage report
 ```
@@ -97,31 +97,31 @@ in folder `/backend` execute
 ./test.sh --host 127.0.0.1
 ```
 
-This command run local server and test it.
+This command runs the local server and tests it.
 It will skip unit tests that cannot be run for external server (marked as `unittest`).
 
 ### Stress test
 
-Run tests in parallel in loop as some kind of stress-test using nginx as proxy.
+Run tests in parallel in a loop as a stress test using nginx as proxy.
 
-In folder `backend/` run:
+In the `backend/` folder run:
 ```console
 ./stress.sh
 ```
 
 ## Swagger / OpenAPI
 
-Swagger UI available at `localhost/docs` after server start (`./up.sh`).
+Swagger UI is available at `localhost/docs` after starting the server (`./up.sh`).
 
 # nginx proxy
 
-Nginx proxy at `8001` port.
+Nginx proxy runs on port `8001`.
 
-Without nginx gunicorn server will drop a lot of incoming connections.
-Because there are only `<CPU number> + 1` workers in production mode.
-Or even only one worker in live reload (`$env=dev`) mode.
+Without nginx, the Gunicorn server will drop many incoming connections
+because there are only `<CPU number> + 1` workers in production mode,
+or even only one worker in live reload (`$env=dev`) mode.
 
-Nginx will buffer requests so your server will serve a lot of parallel clients.
+Nginx will buffer requests so your server can serve many parallel clients.
 
 ## Allure test report
 

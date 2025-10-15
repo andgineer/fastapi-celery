@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -12,7 +12,7 @@ class ValidationErrorResponse(BaseModel):
     Pydantic params validation error
     """
 
-    detail: Dict[str, Any]
+    detail: dict[str, Any]
 
 
 ErrorResponses = {

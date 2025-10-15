@@ -1,5 +1,4 @@
 from itertools import chain
-from typing import Optional
 
 from app.api.get_task import get_task
 from app.api.v1 import models as api_models
@@ -28,7 +27,7 @@ def words_result(
         example="0ed49234-2069-4bf1-955b-124df445dc24",
     ),
     response: Response = None,  # type: ignore
-) -> Optional[api_models.Words]:
+) -> api_models.Words | None:
     """
     Returns result of `POST /words`.
 

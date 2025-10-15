@@ -4,7 +4,8 @@ Starts FASTAPI app
 """
 
 import logging
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import app.db.session as app_session

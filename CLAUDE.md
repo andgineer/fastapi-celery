@@ -5,36 +5,41 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Common Development Commands
 
 ### Development Environment Setup
-- `./activate.sh` - Activate (and create if needed) Python virtual environment
-- `./build.sh` - Build all Docker containers
-- `./up.sh` - Start all containers for development
-- `./up.sh postgres` - Start only Postgres container (useful for local testing)
-- `./up.sh backend` - Start only backend container for testing
-- `./stop.sh` - Stop all containers
+- `source ./activate.sh` - Activate (and create if needed) Python virtual environment
+- `source ./activate.sh && ./build.sh` - Build all Docker containers
+- `source ./activate.sh && ./up.sh` - Start all containers for development
+- `source ./activate.sh && ./up.sh postgres` - Start only Postgres container (useful for local testing)
+- `source ./activate.sh && ./up.sh backend` - Start only backend container for testing
+- `source ./activate.sh && ./stop.sh` - Stop all containers
+
+**IMPORTANT**: Always activate the virtual environment before running any commands. Use `source ./activate.sh` before each command.
 
 ### Testing
-- `./test.sh` - Run all tests locally (requires Postgres container running)
-- `./test.sh -k token` - Run tests with 'token' in test name
-- `./test.sh -m='unittest and not slow'` - Run fast unit tests only
-- `./test.sh -m=benchmark` - Run performance benchmark tests
-- `./test.sh --cov` - Run tests with coverage report
-- `./test.sh --host 127.0.0.1` - Test against running local server
-- `./run.sh tests` - Run tests in Docker container
-- `./run.sh tests python -m pytest -v` - Run tests verbosely in container
+- `source ./activate.sh && ./test.sh` - Run all tests locally (requires Postgres container running)
+- `source ./activate.sh && ./test.sh -k token` - Run tests with 'token' in test name
+- `source ./activate.sh && ./test.sh -m='unittest and not slow'` - Run fast unit tests only
+- `source ./activate.sh && ./test.sh -m=benchmark` - Run performance benchmark tests
+- `source ./activate.sh && ./test.sh --cov` - Run tests with coverage report
+- `source ./activate.sh && ./test.sh --host 127.0.0.1` - Test against running local server
+- `source ./activate.sh && ./run.sh tests` - Run tests in Docker container
+- `source ./activate.sh && ./run.sh tests python -m pytest -v` - Run tests verbosely in container
 
 ### Database Operations
-- `./alembic.sh revision --autogenerate -m "Schema changes."` - Create migration script
-- `./alembic.sh upgrade head` - Apply migrations to database
-- `./psql.sh` - Connect to Postgres in Docker container
-- `./local-psql.sh` - Connect to local Postgres (requires /etc/hosts entry)
+- `source ./activate.sh && ./alembic.sh revision --autogenerate -m "Schema changes."` - Create migration script
+- `source ./activate.sh && ./alembic.sh upgrade head` - Apply migrations to database
+- `source ./activate.sh && ./psql.sh` - Connect to Postgres in Docker container
+- `source ./activate.sh && ./local-psql.sh` - Connect to local Postgres (requires /etc/hosts entry)
 
 ### Code Quality
-- `invoke pre` or `inv pre` - Run pre-commit checks (ruff, mypy)
+- `source ./activate.sh && invoke pre` or `source ./activate.sh && inv pre` - Run pre-commit checks (ruff, mypy)
+
+**IMPORTANT**: Always use `invoke pre` or `pre-commit run --all-files` for code quality checks. Never run ruff or mypy directly.
+
 - Pre-commit hooks run ruff with extensive rule set and mypy for type checking
 
 ### Requirements Management
-- `invoke compile-requirements` or `inv compile-requirements` - Compile .in files to .txt using uv
-- `invoke reqs` or `inv reqs` - Upgrade all requirements including pre-commit
+- `source ./activate.sh && invoke compile-requirements` or `source ./activate.sh && inv compile-requirements` - Compile .in files to .txt using uv
+- `source ./activate.sh && invoke reqs` or `source ./activate.sh && inv reqs` - Upgrade all requirements including pre-commit
 
 ## Code Architecture
 

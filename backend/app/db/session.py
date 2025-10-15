@@ -1,12 +1,12 @@
 import logging
-from typing import Any, Optional
+from typing import Any
 
 from app.config import Config
 from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
 
-_engine: Optional[Engine] = None  # cache
+_engine: Engine | None = None  # cache
 _session_maker: Any = None  # cache
 _injected_session_maker: Any = None  # injection
 

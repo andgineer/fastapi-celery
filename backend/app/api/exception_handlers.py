@@ -1,6 +1,7 @@
 import logging
+from collections.abc import Callable
 from pprint import pformat
-from typing import Any, Callable
+from typing import Any
 
 import sqlalchemy.exc
 import sqlalchemy.orm.exc

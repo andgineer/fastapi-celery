@@ -1,6 +1,6 @@
 import inspect
 import logging
-from typing import Any, Dict, Tuple
+from typing import Any
 
 from celery import Task
 from celery.utils.log import get_task_logger
@@ -35,8 +35,8 @@ class ErrorLoggingTask(Task):  # type: ignore  # pylint: disable=abstract-method
         self,
         exc: Exception,
         task_id: str,
-        args: Tuple[Any],
-        kwargs: Dict[str, Any],
+        args: tuple[Any],
+        kwargs: dict[str, Any],
         einfo: Any,
     ) -> None:
         """Retry handler.
@@ -65,8 +65,8 @@ class ErrorLoggingTask(Task):  # type: ignore  # pylint: disable=abstract-method
         self,
         exc: Exception,
         task_id: str,
-        args: Tuple[Any],
-        kwargs: Dict[str, Any],
+        args: tuple[Any],
+        kwargs: dict[str, Any],
         einfo: Any,
     ) -> None:
         """Error handler.

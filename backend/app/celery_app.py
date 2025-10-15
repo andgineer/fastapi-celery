@@ -5,7 +5,6 @@ Register all tasks from app/tasks
 """
 
 import os.path
-from typing import List
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 from celery import Celery
@@ -34,7 +33,7 @@ class Config:
     broker_connection_retry_on_startup = True
 
 
-def get_task_packages(path: str) -> List[str]:
+def get_task_packages(path: str) -> list[str]:
     result = []
     for dirpath, dirnames, filenames in os.walk(path):
         for name in filenames:

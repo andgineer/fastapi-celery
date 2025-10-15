@@ -1,5 +1,3 @@
-from typing import List
-
 from app.controllers import tasks
 from fastapi import status
 from starlette.requests import Request
@@ -8,7 +6,7 @@ from starlette.responses import Response
 
 def create_task(
     task_name: str,
-    task_args: List[str],
+    task_args: list[str],
     request: Request,
     response: Response,
 ) -> None:

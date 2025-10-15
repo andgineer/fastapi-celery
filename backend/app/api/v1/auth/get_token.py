@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from itertools import chain
-from typing import Any, Dict
+from typing import Any
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import jwt
@@ -17,7 +17,7 @@ def authenticate_admin(login: str, password: str) -> bool:
 
 
 def create_access_token(
-    payload: Dict[str, Any],
+    payload: dict[str, Any],
     expires_delta: timedelta = timedelta(minutes=15),
 ) -> str:
     """

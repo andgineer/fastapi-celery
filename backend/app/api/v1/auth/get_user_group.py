@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Tuple
+from typing import Any
 
 import app.config as app_config  # to not shadow global app var with FastAPI app
 import jwt
@@ -10,7 +10,7 @@ from fastapi.security.base import SecurityBase
 from pydantic import BaseModel, Field, ValidationError
 
 
-def extract_token(authorization_header_value: str) -> Tuple[str, str]:
+def extract_token(authorization_header_value: str) -> tuple[str, str]:
     """
     Extract token value from HTTP header value ('Bearer <token_value>')
     """
@@ -29,7 +29,7 @@ class JwtPasswordBearer(SecurityBase):
     def __init__(
         self,
         tokenUrl: str,  # pylint: disable=unused-argument
-        scopes: Dict[str, Any] | None = None,
+        scopes: dict[str, Any] | None = None,
     ):
         if not scopes:
             scopes = {}
@@ -37,7 +37,7 @@ class JwtPasswordBearer(SecurityBase):
         self.model = JWTSchema()  # type: ignore
         self.scheme_name = self.__class__.__name__
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         authorization: str = request.headers.get("Authorization")  # type: ignore
         scheme, param = extract_token(authorization)
         if not authorization or scheme.lower() != "bearer":

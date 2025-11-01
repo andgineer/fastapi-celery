@@ -9,10 +9,10 @@
 | backend/app/api/get\_task.py                |       16 |        5 |     69% |17-18, 22-24 |
 | backend/app/api/routing.py                  |       11 |        0 |    100% |           |
 | backend/app/api/v1/auth/get\_token.py       |       18 |        0 |    100% |           |
-| backend/app/api/v1/auth/get\_user\_group.py |       49 |       24 |     51% |18, 35, 41-49, 62-91 |
-| backend/app/api/v1/models/auth.py           |       10 |        0 |    100% |           |
-| backend/app/api/v1/models/errors.py         |        7 |        0 |    100% |           |
-| backend/app/api/v1/models/words.py          |        3 |        0 |    100% |           |
+| backend/app/api/v1/auth/get\_user\_group.py |       48 |       24 |     50% |18, 35, 41-49, 62-91 |
+| backend/app/api/v1/models/auth.py           |        6 |        0 |    100% |           |
+| backend/app/api/v1/models/errors.py         |        5 |        0 |    100% |           |
+| backend/app/api/v1/models/words.py          |        2 |        0 |    100% |           |
 | backend/app/api/v1/root.py                  |        7 |        0 |    100% |           |
 | backend/app/api/v1/words/create.py          |       10 |        0 |    100% |           |
 | backend/app/api/v1/words/delete.py          |        9 |        1 |     89% |        24 |
@@ -26,11 +26,11 @@
 | backend/app/main.py                         |       30 |        5 |     83% |57-59, 66-68 |
 | backend/app/modules\_load.py                |        9 |        0 |    100% |           |
 | backend/app/tasks/base.py                   |       33 |       16 |     52% |56-62, 86-94 |
-| backend/app/tasks/debug.py                  |       21 |        8 |     62% |     29-42 |
+| backend/app/tasks/debug.py                  |       21 |        9 |     57% | 11, 29-42 |
 | backend/app/tasks/states.py                 |        2 |        0 |    100% |           |
 | backend/app/tasks/words.py                  |       24 |        5 |     79% |     33-37 |
 | backend/app/version.py                      |        1 |        0 |    100% |           |
-|                                   **TOTAL** |  **487** |  **108** | **78%** |           |
+|                                   **TOTAL** |  **479** |  **109** | **77%** |           |
 
 
 ## Setup coverage badge

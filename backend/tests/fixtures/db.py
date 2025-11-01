@@ -85,9 +85,7 @@ def db_indepotent(pytestconfig):
 
     yield session
 
-    app_session._session = (
-        None  # remove so server code in future will generate session by itself
-    )
+    app_session._session = None  # remove so server code in future will generate session by itself
     session.close()
     log.debug(f"[[[ savepoint transaction ]]] Rollback in {session.info}")
     trans.rollback()  # roll back to the SAVEPOINT

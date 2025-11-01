@@ -1,16 +1,16 @@
 """
 HTTP clients for API testing
 """
+
 import logging
-from pprint import pformat
-from pprint import pprint
+from pprint import pformat, pprint
 from urllib.parse import urljoin
 
 import app.main
-import tests.config as config
 import pytest
 import requests
 from starlette.testclient import TestClient
+from tests import config
 
 log = logging.getLogger()
 
@@ -24,8 +24,7 @@ class TestClientExternal(requests.Session):
     def url(relative_url):
         if config.get_test_config().host.startswith("http"):
             return urljoin(config.get_test_config().host, relative_url)
-        else:
-            return urljoin(f"http://{config.get_test_config().host}", relative_url)
+        return urljoin(f"http://{config.get_test_config().host}", relative_url)
 
     def _proxy_method(self, method):
         """
@@ -63,15 +62,13 @@ class TextClientTooling:
     def request(self, method, url, **args):
         args["headers"] = config.get_test_config().headers.copy()
         if "token" in args:
-            args["headers"]["Authorization"] = f'Bearer {args["token"]}'
+            args["headers"]["Authorization"] = f"Bearer {args['token']}"
             del args["token"]
         result = super().request(method, url, **args)
         ellipsed_headers = {}
         MAX_LEN = 15
         for header, val in args["headers"].items():
-            ellipsed_headers[header] = (
-                val[:MAX_LEN] + ".." if len(val) > MAX_LEN else val
-            )
+            ellipsed_headers[header] = val[:MAX_LEN] + ".." if len(val) > MAX_LEN else val
         print()
         print("->>", method.upper(), url)
         log.info(f"->> {method.upper()} {url}")
@@ -80,10 +77,10 @@ class TextClientTooling:
             log.info(f"    HTTP headers: {pformat(ellipsed_headers)}")
         if "params" in args:
             print("Query params:", args["params"])
-            log.info(f'Query params: {args["params"]}')
+            log.info(f"Query params: {args['params']}")
         if "json" in args:
             print("Request body:", args["json"])
-            log.info(f'Request body: {args["json"]}')
+            log.info(f"Request body: {args['json']}")
         print("<<-", result.status_code)
         log.info(f"<<- {result.status_code}")
         try:
@@ -112,5 +109,4 @@ def client():
     """
     if config.get_test_config().host is None:
         return TextClientWithTools(app.main.app)
-    else:
-        return TextClientExtWithTools()
+    return TextClientExtWithTools()

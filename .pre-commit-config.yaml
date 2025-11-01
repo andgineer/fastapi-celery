@@ -1,6 +1,5 @@
 exclude: |
     (?x)(
-        backend/tests/|
         docs/|
         tasks.py|
         scripts/|
@@ -16,7 +15,7 @@ repos:
       - id: trailing-whitespace
         exclude_types: [ python ]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.0
+    rev: v0.14.3
     hooks:
       - id: ruff
         exclude: ^tests/
@@ -50,11 +49,10 @@ repos:
         ]
       - id: ruff
         name: ruff-format-tests
-        files: ^tests/
+        files: ^backend/tests/
         args: [
-          --fix,
-          --line-length=99,
-          --exit-zero    # Don't fail on issues
+          --fix-only,
+          --line-length=100,
         ]
       - id: ruff-format
         args: [
@@ -74,4 +72,5 @@ repos:
         ]
         require_serial: true
         language: system
+        exclude: ^backend/tests/
         types: [ python ]

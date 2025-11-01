@@ -1,7 +1,6 @@
 """
 Injection functions to replace `get_config()` and `get_session()` in app under test
 """
-from typing import Optional
 
 import fakeredis
 from app.config import Config
@@ -9,8 +8,8 @@ from app.db.session import get_session
 from sqlalchemy.orm import Session
 
 HTTP_TIMEOUT_SECONDS = 10
-_config: Optional[Config] = None  # Inject test config here
-_session: Optional[Session] = None  # Inject test session here
+_config: Config | None = None  # Inject test config here
+_session: Session | None = None  # Inject test session here
 
 
 class TestConfig(Config):

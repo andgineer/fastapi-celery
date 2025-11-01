@@ -26,4 +26,3 @@ def test_words_count(data_path, client, celery_worker, celery_app):
     print(response.status_code)
     print(response.text)
     assert response.json()["count"] == 69
-

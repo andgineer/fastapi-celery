@@ -2,6 +2,7 @@
 celery test config
 should be imported into `conftest.py`
 """
+
 import os.path
 
 import pytest

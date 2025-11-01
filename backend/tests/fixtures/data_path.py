@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+
 @pytest.fixture
 def data_path(tmpdir, request) -> Path:
     """
@@ -35,7 +36,9 @@ def data_path(tmpdir, request) -> Path:
             tail = tail[len("test_") :]
         test_data_dir = f"{os.path.join(head, tail)}_data"
 
-    assert os.path.isdir(test_data_dir), f"data_path fixture: Cannot find test data folder {test_data_dir}"
+    assert os.path.isdir(test_data_dir), (
+        f"data_path fixture: Cannot find test data folder {test_data_dir}"
+    )
 
     # Copy contents of test_data_dir to tmpdir
     for item in os.listdir(test_data_dir):

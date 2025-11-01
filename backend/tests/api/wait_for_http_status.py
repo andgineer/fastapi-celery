@@ -1,10 +1,5 @@
 import time
-from typing import Callable
-from typing import FrozenSet
-from typing import List
-from typing import Set
-from typing import Tuple
-from typing import Union
+from collections.abc import Callable
 
 import pytest
 from requests import Response
@@ -13,8 +8,8 @@ from starlette import status
 
 def wait_for_http_status(
     http_request: Callable[[], Response],
-    wait_for_status: Union[Tuple, FrozenSet, Set, List] = frozenset(
-        {status.HTTP_200_OK}
+    wait_for_status: tuple | frozenset | set | list = frozenset(
+        {status.HTTP_200_OK},
     ),
     response_func: Callable[[Response], bool] = None,
     max_wait_seconds: float = 30,  # with xdist we really need as much on my macbook pro
@@ -46,7 +41,7 @@ def wait_for_http_status(
         if response is not None:
             pytest.fail(
                 f"Enumeration result is being in status `{response.status_code}` "
-                f"more than {waiting_time} secs"
+                f"more than {waiting_time} secs",
             )
         else:
             pytest.fail("The request returns None")

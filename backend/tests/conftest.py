@@ -1,12 +1,12 @@
 import logging
-from pathlib import Path
 import os
+from pathlib import Path
 
 os.environ["CELERY_TRACK_STARTED"] = "True"
 os.environ["CELERY_IGNORE_RESULT"] = "False"
 os.environ["CELERY_TASK_RESULT_EXPIRES"] = "6000"
 
-pytest_plugins = ("celery.contrib.pytest", )
+pytest_plugins = ("celery.contrib.pytest",)
 
 # os.environ["ADMIN_LOGIN"] = "admin"
 # os.environ["ADMIN_PASSWORD"] = "admin"
@@ -18,8 +18,8 @@ pytest_plugins = ("celery.contrib.pytest", )
 
 import app.config
 import app.db.session
-import tests.config as test_config
 import pytest
+import tests.config as test_config
 from app import modules_load
 
 app.config.get_config = test_config.get_test_config
@@ -32,7 +32,11 @@ from tests.fixtures.client import TestClientExternal  # just to remove warning
 # - in fact it is already imported with `modules_load`
 
 log = logging.getLogger()
-logging.basicConfig(format="%(asctime)s - %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
+logging.basicConfig(
+    format="%(asctime)s - %(message)s",
+    datefmt="%d-%b-%y %H:%M:%S",
+    level=logging.INFO,
+)
 
 
 def pytest_addoption(parser):
@@ -58,11 +62,7 @@ def pytest_report_header(config):
     host = config.getoption("host")
     if host is not None:
         host = TestClientExternal.url("")
-    return (
-        f'{">" * 5} '
-        f'{"unittests" if host is None else "Testing server " + host} '
-        f'{"<" * 5}\n'
-    )
+    return f"{'>' * 5} {'unittests' if host is None else 'Testing server ' + host} {'<' * 5}\n"
 
 
 def pytest_cmdline_main(config):
@@ -76,10 +76,10 @@ def pytest_collection_modifyitems(config, items):
     if config.getoption("host"):
         # Skip un-relevant tests if we test external server (option `--host`)
         skip_unittests = pytest.mark.skip(
-            reason="Skip tests for local code in server test mode (--host)"
+            reason="Skip tests for local code in server test mode (--host)",
         )
         skip_non_api = pytest.mark.skip(
-            reason="Skip non API tests in server test mode (--host)"
+            reason="Skip non API tests in server test mode (--host)",
         )
         for item in items:
             if "unittest" in item.keywords:

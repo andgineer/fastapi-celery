@@ -1,5 +1,4 @@
-from string import ascii_letters
-from string import digits
+from string import ascii_letters, digits
 
 from app.api.v1.auth.get_user_group import extract_token
 from hypothesis import given

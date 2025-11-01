@@ -1,10 +1,10 @@
-from string import ascii_letters
-from string import digits
+from string import ascii_letters, digits
 
 import pytest
 from app.config import get_config as app_config
 from fastapi import status
-from hypothesis import HealthCheck, given, settings, strategies as st
+from hypothesis import HealthCheck, given, settings
+from hypothesis import strategies as st
 
 
 @pytest.mark.does_not_change_db
@@ -26,7 +26,11 @@ def test_get_token_success(client):
 @given(
     st.text(min_size=1, max_size=32, alphabet=ascii_letters + digits),
 )
-@settings(suppress_health_check=[HealthCheck.function_scoped_fixture], max_examples=10, deadline=None)
+@settings(
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+    max_examples=10,
+    deadline=None,
+)
 def test_get_token_wrong_login(client, wrong_login):
     response = client.post(
         "/api/auth",
@@ -45,7 +49,11 @@ def test_get_token_wrong_login(client, wrong_login):
 @given(
     st.text(min_size=1, max_size=32, alphabet=ascii_letters + digits),
 )
-@settings(suppress_health_check=[HealthCheck.function_scoped_fixture], max_examples=10, deadline=None)
+@settings(
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+    max_examples=10,
+    deadline=None,
+)
 def test_get_token_wrong_password(client, wrong_password):
     response = client.post(
         "/api/auth",

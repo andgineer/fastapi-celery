@@ -1,12 +1,8 @@
 import logging
-import os
 import time
-from unittest.mock import patch
-
-import celery.result
 
 import app.tasks.debug
-
+import celery.result
 
 log = logging.getLogger()
 
@@ -32,4 +28,3 @@ def test_celery_boilerplate_task_direct(celery_worker, celery_app, monkeypatch):
     """
     monkeypatch.setattr(app.tasks.debug, "dummy_function", lambda: 44)
     assert app.tasks.debug.dummy_task.delay().get(timeout=10) == 44
-

@@ -26,12 +26,15 @@ SRC_DIR = "backend/app/**"
 
 def load_tests(loader, tests, ignore):
     for module_file in glob(f"{SRC_DIR}/*{PY_EXT}", recursive=True):
-        if isfile(module_file) and not module_file.endswith("__init__.py") and not module_file.endswith("test_celery_boilerplate.py"):
-            module_path = module_file.replace("/", ".").replace("\\", ".")[:-len(PY_EXT)]
+        if (
+            isfile(module_file)
+            and not module_file.endswith("__init__.py")
+            and not module_file.endswith("test_celery_boilerplate.py")
+        ):
+            module_path = module_file.replace("/", ".").replace("\\", ".")[: -len(PY_EXT)]
             try:
                 module = import_module(module_path)
                 tests.addTest(doctest.DocTestSuite(module))
             except Exception as e:
                 print(f"Failed to import {module_path}: {e}")
     return tests
-

@@ -39,6 +39,7 @@ def send(*args, **kwargs) -> str:
     Returns task id
     """
     task: celery.result.AsyncResult = celery_app.send_task(*args, **kwargs)
+    assert task.id is not None, "Task ID should not be None"
     tasks_db.create(task.id)
     return task.id
 

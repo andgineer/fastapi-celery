@@ -64,7 +64,7 @@ class TextClientTooling:
         if "token" in args:
             args["headers"]["Authorization"] = f"Bearer {args['token']}"
             del args["token"]
-        result = super().request(method, url, **args)
+        result = super().request(method, url, **args)  # type: ignore[misc]
         ellipsed_headers = {}
         MAX_LEN = 15
         for header, val in args["headers"].items():

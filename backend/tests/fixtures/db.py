@@ -52,6 +52,8 @@ def db_indepotent(pytestconfig):
     if app_config.get_config().host is not None:
         yield None  # no sense using local DB when we test external Server
         return  # stop iterations for this fixture generator
+
+    connection = None
     try:
         connection = app_session.engine(app_config.get_config()).connect()
     except sqlalchemy.exc.OperationalError:
@@ -60,6 +62,7 @@ def db_indepotent(pytestconfig):
             returncode=2,
         )
 
+    assert connection is not None, "Connection should be initialized"
     # begin a non-ORM transaction
     trans = connection.begin()
     session = sessionmaker(info={"test_session_id": str(uuid.uuid4())})(bind=connection)
@@ -89,4 +92,5 @@ def db_indepotent(pytestconfig):
     session.close()
     log.debug(f"[[[ savepoint transaction ]]] Rollback in {session.info}")
     trans.rollback()  # roll back to the SAVEPOINT
-    connection.close()
+    if connection is not None:
+        connection.close()

@@ -1,3 +1,5 @@
+from typing import Any
+
 from app.api.v1.auth import router as auth_router
 from app.api.v1.root import router as root_router
 from app.api.v1.words import router as words_router
@@ -18,7 +20,7 @@ TAGS = [
     },
 ]
 
-ROUTE_TABLE = [
+ROUTE_TABLE: list[dict[str, Any]] = [
     {"router": root_router, "tag": "tests"},
     {"prefix": "/auth", "router": auth_router, "tag": "security"},
     {"prefix": "/words", "router": words_router, "tag": "words"},
@@ -29,9 +31,9 @@ router = APIRouter()
 for route in ROUTE_TABLE:
     if "prefix" in route:
         router.include_router(
-            route["router"],
+            route["router"],  # type: ignore[arg-type]
             tags=[route["tag"]],
             prefix=route["prefix"],
         )
     else:
-        router.include_router(route["router"], tags=[route["tag"]])
+        router.include_router(route["router"], tags=[route["tag"]])  # type: ignore[arg-type]

@@ -14,8 +14,7 @@ pytest-clarity
 httpx
 allure-pytest
 invoke
-mypy
-pylint
+pyrefly
 pre-commit
 typing_extensions
 types-cffi

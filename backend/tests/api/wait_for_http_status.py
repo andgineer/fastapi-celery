@@ -11,7 +11,7 @@ def wait_for_http_status(
     wait_for_status: tuple | frozenset | set | list = frozenset(
         {status.HTTP_200_OK},
     ),
-    response_func: Callable[[Response], bool] = None,
+    response_func: Callable[[Response], bool] | None = None,
     max_wait_seconds: float = 30,  # with xdist we really need as much on my macbook pro
     sleep_seconds: float = 0.3,
 ) -> Response:
@@ -25,7 +25,7 @@ def wait_for_http_status(
 
     Returns the request's result.
     """
-    waiting_time = 0
+    waiting_time: float = 0
     response = None
     while waiting_time < max_wait_seconds:
         response = http_request()

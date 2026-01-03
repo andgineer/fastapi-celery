@@ -2,9 +2,9 @@
 #    uv pip compile requirements/requirements.dev.in --output-file=docker/tests/requirements.txt
 alembic==1.17.2
     # via -r requirements/requirements.celery.in
-allure-pytest==2.15.2
+allure-pytest==2.15.3
     # via -r requirements/requirements.dev.in
-allure-python-commons==2.15.2
+allure-python-commons==2.15.3
     # via allure-pytest
 amqp==5.3.1
     # via
@@ -44,7 +44,7 @@ billiard==4.2.4
     # via celery
 bleach==6.3.0
     # via nbconvert
-celery==5.6.0
+celery==5.6.1
     # via -r requirements/requirements.celery.in
 certifi==2025.11.12
     # via
@@ -74,7 +74,7 @@ click-repl==0.3.0
     # via celery
 comm==0.2.3
     # via ipykernel
-coverage==7.13.0
+coverage==7.13.1
     # via
     #   -r requirements/requirements.dev.in
     #   pytest-cov
@@ -90,19 +90,17 @@ defusedxml==0.7.1
     # via nbconvert
 distlib==0.4.0
     # via virtualenv
-exceptiongroup==1.3.1
-    # via celery
 execnet==2.1.2
     # via pytest-xdist
 executing==2.2.1
     # via stack-data
 fakeredis==2.33.0
     # via -r requirements/requirements.dev.in
-fastapi==0.127.1
+fastapi==0.128.0
     # via -r requirements/requirements.celery.in
 fastjsonschema==2.21.2
     # via nbformat
-filelock==3.20.1
+filelock==3.20.2
     # via virtualenv
 fqdn==1.5.1
     # via jsonschema
@@ -118,7 +116,7 @@ httpx==0.28.1
     # via
     #   -r requirements/requirements.dev.in
     #   jupyterlab
-hypothesis==6.148.8
+hypothesis==6.148.9
     # via -r requirements/requirements.dev.in
 identify==2.6.15
     # via pre-commit
@@ -148,7 +146,7 @@ jinja2==3.1.6
     #   jupyterlab
     #   jupyterlab-server
     #   nbconvert
-json5==0.12.1
+json5==0.13.0
     # via jupyterlab-server
 jsonpointer==3.0.0
     # via jsonschema
@@ -191,7 +189,7 @@ jupyterlab-pygments==0.3.0
     # via nbconvert
 jupyterlab-server==2.28.0
     # via jupyterlab
-kombu==5.6.1
+kombu==5.6.2
     # via celery
 lark==1.3.1
     # via rfc3987-syntax
@@ -265,7 +263,7 @@ prompt-toolkit==3.0.52
     # via
     #   click-repl
     #   ipython
-psutil==7.2.0
+psutil==7.2.1
     # via ipykernel
 psycopg2-binary==2.9.11
     # via -r requirements/requirements.celery.in
@@ -294,7 +292,7 @@ pyjwt==2.10.1
     # via
     #   -r requirements/requirements.dev.in
     #   -r requirements/requirements.in
-pyrefly==0.46.1
+pyrefly==0.46.3
     # via -r requirements/requirements.dev.in
 pytest==9.0.2
     # via
@@ -365,7 +363,7 @@ rpds-py==0.30.0
     # via
     #   jsonschema
     #   referencing
-send2trash==1.8.3
+send2trash==2.0.0
     # via jupyter-server
 setuptools==80.9.0
     # via jupyterlab
@@ -441,7 +439,6 @@ typing-extensions==4.15.0
     #   alembic
     #   anyio
     #   beautifulsoup4
-    #   exceptiongroup
     #   fastapi
     #   pydantic
     #   pydantic-core

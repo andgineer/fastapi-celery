@@ -45,4 +45,5 @@ def wait_for_http_status(
             )
         else:
             pytest.fail("The request returns None")
+    assert response is not None  # Type narrowing: response is guaranteed to be set here
     return response

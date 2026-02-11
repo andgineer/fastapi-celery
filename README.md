@@ -9,7 +9,7 @@
 | backend/app/api/get\_task.py                |       16 |        5 |     69% |17-18, 22-24 |
 | backend/app/api/routing.py                  |       12 |        0 |    100% |           |
 | backend/app/api/v1/auth/get\_token.py       |       18 |        0 |    100% |           |
-| backend/app/api/v1/auth/get\_user\_group.py |       48 |       24 |     50% |18, 35, 41-49, 62-91 |
+| backend/app/api/v1/auth/get\_user\_group.py |       49 |       25 |     49% |18, 35, 41-49, 62-92 |
 | backend/app/api/v1/models/auth.py           |        6 |        0 |    100% |           |
 | backend/app/api/v1/models/errors.py         |        5 |        0 |    100% |           |
 | backend/app/api/v1/models/words.py          |        2 |        0 |    100% |           |
@@ -30,7 +30,7 @@
 | backend/app/tasks/states.py                 |        2 |        0 |    100% |           |
 | backend/app/tasks/words.py                  |       24 |        5 |     79% |     33-37 |
 | backend/app/version.py                      |        1 |        0 |    100% |           |
-| **TOTAL**                                   |  **481** |  **108** | **78%** |           |
+| **TOTAL**                                   |  **482** |  **109** | **77%** |           |
 
 
 ## Setup coverage badge

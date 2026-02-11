@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for backend/app/api/v1/auth/get_user_group.py: 50%</title>
+    <title>Coverage for backend/app/api/v1/auth/get_user_group.py: 49%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_c827f16f.png">
     <link rel="stylesheet" href="style_cb_9ff733b0.css" type="text/css">
     <script src="coverage_html_cb_dd2e7eb5.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>backend&#8201;/&#8201;app&#8201;/&#8201;api&#8201;/&#8201;v1&#8201;/&#8201;auth&#8201;/&#8201;get_user_group.py</b>:
-            <span class="pc_cov">50%</span>
+            <span class="pc_cov">49%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -54,9 +54,9 @@
             </div>
         </aside>
         <h2>
-            <span class="text">48 statements &nbsp;</span>
+            <span class="text">49 statements &nbsp;</span>
             <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">24<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">24<span class="text"> missing</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">25<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
         <p class="text">
@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="z_73480ff7b218d8bd_auth_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.1">coverage.py v7.13.1</a>,
-            created at 2026-01-27 07:40 +0000
+            created at 2026-02-11 05:13 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -156,21 +156,22 @@
     <p class="mis mis2 show_mis"><span class="n"><a id="t74" href="#t74">74</a></span><span class="t">            <span class="nam">app_config</span><span class="op">.</span><span class="nam">get_config</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">jwt_secret_key</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t75" href="#t75">75</a></span><span class="t">            <span class="nam">algorithms</span><span class="op">=</span><span class="op">[</span><span class="nam">app_config</span><span class="op">.</span><span class="nam">get_config</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">jwt_algorithm</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t76" href="#t76">76</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t77" href="#t77">77</a></span><span class="t">        <span class="nam">user_group</span><span class="op">:</span> <span class="nam">str</span> <span class="op">=</span> <span class="nam">payload</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"sub"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t78" href="#t78">78</a></span><span class="t">        <span class="key">if</span> <span class="nam">user_group</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t77" href="#t77">77</a></span><span class="t">        <span class="nam">user_group_raw</span> <span class="op">=</span> <span class="nam">payload</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"sub"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t78" href="#t78">78</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">user_group_raw</span><span class="op">,</span> <span class="nam">str</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t79" href="#t79">79</a></span><span class="t">            <span class="key">raise</span> <span class="nam">credentials_exception</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t80" href="#t80">80</a></span><span class="t">        <span class="nam">token_scopes</span> <span class="op">=</span> <span class="nam">payload</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"scopes"</span><span class="op">,</span> <span class="op">[</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t81" href="#t81">81</a></span><span class="t">        <span class="nam">token_data</span> <span class="op">=</span> <span class="nam">api_models</span><span class="op">.</span><span class="nam">TokenData</span><span class="op">(</span><span class="nam">scopes</span><span class="op">=</span><span class="nam">token_scopes</span><span class="op">,</span> <span class="nam">user_group</span><span class="op">=</span><span class="nam">user_group</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t82" href="#t82">82</a></span><span class="t">    <span class="key">except</span> <span class="op">(</span><span class="nam">jwt</span><span class="op">.</span><span class="nam">PyJWTError</span><span class="op">,</span> <span class="nam">ValidationError</span><span class="op">)</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t83" href="#t83">83</a></span><span class="t">        <span class="key">raise</span> <span class="nam">credentials_exception</span> <span class="key">from</span> <span class="nam">e</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t84" href="#t84">84</a></span><span class="t">    <span class="key">for</span> <span class="nam">scope</span> <span class="key">in</span> <span class="nam">security_scopes</span><span class="op">.</span><span class="nam">scopes</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t85" href="#t85">85</a></span><span class="t">        <span class="key">if</span> <span class="nam">scope</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">token_data</span><span class="op">.</span><span class="nam">scopes</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t86" href="#t86">86</a></span><span class="t">            <span class="key">raise</span> <span class="nam">HTTPException</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t87" href="#t87">87</a></span><span class="t">                <span class="nam">status_code</span><span class="op">=</span><span class="nam">status</span><span class="op">.</span><span class="nam">HTTP_401_UNAUTHORIZED</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t88" href="#t88">88</a></span><span class="t">                <span class="nam">detail</span><span class="op">=</span><span class="str">"Not enough permissions"</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t89" href="#t89">89</a></span><span class="t">                <span class="nam">headers</span><span class="op">=</span><span class="op">{</span><span class="str">"WWW-Authenticate"</span><span class="op">:</span> <span class="nam">authenticate_value</span><span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis mis2 show_mis"><span class="n"><a id="t90" href="#t90">90</a></span><span class="t">            <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t91" href="#t91">91</a></span><span class="t">    <span class="key">return</span> <span class="nam">user_group</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t80" href="#t80">80</a></span><span class="t">        <span class="nam">user_group</span> <span class="op">=</span> <span class="nam">user_group_raw</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t81" href="#t81">81</a></span><span class="t">        <span class="nam">token_scopes</span> <span class="op">=</span> <span class="nam">payload</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"scopes"</span><span class="op">,</span> <span class="op">[</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t82" href="#t82">82</a></span><span class="t">        <span class="nam">token_data</span> <span class="op">=</span> <span class="nam">api_models</span><span class="op">.</span><span class="nam">TokenData</span><span class="op">(</span><span class="nam">scopes</span><span class="op">=</span><span class="nam">token_scopes</span><span class="op">,</span> <span class="nam">user_group</span><span class="op">=</span><span class="nam">user_group</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t83" href="#t83">83</a></span><span class="t">    <span class="key">except</span> <span class="op">(</span><span class="nam">jwt</span><span class="op">.</span><span class="nam">PyJWTError</span><span class="op">,</span> <span class="nam">ValidationError</span><span class="op">)</span> <span class="key">as</span> <span class="nam">e</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t84" href="#t84">84</a></span><span class="t">        <span class="key">raise</span> <span class="nam">credentials_exception</span> <span class="key">from</span> <span class="nam">e</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t85" href="#t85">85</a></span><span class="t">    <span class="key">for</span> <span class="nam">scope</span> <span class="key">in</span> <span class="nam">security_scopes</span><span class="op">.</span><span class="nam">scopes</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t86" href="#t86">86</a></span><span class="t">        <span class="key">if</span> <span class="nam">scope</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">token_data</span><span class="op">.</span><span class="nam">scopes</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t87" href="#t87">87</a></span><span class="t">            <span class="key">raise</span> <span class="nam">HTTPException</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t88" href="#t88">88</a></span><span class="t">                <span class="nam">status_code</span><span class="op">=</span><span class="nam">status</span><span class="op">.</span><span class="nam">HTTP_401_UNAUTHORIZED</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t89" href="#t89">89</a></span><span class="t">                <span class="nam">detail</span><span class="op">=</span><span class="str">"Not enough permissions"</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t90" href="#t90">90</a></span><span class="t">                <span class="nam">headers</span><span class="op">=</span><span class="op">{</span><span class="str">"WWW-Authenticate"</span><span class="op">:</span> <span class="nam">authenticate_value</span><span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis mis2 show_mis"><span class="n"><a id="t91" href="#t91">91</a></span><span class="t">            <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t92" href="#t92">92</a></span><span class="t">    <span class="key">return</span> <span class="nam">user_group</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -180,7 +181,7 @@
             <a class="nav" href="z_73480ff7b218d8bd_auth_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.1">coverage.py v7.13.1</a>,
-            created at 2026-01-27 07:40 +0000
+            created at 2026-02-11 05:13 +0000
         </p>
     </div>
 </footer>

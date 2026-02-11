@@ -74,9 +74,10 @@ def get_user_group(
             app_config.get_config().jwt_secret_key,
             algorithms=[app_config.get_config().jwt_algorithm],
         )
-        user_group: str = payload.get("sub")
-        if user_group is None:
+        user_group_raw = payload.get("sub")
+        if not isinstance(user_group_raw, str):
             raise credentials_exception
+        user_group = user_group_raw
         token_scopes = payload.get("scopes", [])
         token_data = api_models.TokenData(scopes=token_scopes, user_group=user_group)
     except (jwt.PyJWTError, ValidationError) as e:

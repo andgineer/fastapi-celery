@@ -15,7 +15,7 @@ repos:
       - id: trailing-whitespace
         exclude_types: [ python ]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.0
+    rev: v0.15.6
     hooks:
       - id: ruff
         exclude: ^tests/
@@ -59,7 +59,7 @@ repos:
           --line-length=100
         ]
   - repo: https://github.com/facebook/pyrefly-pre-commit
-    rev: 0.52.0
+    rev: 0.57.1
     hooks:
       - id: pyrefly-check
         name: pyrefly check

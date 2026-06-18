@@ -1,0 +1,32 @@
+INFO     celery.worker.consumer.connection:connection.py:22 Connected to memory://localhost//
+INFO     celery.app.trace:trace.py:128 Task celery.ping[9f02a9ad-7f1c-4ec6-93ac-4087934b2fdc] succeeded in 0.030382486999997127s: 'pong'
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/words "HTTP/1.1 303 See Other"
+INFO     root:client.py:74 ->> POST /api/words
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: None
+INFO     root:client.py:85 <<- 303
+INFO     root:client.py:88 None
+INFO     httpx:_client.py:1025 HTTP Request: GET http://testserver/api/words/fa5407a8-07a5-4de8-a52c-9828ff4e8ced "HTTP/1.1 202 Accepted"
+INFO     root:client.py:74 ->> GET /api/words/fa5407a8-07a5-4de8-a52c-9828ff4e8ced
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:85 <<- 202
+INFO     root:client.py:91 
+INFO     httpx:_client.py:1025 HTTP Request: GET http://testserver/api/words/fa5407a8-07a5-4de8-a52c-9828ff4e8ced "HTTP/1.1 202 Accepted"
+INFO     root:client.py:74 ->> GET /api/words/fa5407a8-07a5-4de8-a52c-9828ff4e8ced
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:85 <<- 202
+INFO     root:client.py:91 
+INFO     celery.worker.strategy:strategy.py:161 Task tasks.words[fa5407a8-07a5-4de8-a52c-9828ff4e8ced] received
+INFO     backend.app.tasks.words:words.py:26 >>> tasks.words fa5407a8-07a5-4de8-a52c-9828ff4e8ced started <<<
+INFO     backend.app.tasks.words:words.py:31 >>> tasks.words fa5407a8-07a5-4de8-a52c-9828ff4e8ced finished <<<
+INFO     app.tasks.base:base.py:28 words.on_success
+INFO     app.tasks.base:base.py:29 retval: 69
+INFO     app.tasks.base:base.py:30 task_id: fa5407a8-07a5-4de8-a52c-9828ff4e8ced
+INFO     app.tasks.base:base.py:31 args: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n']
+INFO     app.tasks.base:base.py:32 kwargs: {}
+INFO     celery.app.trace:trace.py:128 Task tasks.words[fa5407a8-07a5-4de8-a52c-9828ff4e8ced] succeeded in 0.02011547899999755s: 69
+INFO     httpx:_client.py:1025 HTTP Request: GET http://testserver/api/words/fa5407a8-07a5-4de8-a52c-9828ff4e8ced "HTTP/1.1 200 OK"
+INFO     root:client.py:74 ->> GET /api/words/fa5407a8-07a5-4de8-a52c-9828ff4e8ced
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:85 <<- 200
+INFO     root:client.py:88 {'count': 69}

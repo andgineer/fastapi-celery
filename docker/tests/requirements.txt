@@ -14,7 +14,7 @@ annotated-doc==0.0.4
     # via fastapi
 annotated-types==0.7.0
     # via pydantic
-anyio==4.13.0
+anyio==4.14.0
     # via
     #   httpx
     #   jupyter-server
@@ -38,15 +38,15 @@ attrs==26.1.0
     #   referencing
 babel==2.18.0
     # via jupyterlab-server
-beautifulsoup4==4.14.3
+beautifulsoup4==4.15.0
     # via nbconvert
 billiard==4.2.4
     # via celery
-bleach==6.3.0
+bleach==6.4.0
     # via nbconvert
 celery==5.6.3
     # via -r requirements/requirements.celery.in
-certifi==2026.5.20
+certifi==2026.6.17
     # via
     #   httpcore
     #   httpx
@@ -78,29 +78,29 @@ coverage==7.14.1
     # via
     #   -r requirements/requirements.dev.in
     #   pytest-cov
-cryptography==48.0.0
+cryptography==49.0.0
     # via
     #   types-pyopenssl
     #   types-redis
-debugpy==1.8.20
+debugpy==1.8.21
     # via ipykernel
 decorator==5.3.1
     # via ipython
 defusedxml==0.7.1
     # via nbconvert
-distlib==0.4.0
+distlib==0.4.3
     # via virtualenv
 execnet==2.1.2
     # via pytest-xdist
 executing==2.2.1
     # via stack-data
-fakeredis==2.35.1
+fakeredis==2.36.2
     # via -r requirements/requirements.dev.in
-fastapi==0.136.3
+fastapi==0.137.2
     # via -r requirements/requirements.celery.in
 fastjsonschema==2.21.2
     # via nbformat
-filelock==3.29.0
+filelock==3.29.4
     # via
     #   python-discovery
     #   virtualenv
@@ -118,11 +118,11 @@ httpx==0.28.1
     # via
     #   -r requirements/requirements.dev.in
     #   jupyterlab
-hypothesis==6.154.1
+hypothesis==6.155.3
     # via -r requirements/requirements.dev.in
 identify==2.6.19
     # via pre-commit
-idna==3.16
+idna==3.18
     # via
     #   anyio
     #   httpx
@@ -132,9 +132,9 @@ iniconfig==2.3.0
     # via pytest
 invoke==3.0.3
     # via -r requirements/requirements.dev.in
-ipykernel==7.2.0
+ipykernel==7.3.0
     # via jupyterlab
-ipython==9.13.0
+ipython==9.14.1
     # via ipykernel
 ipython-pygments-lexers==1.1.1
     # via ipython
@@ -159,7 +159,7 @@ jsonschema==4.26.0
     #   nbformat
 jsonschema-specifications==2025.9.1
     # via jsonschema
-jupyter-client==8.8.0
+jupyter-client==8.9.1
     # via
     #   ipykernel
     #   jupyter-server
@@ -177,7 +177,7 @@ jupyter-events==0.12.1
     # via jupyter-server
 jupyter-lsp==2.3.1
     # via jupyterlab
-jupyter-server==2.18.2
+jupyter-server==2.20.0
     # via
     #   jupyter-lsp
     #   jupyterlab
@@ -185,7 +185,7 @@ jupyter-server==2.18.2
     #   notebook-shim
 jupyter-server-terminals==0.5.4
     # via jupyter-server
-jupyterlab==4.5.7
+jupyterlab==4.5.9
     # via -r requirements/requirements.in
 jupyterlab-pygments==0.3.0
     # via nbconvert
@@ -212,7 +212,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mistune==3.2.1
     # via nbconvert
-nbclient==0.10.4
+nbclient==0.11.0
     # via nbconvert
 nbconvert==7.17.1
     # via jupyter-server
@@ -221,7 +221,7 @@ nbformat==5.10.4
     #   jupyter-server
     #   nbclient
     #   nbconvert
-nest-asyncio==1.6.0
+nest-asyncio2==1.7.2
     # via ipykernel
 nodeenv==1.10.0
     # via pre-commit
@@ -297,9 +297,9 @@ pyjwt==2.13.0
     # via
     #   -r requirements/requirements.dev.in
     #   -r requirements/requirements.in
-pyrefly==1.0.0
+pyrefly==1.1.0
     # via -r requirements/requirements.dev.in
-pytest==9.0.3
+pytest==9.1.0
     # via
     #   -r requirements/requirements.dev.in
     #   allure-pytest
@@ -326,11 +326,11 @@ python-dateutil==2.9.0.post0
     #   arrow
     #   celery
     #   jupyter-client
-python-discovery==1.4.0
+python-discovery==1.4.2
     # via virtualenv
 python-json-logger==4.1.0
     # via jupyter-events
-python-multipart==0.0.29
+python-multipart==0.0.32
     # via -r requirements/requirements.in
 pyyaml==6.0.3
     # via
@@ -341,7 +341,7 @@ pyzmq==27.1.0
     #   ipykernel
     #   jupyter-client
     #   jupyter-server
-redis==7.4.0
+redis==8.0.0
     # via
     #   -r requirements/requirements.celery.in
     #   fakeredis
@@ -366,7 +366,7 @@ rfc3987-syntax==1.1.0
     # via jsonschema
 rich==15.0.0
     # via pytest-clarity
-rpds-py==0.30.0
+rpds-py==2026.5.1
     # via
     #   jsonschema
     #   referencing
@@ -384,28 +384,28 @@ sortedcontainers==2.4.0
     #   hypothesis
 soupsieve==2.8.4
     # via beautifulsoup4
-sqlalchemy==2.0.50
+sqlalchemy==2.0.51
     # via
     #   -r requirements/requirements.celery.in
     #   alembic
 stack-data==0.6.3
     # via ipython
-starlette==1.1.0
+starlette==1.3.1
     # via fastapi
 terminado==0.18.1
     # via
     #   jupyter-server
     #   jupyter-server-terminals
-tinycss2==1.4.0
+tinycss2==1.5.1
     # via bleach
-tornado==6.5.6
+tornado==6.5.7
     # via
     #   ipykernel
     #   jupyter-client
     #   jupyter-server
     #   jupyterlab
     #   terminado
-traitlets==5.15.0
+traitlets==5.15.1
     # via
     #   ipykernel
     #   ipython
@@ -447,6 +447,7 @@ typing-extensions==4.15.0
     #   anyio
     #   beautifulsoup4
     #   fastapi
+    #   jupyter-client
     #   pydantic
     #   pydantic-core
     #   referencing
@@ -461,7 +462,7 @@ tzdata==2026.2
     # via
     #   arrow
     #   kombu
-tzlocal==5.3.1
+tzlocal==5.4.3
     # via celery
 uri-template==1.3.0
     # via jsonschema
@@ -469,7 +470,7 @@ urllib3==2.7.0
     # via
     #   requests
     #   types-requests
-uvicorn==0.48.0
+uvicorn==0.49.0
     # via -r requirements/requirements.in
 vine==5.1.0
     # via
@@ -477,9 +478,9 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==21.4.1
+virtualenv==21.5.1
     # via pre-commit
-wcwidth==0.7.0
+wcwidth==0.8.1
     # via prompt-toolkit
 webcolors==25.10.0
     # via jsonschema

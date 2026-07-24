@@ -32,8 +32,7 @@ def data_path(tmpdir, request) -> Path:
         )
     else:
         head, tail = os.path.split(os.path.splitext(request.module.__file__)[0])
-        if tail.startswith("test_"):
-            tail = tail[len("test_") :]
+        tail = tail.removeprefix("test_")
         test_data_dir = f"{os.path.join(head, tail)}_data"
 
     assert os.path.isdir(test_data_dir), (

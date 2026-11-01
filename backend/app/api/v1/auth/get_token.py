@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from itertools import chain
 from typing import Any
 
@@ -27,7 +27,7 @@ def create_access_token(
         payload=dict(
             chain(
                 payload.copy().items(),
-                {"exp": datetime.now(timezone.utc) + expires_delta}.items(),
+                {"exp": datetime.now(UTC) + expires_delta}.items(),
             ),
         ),
         key=app_config.get_config().jwt_secret_key,

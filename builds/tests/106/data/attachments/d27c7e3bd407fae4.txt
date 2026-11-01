@@ -1,0 +1,60 @@
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': '0', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': '6OnuJ', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': 't5f', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': 'S', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': 'AH', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': 'e', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': '9ejx5S', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': 'KXyjPl', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': 'x', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/auth "HTTP/1.1 400 Bad Request"
+INFO     root:client.py:74 ->> POST /api/auth
+INFO     root:client.py:80 Query params: None
+INFO     root:client.py:83 Request body: {'login': 'PN', 'password': 'admin'}
+INFO     root:client.py:85 <<- 400
+INFO     root:client.py:88 {'detail': 'Incorrect user login or password'}
